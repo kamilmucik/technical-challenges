@@ -1,5 +1,6 @@
 package com.gft.util;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -38,16 +39,18 @@ public class CalendarTest {
     }
 
     @Test
-    public void iteratorTest(){
-        int i = 0;
-        for (LocalDate ld : calendar) {
-            if (!ld.getDayOfWeek().equals(DayOfWeek.TUESDAY) &&
-                    !ld.getDayOfWeek().equals(DayOfWeek.FRIDAY)){
-                fail("Should return only Tuesday and Friday");
-            }
-            i++;
-            if (i > 10 ) break;
-        }
+    public void shouldReturnWellKnowValues(){
+        // arrange
+        Calendar cal = new Calendar(LocalDate.of(2016, 9, 19));
+
+        // act
+        Iterator<LocalDate> it = cal.iterator();
+
+        // assert
+        Assertions.assertThat(it.next()).isEqualTo(LocalDate.of(2016, 9, 20));
+        Assertions.assertThat(it.next()).isEqualTo(LocalDate.of(2016, 9, 23));
+        Assertions.assertThat(it.next()).isEqualTo(LocalDate.of(2016, 9, 27));
+
     }
 
     @Test (expected = UnsupportedOperationException.class)
