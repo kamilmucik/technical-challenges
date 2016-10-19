@@ -1,11 +1,11 @@
 package com.gft.util;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.SignStyle;
 import java.time.temporal.ChronoField;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,12 +15,11 @@ import java.util.Map;
  */
 public class Calendar implements Iterable<LocalDate>{
 
-    private int start;
-    private int end;
+    private LocalDate date;
 
-    static final Map<Long, String> ROMAN_MONTHS = new HashMap<Long, String>();
+    public static final Map<Long, String> ROMAN_MONTHS = new HashMap<Long, String>();
 
-    static DateTimeFormatter FORMATTER;
+    public static final DateTimeFormatter FORMATTER;
 
     static {
         ROMAN_MONTHS.put(1L, "I");
@@ -45,10 +44,21 @@ public class Calendar implements Iterable<LocalDate>{
                 .toFormatter();
     }
 
+    public Calendar(LocalDate localDate){
+        this.date = localDate;
+    }
+
     public LocalDate getLocalDate() {
         return LocalDate.now();
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     @Override
     public Iterator<LocalDate> iterator() {
@@ -57,19 +67,30 @@ public class Calendar implements Iterable<LocalDate>{
 
     private class CalendarIterator <LocalDate> implements Iterator<java.time.LocalDate> {
 
-        private int cursor;
-
+        /**
+         * Method always return true, because calendar is infinity.
+         * @return
+         */
         public boolean hasNext() {
-
-            //implement...
             return true;
         }
 
+        /**
+         * Method next() return every <i>Tuesday</i> and <i>Friday</i> in week days.
+         * @return
+         */
         public java.time.LocalDate next() {
-            //implement...;
-            return null;
+            do {
+                setDate(date.plusDays(1));
+            } while ( (!date.getDayOfWeek().equals(DayOfWeek.TUESDAY))
+                    && (!date.getDayOfWeek().equals(DayOfWeek.FRIDAY)));
+
+            return date;
         }
 
+        /**
+         * No one can remove date form calendar
+         */
         public void remove() {
             throw new UnsupportedOperationException();
         }
