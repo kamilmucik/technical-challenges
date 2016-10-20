@@ -4,14 +4,11 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-/**
- * Created by kamu on 2016-10-18.
- */
-public class Calendar implements Iterable<LocalDate>{
+class Calendar implements Iterable<LocalDate>{
 
     private LocalDate date;
 
-    public Calendar(LocalDate localDate){
+    Calendar(LocalDate localDate){
         this.date = localDate;
     }
 
@@ -24,7 +21,7 @@ public class Calendar implements Iterable<LocalDate>{
 
         private LocalDate date;
 
-        public CalendarIterator(LocalDate date){
+        CalendarIterator(LocalDate date){
             this.date = date;
         }
 
@@ -38,7 +35,7 @@ public class Calendar implements Iterable<LocalDate>{
 
         /**
          * Method next() return every <i>Tuesday</i> and <i>Friday</i> in week days.
-         * @return
+         * @return LocalDate
          */
         public LocalDate next() {
             do {

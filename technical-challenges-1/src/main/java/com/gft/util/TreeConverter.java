@@ -4,33 +4,30 @@ import com.gft.model.Node;
 
 import java.util.Iterator;
 
-public class TreeConverter implements Iterable<Node> {
+class TreeConverter implements Iterable<Node> {
 
     private Node node;
 
-    public TreeConverter(Node node) {
+    TreeConverter(Node node) {
         this.node = node;
     }
 
     @Override
     public Iterator<Node> iterator() {
-        return new TreeConverterIterator(this.node);
+        return new TreeConverterIterator(node);
     }
 
     private static class TreeConverterIterator implements Iterator<Node> {
 
         private Node node;
 
-        public TreeConverterIterator(Node node){
+        TreeConverterIterator(Node node){
             this.node = node;
         }
 
         @Override
         public boolean hasNext() {
-            if (node.getChildren().size() != 0) {
-                return true;
-            }
-            return false;
+            return (node.getChildren().size() != 0);
         }
 
         @Override

@@ -20,10 +20,12 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnWellKnownValues(){
-        Node root = new NodeImpl();
+        Node node = new NodeImpl();
         Node child1 = new NodeImpl();
-        root.addChild(child1);
-        TreeConverter tree = new TreeConverter(root);
+        Node child11 = new NodeImpl();
+        child1.addChild(child11);
+        node.addChild(child1);
+        TreeConverter tree = new TreeConverter(node);
 
         Iterator<Node> it = tree.iterator();
 

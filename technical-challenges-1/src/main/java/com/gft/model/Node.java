@@ -1,15 +1,10 @@
 package com.gft.model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public interface Node {
 
-    List<Node> children = new LinkedList<>();
+    List<Node> getChildren();
 
-    default List<Node> getChildren() {return children;}
-
-    default void addChild(Node node){children.add(node);}
-
-
+    void addChild(Node node);
 }
