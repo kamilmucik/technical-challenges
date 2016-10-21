@@ -7,4 +7,5 @@ public interface Node {
     List<Node> getChildren();
 
     void addChild(Node node);
+
 }
