@@ -2,23 +2,11 @@ package com.gft.util;
 
 import com.gft.model.Node;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 class TreeConverter implements Iterable<Node> {
 
     private Node node;
-
-    /**
-     * Counter show level of deep tree
-     */
-    private int deepCounter;
-
-    /**
-     * Counter represent information 'which nods is show'
-     */
-    private int elementCounter;
 
     TreeConverter(Node node) {
         this.node = node;
@@ -35,11 +23,15 @@ class TreeConverter implements Iterable<Node> {
 
         private int childIndex = 0;
 
-        private int deepIndex = 0;
+        /**
+         * Variable is information which element is necessary to return
+         */
+        private int expectedPointer = 0;
 
-        private int counter = 0;
-
-        private int elementCounter = 0;
+        /**
+         * Variable is information about current processing object
+         */
+        private int elementPointer = 0;
 
         TreeConverterIterator(Node node){
             this.node = node;
@@ -51,6 +43,9 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public boolean hasNext() {
+
+
+
             return childIndex < node.getChildren().size();
         }
 
@@ -60,41 +55,24 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public Node next() {
-            childIndex = 0;
-            deepIndex = 0;
-            elementCounter = 0;
-            counter++;
+            elementPointer = 0;
+            expectedPointer++;
 
             return getChildren(node);
         }
 
-        Node getChildren (Node node){
-            elementCounter++;
-
-            for (int i =0 ; i < deepIndex; i++){
-                System.out.print("\t");
-            }
-
-            if (elementCounter == counter) {
-                System.out.println("ten");
+        Node getChildren (Node node) {
+            elementPointer++;
+            Node tmp = null;
+            if (elementPointer == expectedPointer) {
                 return node;
-            } else
-                System.out.println("deepIndex[" + deepIndex + "]["+childIndex+"]["+counter+"]["+elementCounter+"] : " + node.getChildren().size() + " : " + node);
-
-            deepIndex++;
+            }
             if (node.getChildren().size() > 0) {
                 for ( int i = childIndex; i < node.getChildren().size(); i++){
-                    childIndex = i;
-                    Node tmp = getChildren(node.getChildren().get(i));
-                    if (tmp != null){
-                        return tmp;
-                    }
+                    tmp = getChildren(node.getChildren().get(i));
                 }
             }
-            deepIndex--;
-            return null;
+            return tmp;
         }
-
-
     }
 }

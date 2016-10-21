@@ -20,36 +20,24 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnSecoundLevelValue(){
-        Node node = new NodeImpl();
-        Node child1 = new NodeImpl();
-        Node child11 = new NodeImpl();
-        Node child12 = new NodeImpl();
-        Node child13 = new NodeImpl();
+        NodeImpl root = new NodeImpl();
+        NodeImpl child1 = new NodeImpl();
+        NodeImpl child11 = new NodeImpl();
+        NodeImpl child12 = new NodeImpl();
+        NodeImpl child13 = new NodeImpl();
         child1.addChild(child11);
         child1.addChild(child12);
         child1.addChild(child13);
-        node.addChild(child1);
+        root.addChild(child1);
         Node child2 = new NodeImpl();
-        node.addChild(child2);
-        TreeConverter tree = new TreeConverter(node);
+        root.addChild(child2);
+        TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
-        it.next();
-        System.out.println("");
-        it.next();
-        System.out.println("");
-//        it.next();
-//        System.out.println("");
-//        it.next();
-//        System.out.println("");
-//        it.next();
-//        System.out.println("");
-//        it.next();
-
-//        Assertions.assertThat(it.hasNext()).isTrue();
-//        Assertions.assertThat(it.next()).isEqualTo(node);
-//        Assertions.assertThat(it.next()).isEqualTo(child11);
+        Assertions.assertThat(it.hasNext()).isTrue();
+        Assertions.assertThat(it.next()).isEqualTo(root);
+        Assertions.assertThat(it.next()).isEqualTo(child1);
     }
 
 }

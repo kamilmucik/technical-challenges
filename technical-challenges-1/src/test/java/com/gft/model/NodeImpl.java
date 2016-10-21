@@ -12,10 +12,8 @@ public class NodeImpl implements Node {
         return children;
     }
 
-    @Override
     public void addChild(Node node) {
         children.add(node);
     }
-
 
 }
