@@ -17,11 +17,16 @@ class TreeConverter implements Iterable<Node> {
         return new TreeConverterIterator(node);
     }
 
+    /**
+     * Iterator conwertuje strukturę katalogów na strukturę drzewiastą
+     */
     private static class TreeConverterIterator implements Iterator<Node> {
 
         private Node node;
 
-        private int childIndex = 0;
+        private int size = 0;
+
+        private int deepIndex = 0;
 
         /**
          * Variable is information which element is necessary to return
@@ -35,6 +40,7 @@ class TreeConverter implements Iterable<Node> {
 
         TreeConverterIterator(Node node){
             this.node = node;
+            calculateOffspring(node);
         }
 
         /**
@@ -43,14 +49,11 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public boolean hasNext() {
-
-
-
-            return childIndex < node.getChildren().size();
+            return (elementPointer < size)?true:false;
         }
 
         /**
-         * Method return node in tree. In case when has children, otherwise
+         * Method return node in tree. In case when has children, otherwise return null
          * @return Node
          */
         @Override
@@ -58,18 +61,43 @@ class TreeConverter implements Iterable<Node> {
             elementPointer = 0;
             expectedPointer++;
 
-            return getChildren(node);
+            Node tmp = null;
+
+            System.out.println("" + node.getChildren().size());
+            for ( int i = 0; i < node.getChildren().size(); i++) {
+                tmp = getChildren(node.getChildren().get(i));
+            }
+            return tmp;
         }
 
         Node getChildren (Node node) {
             elementPointer++;
-            Node tmp = null;
+
+            for (int i =0 ; i < deepIndex; i++){
+                System.out.print("\t");
+            }
+            System.out.println("node: " + node);
             if (elementPointer == expectedPointer) {
                 return node;
             }
+            deepIndex++;
+            Node tmp = null;
+            for ( int i = 0; i < node.getChildren().size(); i++) {
+                tmp = getChildren(node.getChildren().get(i));
+                if (tmp != null) {
+                    break;
+                }
+            }
+            deepIndex--;
+            return tmp;
+        }
+
+        Node calculateOffspring(Node node) {
+            size += node.getChildren().size();
+            Node tmp = null;
             if (node.getChildren().size() > 0) {
-                for ( int i = childIndex; i < node.getChildren().size(); i++){
-                    tmp = getChildren(node.getChildren().get(i));
+                for ( int i = 0; i < node.getChildren().size(); i++) {
+                    tmp = calculateOffspring(node.getChildren().get(i));
                 }
             }
             return tmp;

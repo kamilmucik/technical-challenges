@@ -7,6 +7,12 @@ public class NodeImpl implements Node {
 
     private List<Node> children = new LinkedList<>();
 
+    public NodeImpl(){}
+
+    public NodeImpl(List<Node> children){
+        this.children = children;
+    }
+
     @Override
     public List<Node> getChildren() {
         return children;

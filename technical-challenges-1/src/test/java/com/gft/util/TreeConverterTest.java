@@ -19,7 +19,7 @@ public class TreeConverterTest {
     }
 
     @Test
-    public void shouldReturnSecoundLevelValue(){
+    public void shouldReturnTreeLevelValues(){
         NodeImpl root = new NodeImpl();
         NodeImpl child1 = new NodeImpl();
         NodeImpl child11 = new NodeImpl();
@@ -29,15 +29,18 @@ public class TreeConverterTest {
         child1.addChild(child12);
         child1.addChild(child13);
         root.addChild(child1);
-        Node child2 = new NodeImpl();
+        NodeImpl child2 = new NodeImpl();
         root.addChild(child2);
         TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
         Assertions.assertThat(it.hasNext()).isTrue();
-        Assertions.assertThat(it.next()).isEqualTo(root);
         Assertions.assertThat(it.next()).isEqualTo(child1);
+        Assertions.assertThat(it.next()).isEqualTo(child11);
+//        Assertions.assertThat(it.next()).isEqualTo(child12);
+//        Assertions.assertThat(it.next()).isEqualTo(child13);
+        Assertions.assertThat(it.next()).isEqualTo(child2);
     }
 
 }
