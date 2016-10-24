@@ -21,8 +21,4 @@ public class NodeImpl implements Node {
     public void addChild(Node node) {
         children.add(node);
     }
-
-    public void setChildren(List<Node> children) {
-        this.children = children;
-    }
 }
