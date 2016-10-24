@@ -28,6 +28,8 @@ class TreeConverter implements Iterable<Node> {
 
         private int deepIndex = 0;
 
+        private boolean isElementFind = false;
+
         /**
          * Variable is information which element is necessary to return
          */
@@ -49,7 +51,7 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public boolean hasNext() {
-            return (elementPointer <= size)?true:false;
+            return (elementPointer < size)?true:false;
         }
 
         /**
@@ -58,47 +60,62 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public Node next() {
+            isElementFind = false;
             elementPointer = 0;
             expectedPointer++;
 
-            Node tmp = null;
-            System.out.println("size: " + size);
-            tmp = getNodes(node);
-            return tmp;
+            Node n = getNodes(node);
+
+            System.out.println("n: " + n);
+            return n;
         }
 
         Node getNodes(Node node){
             deepIndex++;
-
             Node tmp = null;
+
+
             if (node.getChildren().size() == 0){
-                elementPointer++;
-                for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
-                System.out.println("node: " + node + " : " + elementPointer + " : " + expectedPointer + " : " + node.getChildren().size());
-                tmp = node;
-
-            } else
-                for (final Node n : node.getChildren()){
-                    elementPointer++;
-
-                    for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
-                    System.out.println("node: " + n + " : " + elementPointer + " : " + expectedPointer + " : " + n.getChildren().size());
-                    if (elementPointer == expectedPointer) {
-                        tmp = n;
-                        break;
-                    }
-
-                    for ( int i = 0; i < n.getChildren().size(); i++) {
-                        tmp = getNodes(n.getChildren().get(i));
-                        if (elementPointer == expectedPointer) {
-                            break;
-                        }
-                    }
+//                elementPointer++;
+                if (elementPointer == expectedPointer) {
+                    isElementFind = true;
+                    tmp = node;
                 }
 
+//                for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
+//                System.out.println("node>: " + node + " : " + elementPointer + " : " + expectedPointer + " : " + isElementFind + " : " +  + node.getChildren().size());
+
+            } else {
+//                System.out.println("in["+node.getChildren().size()+"]: " + ((node.getChildren().size() == 0)?true:false));
+                for (Node n : node.getChildren()) {
+
+                    elementPointer++;
+                    if (isElementFind) continue;
+
+                    if (elementPointer == expectedPointer) {
+                        tmp = n;
+                        isElementFind = true;
+
+                        for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
+                        System.out.println("node: " + n + " : " + elementPointer + " : " + expectedPointer + " : " + isElementFind + " : " + n.getChildren().size());
+
+                    }
+
+//                    for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
+//                    System.out.println("node: " + n + " : " + elementPointer + " : " + expectedPointer + " : " + isElementFind + " : " + n.getChildren().size());
+
+                    if (isElementFind) continue;
+
+//                    for (int i = 0; i < n.getChildren().size(); i++) {
+//                        if (isElementFind) {
+//                            continue;
+//                        }
+                        tmp = getNodes(n);
+
+//                    }
+                }
+            }
             deepIndex--;
-
-
             return tmp;
         }
 
