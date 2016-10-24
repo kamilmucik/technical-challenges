@@ -49,7 +49,7 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public boolean hasNext() {
-            return (elementPointer < size)?true:false;
+            return (elementPointer <= size)?true:false;
         }
 
         /**
@@ -62,45 +62,51 @@ class TreeConverter implements Iterable<Node> {
             expectedPointer++;
 
             Node tmp = null;
-
-            System.out.println("" + node.getChildren().size());
-            for ( int i = 0; i < node.getChildren().size(); i++) {
-                tmp = getChildren(node.getChildren().get(i));
-            }
+            System.out.println("size: " + size);
+            tmp = getNodes(node);
             return tmp;
         }
 
-        Node getChildren (Node node) {
-            elementPointer++;
-
-            for (int i =0 ; i < deepIndex; i++){
-                System.out.print("\t");
-            }
-            System.out.println("node: " + node);
-            if (elementPointer == expectedPointer) {
-                return node;
-            }
+        Node getNodes(Node node){
             deepIndex++;
+
             Node tmp = null;
-            for ( int i = 0; i < node.getChildren().size(); i++) {
-                tmp = getChildren(node.getChildren().get(i));
-                if (tmp != null) {
-                    break;
+            if (node.getChildren().size() == 0){
+                elementPointer++;
+                for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
+                System.out.println("node: " + node + " : " + elementPointer + " : " + expectedPointer + " : " + node.getChildren().size());
+                tmp = node;
+
+            } else
+                for (final Node n : node.getChildren()){
+                    elementPointer++;
+
+                    for (int i =0 ; i < deepIndex; i++){System.out.print("\t");}
+                    System.out.println("node: " + n + " : " + elementPointer + " : " + expectedPointer + " : " + n.getChildren().size());
+                    if (elementPointer == expectedPointer) {
+                        tmp = n;
+                        break;
+                    }
+
+                    for ( int i = 0; i < n.getChildren().size(); i++) {
+                        tmp = getNodes(n.getChildren().get(i));
+                        if (elementPointer == expectedPointer) {
+                            break;
+                        }
+                    }
                 }
-            }
+
             deepIndex--;
+
+
             return tmp;
         }
 
-        Node calculateOffspring(Node node) {
+        void calculateOffspring(Node node) {
             size += node.getChildren().size();
-            Node tmp = null;
-            if (node.getChildren().size() > 0) {
                 for ( int i = 0; i < node.getChildren().size(); i++) {
-                    tmp = calculateOffspring(node.getChildren().get(i));
+                    calculateOffspring(node.getChildren().get(i));
                 }
-            }
-            return tmp;
         }
     }
 }

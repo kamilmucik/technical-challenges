@@ -26,10 +26,12 @@ public class TreeConverterTest {
         NodeImpl child12 = new NodeImpl();
         NodeImpl child13 = new NodeImpl();
         child1.addChild(child11);
-        child1.addChild(child12);
-        child1.addChild(child13);
+//        child1.addChild(child12);
+//        child1.addChild(child13);
         root.addChild(child1);
         NodeImpl child2 = new NodeImpl();
+        NodeImpl child21 = new NodeImpl();
+        child2.addChild(child21);
         root.addChild(child2);
         TreeConverter tree = new TreeConverter(root);
 
@@ -41,6 +43,7 @@ public class TreeConverterTest {
 //        Assertions.assertThat(it.next()).isEqualTo(child12);
 //        Assertions.assertThat(it.next()).isEqualTo(child13);
         Assertions.assertThat(it.next()).isEqualTo(child2);
+        Assertions.assertThat(it.next()).isEqualTo(child21);
     }
 
 }
