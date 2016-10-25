@@ -64,7 +64,8 @@ class TreeConverter implements Iterable<Node> {
             return getNodes(node);
         }
 
-        Node getNodes(Node node){
+        //TODO:skorzystać z Optionala
+         Node getNodes(Node node){
             Node tmp = null;
             for (Node n : node.getChildren()) {
                 elementPointer++;
@@ -72,12 +73,14 @@ class TreeConverter implements Iterable<Node> {
                     tmp = n;
                     isElementFind = true;
                 }
-                if (isElementFind) continue;
+                if (isElementFind) break;
                 tmp = getNodes(n);
             }
             return tmp;
         }
 
+
+        //TODO: nie ładować do pamięci wszystkich elementów z licznieniem
         void calculateOffspring(Node node) {
             size += node.getChildren().size();
             for ( int i = 0; i < node.getChildren().size(); i++) {

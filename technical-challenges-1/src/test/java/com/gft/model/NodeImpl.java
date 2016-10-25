@@ -1,5 +1,6 @@
 package com.gft.model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,16 +10,12 @@ public class NodeImpl implements Node {
 
     public NodeImpl(){}
 
-    public NodeImpl(List<Node> children){
-        this.children = children;
+    public NodeImpl(Node... children){
+        this.children = Arrays.asList(children);
     }
 
     @Override
     public List<Node> getChildren() {
         return children;
-    }
-
-    public void addChild(Node node) {
-        children.add(node);
     }
 }
