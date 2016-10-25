@@ -10,10 +10,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class TreeConverterTest {
 
@@ -24,28 +21,22 @@ public class TreeConverterTest {
         Iterator<Node> it = tree.iterator();
 
         Assertions.assertThat(it.hasNext()).isFalse();
+        Assertions.assertThatThrownBy(() ->it.next()).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test
     public void shouldReturnTreeLevelValues(){
+        //TODO: przerobić na liczbę zmiennych
         NodeImpl root = new NodeImpl();
-        root.getChildren().add(new NodeImpl(new NodeImpl(), new NodeImpl(), new NodeImpl()));
-        root.getChildren().add(new NodeImpl());
-        root.getChildren().get(0).getChildren().get(1).getChildren().add(new NodeImpl());
-        root.getChildren().get(1).getChildren().add(new NodeImpl());
+        root.getChildren().add(new NodeImpl(new NodeImpl(), new NodeImpl()));
         TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
-        //TODO: sprawdzać czy element zawiera się w kolekcji, bez istotnej kolejności
         Assertions.assertThat(it.hasNext()).isTrue();
         Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(0));
         Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(0).getChildren().get(0));
         Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(0).getChildren().get(1));
-        Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(0).getChildren().get(1).getChildren().get(0));
-        Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(0).getChildren().get(2));
-        Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(1));
-        Assertions.assertThat(it.next()).isEqualTo(root.getChildren().get(1).getChildren().get(0));
     }
 
 }

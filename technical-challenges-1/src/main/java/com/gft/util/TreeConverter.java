@@ -3,6 +3,7 @@ package com.gft.util;
 import com.gft.model.Node;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 class TreeConverter implements Iterable<Node> {
 
@@ -24,23 +25,14 @@ class TreeConverter implements Iterable<Node> {
 
         private Node node;
 
-        private int size = 0;
+        private Node nextEntry;
 
-        private boolean isElementFind = false;
+        private boolean isIteratorFinished = false;
 
-        /**
-         * Variable is information which element is necessary to return
-         */
-        private int expectedPointer = 0;
-
-        /**
-         * Variable is information about current processing object
-         */
-        private int elementPointer = 0;
+        private boolean nextEntryWillByResult = false;
 
         TreeConverterIterator(Node node){
             this.node = node;
-            calculateOffspring(node);
         }
 
         /**
@@ -49,7 +41,17 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public boolean hasNext() {
-            return (elementPointer < size);
+            Node tmp = nextEntry;
+            try {
+                return (this.getNodes(node)!= null);
+            } finally {
+                if (nextEntry == tmp){
+                    nextEntry = null;
+                    isIteratorFinished = true;
+                } else {
+                    nextEntry = tmp;
+                }
+            }
         }
 
         /**
@@ -57,35 +59,40 @@ class TreeConverter implements Iterable<Node> {
          * @return Node
          */
         @Override
-        public Node next() {
-            isElementFind = false;
-            elementPointer = 0;
-            expectedPointer++;
-            return getNodes(node);
+        public Node next() throws NoSuchElementException {
+            Node tmp = null;
+
+            if (!isIteratorFinished)
+                tmp = this.getNodes(node);
+
+            if(tmp == null) {
+                this.nextEntry = null;
+                throw new NoSuchElementException();
+            } else {
+                return tmp;
+            }
         }
 
         //TODO:skorzystać z Optionala
          Node getNodes(Node node){
             Node tmp = null;
             for (Node n : node.getChildren()) {
-                elementPointer++;
-                if (elementPointer == expectedPointer) {
-                    tmp = n;
-                    isElementFind = true;
+                if (nextEntry == null){
+                    nextEntry = n;
+                    return nextEntry;
                 }
-                if (isElementFind) break;
+                if (nextEntryWillByResult){
+                    tmp = nextEntry = n;
+                    nextEntryWillByResult = false;
+                    break;
+                }
+                if ( n == nextEntry) {
+                    nextEntryWillByResult=true;
+                }
                 tmp = getNodes(n);
+                if (tmp != null) break;
             }
             return tmp;
-        }
-
-
-        //TODO: nie ładować do pamięci wszystkich elementów z licznieniem
-        void calculateOffspring(Node node) {
-            size += node.getChildren().size();
-            for ( int i = 0; i < node.getChildren().size(); i++) {
-                calculateOffspring(node.getChildren().get(i));
-            }
         }
     }
 }
