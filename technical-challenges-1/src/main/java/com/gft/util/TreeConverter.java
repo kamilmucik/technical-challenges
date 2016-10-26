@@ -4,6 +4,7 @@ import com.gft.model.Node;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 class TreeConverter implements Iterable<Node> {
 
@@ -60,29 +61,29 @@ class TreeConverter implements Iterable<Node> {
          */
         @Override
         public Node next() throws NoSuchElementException {
-            Node tmp = null;
+            Optional<Node> tmp = Optional.empty();
 
             if (!isIteratorFinished)
                 tmp = this.getNodes(node);
 
-            if(tmp == null) {
+            if(tmp.isPresent()) {
+                return tmp.get();
+            } else {
                 this.nextEntry = null;
                 throw new NoSuchElementException();
-            } else {
-                return tmp;
             }
         }
 
-        //TODO:skorzystać z Optionala
-         Node getNodes(Node node){
-            Node tmp = null;
+        private Optional<Node> getNodes(Node node){
+            Optional<Node> tmp = null;
             for (Node n : node.getChildren()) {
                 if (nextEntry == null){
                     nextEntry = n;
-                    return nextEntry;
+                    return Optional.of(nextEntry);
                 }
                 if (nextEntryWillByResult){
-                    tmp = nextEntry = n;
+                    nextEntry = n;
+                    tmp = Optional.of(nextEntry);
                     nextEntryWillByResult = false;
                     break;
                 }
