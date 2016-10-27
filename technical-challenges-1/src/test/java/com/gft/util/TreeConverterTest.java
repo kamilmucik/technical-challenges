@@ -37,15 +37,36 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnedExpectedValues(){
-        NodeImpl root = new NodeImpl();
-        NodeImpl node1 = new NodeImpl(new NodeImpl());
-        NodeImpl node2 = new NodeImpl();
-        root.getChildren().add(new NodeImpl(node1,node2));
+
+        NodeImpl node11 = new NodeImpl();
+        NodeImpl node12 = new NodeImpl();
+        NodeImpl node1 = new NodeImpl(node11,node12);
+        NodeImpl node21 = new NodeImpl();
+        NodeImpl node2 = new NodeImpl(node21);
+        NodeImpl root = new NodeImpl(node1, node2);
         TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
-        assertThat(it).hasSize(4);
+        System.out.println(root);
+        System.out.println("\t" + node1);
+        System.out.println("\t\t" + node11);
+        System.out.println("\t\t" + node12);
+        System.out.println("\t" + node2);
+        System.out.println("\t\t" + node21);
+
+        System.out.println();
+
+//        assertThat(it.next()).isEqualTo(node2);
+//        assertThat(it.next()).isEqualTo(node12);
+//        assertThat(it.next()).isEqualTo(node21);
+
+        while(it.hasNext()){
+            Node n = it.next();
+            System.out.println("s: " +  n);
+        }
+
+//        assertThat(it).hasSize(5);
     }
 
 }
