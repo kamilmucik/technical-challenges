@@ -24,74 +24,73 @@ class TreeConverter implements Iterable<Node> {
      */
     private static class TreeConverterIterator implements Iterator<Node> {
 
-        private Node node;
+        private final Node root;
 
-        private Node nextEntry;
+        private Node lastEntry;
 
         private boolean isIteratorFinished = false;
 
-        private boolean nextEntryWillByResult = false;
+        private boolean nextEntryWillBeResult = false;
 
-        TreeConverterIterator(Node node){
-            this.node = node;
+        TreeConverterIterator(Node root){
+            this.root = root;
         }
 
         /**
-         * Method return true when node has children, otherwise return false
+         * Method return true when root has children, otherwise return false
          * @return boolean
          */
         @Override
         public boolean hasNext() {
-            Node tmp = nextEntry;
+            Node tmp = lastEntry;
             try {
-                return (this.getNodes(node)!= null);
+                return this.getNodes(root).isPresent();
             } finally {
-                if (nextEntry == tmp){
-                    nextEntry = null;
+                if (lastEntry == tmp){
+                    lastEntry = null;
                     isIteratorFinished = true;
                 } else {
-                    nextEntry = tmp;
+                    lastEntry = tmp;
                 }
             }
         }
 
         /**
-         * Method return node in tree. In case when has children, otherwise return null
+         * Method return root in tree. In case when has children, otherwise return null
          * @return Node
          */
         @Override
         public Node next() throws NoSuchElementException {
             Optional<Node> tmp = Optional.empty();
-
             if (!isIteratorFinished)
-                tmp = this.getNodes(node);
+                tmp = this.getNodes(root);
 
             if(tmp.isPresent()) {
                 return tmp.get();
             } else {
-                this.nextEntry = null;
+                this.lastEntry = null;
                 throw new NoSuchElementException();
             }
         }
 
         private Optional<Node> getNodes(Node node){
-            Optional<Node> tmp = null;
+            Optional<Node> tmp = Optional.empty();
             for (Node n : node.getChildren()) {
-                if (nextEntry == null){
-                    nextEntry = n;
-                    return Optional.of(nextEntry);
+                if (lastEntry == null){
+                    lastEntry = n;
+                    return Optional.of(lastEntry);
                 }
-                if (nextEntryWillByResult){
-                    nextEntry = n;
-                    tmp = Optional.of(nextEntry);
-                    nextEntryWillByResult = false;
+                if (nextEntryWillBeResult){
+                    lastEntry = n;
+                    tmp = Optional.of(lastEntry);
+                    nextEntryWillBeResult = false;
                     break;
                 }
-                if ( n == nextEntry) {
-                    nextEntryWillByResult=true;
+                if ( n == lastEntry) {
+                    nextEntryWillBeResult =true;
                 }
                 tmp = getNodes(n);
-                if (tmp != null) break;
+                if (tmp.isPresent()) break;
             }
             return tmp;
         }
