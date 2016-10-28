@@ -1,7 +1,6 @@
 package com.gft.util;
 
 import com.gft.model.Node;
-import com.sun.org.apache.xerces.internal.dom.NodeImpl;
 
 import java.util.*;
 
@@ -23,53 +22,41 @@ class TreeConverter implements Iterable<Node> {
      */
     private static class TreeConverterIterator implements Iterator<Node> {
 
-        private Node root;
+        private Node parentDirectory;
 
         private Node nextEntry;
 
         private int currentEntryChildIndex = 0;
+
         private List<Node> currentEntryChild;
 
         private Stack directories;
 
-        private boolean shouldShowDirectory = false;
+        private boolean shouldReturnDirectory = false;
 
         private boolean isIteratorFinished = false;
 
         TreeConverterIterator(Node root){
-            this.root = root;
+            this.parentDirectory = root;
             this.currentEntryChild = root.getChildren();
             this.directories = new Stack();
         }
 
         /**
-         * Method return true when root has children, otherwise return false
+         * Method return true when parentDirectory has children, otherwise return false
          * @return boolean
          */
         @Override
         public boolean hasNext() {
-            if(isIteratorFinished)
-                return false;
-            return getNextNode() != null;
+            return !isIteratorFinished && getNextNode() != null;
         }
 
         /**
-         * Method return root in tree. In case when has children, otherwise return null
-         * @return Node
+         * Method return parentDirectory in tree. In case when has children, otherwise return NoSuchElementException
+         * @return Node or NoSuchElementException
          */
         @Override
         public Node next() throws NoSuchElementException {
-//            Optional<Node> tmp = Optional.empty();
-//            if (!isIteratorFinished)
-//                tmp = this.getNodes(root);
-//
-//            if(tmp.isPresent()) {
-//                return tmp.get();
-//            } else {
-//                this.lastEntry = null;
-//                throw new NoSuchElementException();
-//            }
-
             if(isIteratorFinished)
                 throw new NoSuchElementException();
 
@@ -83,16 +70,19 @@ class TreeConverter implements Iterable<Node> {
 
         private Node getNextNode(){
             if(nextEntry == null){
-                nextEntry = getNode();
+                Optional<Node> tmp =getNode();
+                System.out.println(tmp);
+                if (!Optional.empty().equals(tmp))
+                    nextEntry = tmp.get();
             }
+
             return nextEntry;
         }
 
-        private Node getNode(){
-
-            if (shouldShowDirectory) {
-                shouldShowDirectory = false;
-                return root;
+        private Optional<Node> getNode(){
+            if (shouldReturnDirectory) {
+                shouldReturnDirectory = false;
+                return Optional.of(parentDirectory);
             }
 
             while(currentEntryChildIndex < currentEntryChild.size()){
@@ -102,53 +92,25 @@ class TreeConverter implements Iterable<Node> {
                 } else {
                     Node node = currentEntryChild.get(currentEntryChildIndex);
                     currentEntryChildIndex++;
-                    return node;
+                    return Optional.of(node);
                 }
             }
 
-
-
             while(!directories.empty()){
                 Node directory = (Node)directories.remove(0);
-                //TODO: wyświetlanie katalogu w pierwszej kolejności
-                root = directory;
+                parentDirectory = directory;
                 currentEntryChild = directory.getChildren();
                 currentEntryChildIndex = 0;
-                shouldShowDirectory = true;
+                shouldReturnDirectory = true;
 
-
-                Node node = getNode();
-
-                if(node != null){
+                Optional<Node> node = getNode();
+                if(node.isPresent()){
                     return node;
                 }
             }
 
             isIteratorFinished = true;
-
-            return null;
+            return Optional.empty();
         }
-
-//        private Optional<Node> getNodes(Node node){
-//            Optional<Node> tmp = Optional.empty();
-//            for (Node n : node.getChildren()) {
-//                if (lastEntry == null){
-//                    lastEntry = n;
-//                    return Optional.of(lastEntry);
-//                }
-//                if (nextEntryWillBeResult){
-//                    lastEntry = n;
-//                    tmp = Optional.of(lastEntry);
-//                    nextEntryWillBeResult = false;
-//                    break;
-//                }
-//                if ( n == lastEntry) {
-//                    nextEntryWillBeResult =true;
-//                }
-//                tmp = getNodes(n);
-//                if (tmp.isPresent()) break;
-//            }
-//            return tmp;
-//        }
     }
 }
