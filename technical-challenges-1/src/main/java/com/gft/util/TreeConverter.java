@@ -4,6 +4,9 @@ import com.gft.model.Node;
 
 import java.util.*;
 
+/**
+ * @see 'https://en.wikipedia.org/wiki/Command%E2%80%93query_separation'
+ */
 class TreeConverter implements Iterable<Node> {
 
     private Node node;
@@ -22,10 +25,14 @@ class TreeConverter implements Iterable<Node> {
      */
     private static class TreeConverterIterator implements Iterator<Node> {
 
-        private Node parentDirectory;
+        private Node parentNode;
 
-        private Node nextEntry;
+        /**
+         * Value can be set in hasNest or next method, with invoke proxy method getNextNode if value is null
+         */
+        private Node preparedEntry;
 
+        //TODO: zmniejszyć liczbę zmeinnych i listę zamienić na kolejkę
         private int currentEntryChildIndex = 0;
 
         private List<Node> currentEntryChild;
@@ -36,23 +43,26 @@ class TreeConverter implements Iterable<Node> {
 
         private boolean isIteratorFinished = false;
 
-        TreeConverterIterator(Node root){
-            this.parentDirectory = root;
+        TreeConverterIterator(Node root) {
+            this.parentNode = root;// nie potrzebne w tym miejscu
             this.currentEntryChild = root.getChildren();
-            this.directories = new Stack();
+            this.directories = new Stack();// nie potrzebne w tym miejscu
         }
 
         /**
-         * Method return true when parentDirectory has children, otherwise return false
+         * Method return true when parentNode has children, otherwise return false
+         * Nie powinno być efektów ubocznych, nie zmienia stanu obiektu
          * @return boolean
          */
         @Override
         public boolean hasNext() {
-            return !isIteratorFinished && getNextNode() != null;
+            if(isIteratorFinished)
+                return false;
+            return getNextNode() != null;
         }
 
         /**
-         * Method return parentDirectory in tree. In case when has children, otherwise return NoSuchElementException
+         * Method return parentNode in tree. In case when has children, otherwise return NoSuchElementException
          * @return Node or NoSuchElementException
          */
         @Override
@@ -61,32 +71,33 @@ class TreeConverter implements Iterable<Node> {
                 throw new NoSuchElementException();
 
             Node node = getNextNode();
-            if(node == null){
+            if (node == null) {
                 throw new NoSuchElementException();
             }
-            this.nextEntry = null;
+            this.preparedEntry = null;
             return node;
         }
 
-        private Node getNextNode(){
-            if(nextEntry == null){
-                Optional<Node> tmp =getNode();
-                System.out.println(tmp);
+        //TODO: za dużo kodu
+        //TODO: albo zwracam,
+        private Node getNextNode() {
+            if(preparedEntry == null) {
+                Optional<Node> tmp = getNode();
                 if (!Optional.empty().equals(tmp))
-                    nextEntry = tmp.get();
+                    preparedEntry = tmp.get();
             }
 
-            return nextEntry;
+            return preparedEntry;
         }
 
-        private Optional<Node> getNode(){
+        private Optional<Node> getNode() {
             if (shouldReturnDirectory) {
                 shouldReturnDirectory = false;
-                return Optional.of(parentDirectory);
+                return Optional.of(parentNode);
             }
 
-            while(currentEntryChildIndex < currentEntryChild.size()){
-                if(currentEntryChild.get(currentEntryChildIndex).getChildren().size() > 0){
+            while(currentEntryChildIndex < currentEntryChild.size()) {
+                if(currentEntryChild.get(currentEntryChildIndex).getChildren().size() > 0) {
                     directories.push(currentEntryChild.get(currentEntryChildIndex));
                     currentEntryChildIndex++;
                 } else {
@@ -96,17 +107,14 @@ class TreeConverter implements Iterable<Node> {
                 }
             }
 
-            while(!directories.empty()){
+            while(!directories.empty()) {
                 Node directory = (Node)directories.remove(0);
-                parentDirectory = directory;
+                parentNode = directory;
                 currentEntryChild = directory.getChildren();
                 currentEntryChildIndex = 0;
                 shouldReturnDirectory = true;
 
-                Optional<Node> node = getNode();
-                if(node.isPresent()){
-                    return node;
-                }
+                return getNode();
             }
 
             isIteratorFinished = true;

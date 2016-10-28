@@ -26,13 +26,14 @@ public class TreeConverterTest {
         NodeImpl root = new NodeImpl();
         NodeImpl node1 = new NodeImpl();
         NodeImpl node2 = new NodeImpl();
+        NodeImpl node3 = new NodeImpl();
         root.getChildren().add(new NodeImpl(node1,node2));
         TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
         assertThat(it.hasNext()).isTrue();
-        assertThat(it).containsSequence(node1,node2);
+        assertThat(it).containsSequence(node1,node2).doesNotContain(node3);
     }
 
     @Test
@@ -43,6 +44,8 @@ public class TreeConverterTest {
         Iterator<Node> it = tree.iterator();
 
         assertThat(it).hasSize(5);
+        assertThat(it.hasNext()).isFalse();
+        assertThatThrownBy(it::next).isInstanceOf(NoSuchElementException.class);
     }
 
 }
