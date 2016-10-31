@@ -44,5 +44,4 @@ public class TreeConverterTest {
 
         assertThat(it).hasSize(5);
     }
-
 }

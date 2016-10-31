@@ -22,50 +22,39 @@ class TreeConverter implements Iterable<Node> {
      */
     private static class TreeConverterIterator implements Iterator<Node> {
 
-        /**
-         *
-         */
-        private final Stack<Node> nodes = new Stack<>();
+        private final Vector<Node> knownNodes = new Vector<>();
 
-        private Node nextNode;
 
         TreeConverterIterator(Node root) {
-            nodes.addAll(root.getChildren());
-            findNextNode();
+            knownNodes.addAll(root.getChildren());
         }
 
         /**
          * Method return true when nextNode has children, otherwise return false
+         *
          * @return boolean
          */
         @Override
         public boolean hasNext() {
-            return nextNode != null;
+            return !this.knownNodes.isEmpty();
         }
 
         /**
          * Method return nextNode from tree, in case when has children, otherwise return NoSuchElementException
+         *
          * @return Node or NoSuchElementException
          */
         @Override
         public Node next() throws NoSuchElementException {
-            if (nextNode == null)
+            if (this.knownNodes.isEmpty())
                 throw new NoSuchElementException();
-            Node tmp = nextNode;
-            findNextNode();
-            return tmp;
+            Node nextNode = knownNodes.remove(0);
+            for (int i = nextNode.getChildren().size() - 1; i >= 0; i--) {
+                knownNodes.add(0, nextNode.getChildren().get(i));
+            }
+            return nextNode;
         }
 
-        private void findNextNode() {
-            nextNode = null;
-            while (nextNode == null && !nodes.isEmpty()) {
-                Node tmp = nodes.remove(0);
-                for (int i = tmp.getChildren().size()-1; i >= 0; i--) {
-                    nodes.add(0, tmp.getChildren().get(i));
-                }
-                nextNode = tmp;
-            }
-        }
 
     }
 }
