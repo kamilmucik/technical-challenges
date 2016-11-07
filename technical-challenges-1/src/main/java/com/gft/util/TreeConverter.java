@@ -24,7 +24,6 @@ class TreeConverter implements Iterable<Node> {
 
         private final Vector<Node> knownNodes = new Vector<>();
 
-
         TreeConverterIterator(Node root) {
             knownNodes.addAll(root.getChildren());
         }
