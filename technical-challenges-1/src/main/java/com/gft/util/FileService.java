@@ -3,42 +3,37 @@ package com.gft.util;
 import com.gft.model.Node;
 import com.gft.model.NodeImpl;
 
-import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 
-class FileService {
+final class FileService {
 
-    /**
-     * Method represent tree file structure as tree Node structure
-     * @param rootPath - existing path in filesystem
-     * @param root - refernce to existing object
-     */
-    private static void getNodesFromPath(Path rootPath, Node root) {
-        try {
-            DirectoryStream<Path> stream = Files.newDirectoryStream(rootPath);
-            for (Path entry : stream) {
-                Node tmp = new NodeImpl(entry.getFileName().toString());
-                if (Files.isDirectory(entry)) {
-                    getNodesFromPath(entry, tmp);
-                }
-                root.getChildren().add(tmp);
+    NodeImpl<File> getTree(String startingDirPath) {
+        NodeImpl<File> rootNode = new NodeImpl<>(new File(startingDirPath));
+        rootNode.setChildren(getSubTree(rootNode));
+        return rootNode;
+    }
+
+    private List<Node<File>> getSubTree(NodeImpl<File> dirNode) {
+        List<Node<File>> children = new LinkedList<>();
+        for (File entry : getFilesDirsDir(dirNode.getPayload())) {
+            NodeImpl<File> node = new NodeImpl<>(new File(entry.getPath()));
+            children.add(node);
+            if (entry.isDirectory()) {
+                node.setChildren(getSubTree(node));
             }
-            stream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return children;
     }
 
-    /**
-     * Method return file tree structure as new NodeImpl instance
-     * @param rootPath - existing path in filesystem
-     * @return Node as tree structure
-     */
-    static Node getNodesFromPath(Path rootPath) {
-        Node root = new NodeImpl();
-        getNodesFromPath(rootPath, root);
-        return root;
+
+    private List<File> getFilesDirsDir(File dir) throws NullPointerException{
+        List<File> filesDirs = new LinkedList<>();
+        for(File f : dir.listFiles())
+           filesDirs.add(new File(f.getPath()));
+        return filesDirs;
     }
+
+
 }

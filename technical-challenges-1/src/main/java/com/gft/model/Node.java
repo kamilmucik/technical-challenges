@@ -4,12 +4,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface Node {
+public interface Node<T> {
     /**
-     *
-     * @return
+     * Return list of children, otherwise rerutn empty list.
+     * @return List of own Type
      */
     @NotNull
-    List<Node> getChildren();
+    List<Node<T>> getChildren();
+
+    /**
+     * Return payload.
+     * @return payload of own type
+     */
+    T getPayload();
 
 }
