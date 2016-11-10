@@ -54,14 +54,10 @@ public class ListDirectoryTest {
                 e.printStackTrace();
             }
         });
-
-        assertThat(home).isEqualTo(Paths.get("/resources").toFile());
-
-        FileService.convert(new File(""));
-//        Observable<File> observable = FileService.convert(home.toFile());
+        Observable<File> observable = FileService.convert(home);
 //        TestSubscriber<File> subscriber = new TestSubscriber<>();
 
-//        observable.subscribe(System.out::println);
+        observable.subscribe(System.out::println);
 
 //        observable.subscribe(subscriber);
 //        File resultFile = subscriber.getOnNextEvents().get(0);
