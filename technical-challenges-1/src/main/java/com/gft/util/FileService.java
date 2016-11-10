@@ -16,16 +16,18 @@ final class FileService {
 //    }
 
      static Observable<File> convert(File root){
-        Node<File> rootNode = new NodeImpl<>(root);
-        rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
-        Iterator<Node> it = new TreeConverter(rootNode).iterator();
-
-        return Observable.create(s -> {
-            while (it.hasNext()) {
-                s.onNext(((File)it.next().getPayload()));
-            }
-            s.onCompleted();
-        });
+         System.out.println(root);
+//        Node<File> rootNode = new NodeImpl<>(root);
+//        rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
+//        Iterator<Node> it = new TreeConverter(rootNode).iterator();
+//
+//        return Observable.create(s -> {
+//            while (it.hasNext()) {
+//                s.onNext(((File)it.next().getPayload()));
+//            }
+//            s.onCompleted();
+//        });
+         return null;
     }
 
     private static List<Node<File>> getNodeImplChildren(Node<File> parentNode) {

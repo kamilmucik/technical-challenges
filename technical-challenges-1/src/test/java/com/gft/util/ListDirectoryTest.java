@@ -10,9 +10,7 @@ import rx.observers.TestSubscriber;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystem;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,16 +19,17 @@ public class ListDirectoryTest {
 
     @Test
     public void shouldReturnFilesStructureAsNode() throws IOException {
-        FileSystem fs = Jimfs.newFileSystem(Configuration.unix());
-        Path foo = fs.getPath("/foo");
-        Files.createDirectory(foo);
-        Path hello = foo.resolve("hello.txt"); //
+        FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
+        Path home = fileSystem.getPath("resources");
+        Files.createDirectory(home);
+//        Path hello = home.resolve("hello.txt"); //
 
-        System.out.println(hello);
-        Observable<File> observable = FileService.convert(foo.toFile());
+        System.out.println(home);
+        Files.newInputStream(home, StandardOpenOption.READ);
+        Observable<File> observable = FileService.convert(home.toFile());
         TestSubscriber<File> subscriber = new TestSubscriber<>();
 
-        observable.subscribe(System.out::println);
+
 
 //        observable.subscribe(subscriber);
 //        File resultFile = subscriber.getOnNextEvents().get(0);
