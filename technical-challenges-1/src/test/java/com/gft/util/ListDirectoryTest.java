@@ -4,7 +4,9 @@ import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
 import com.google.common.jimfs.SystemJimfsFileSystemProvider;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 import rx.Observable;
 import rx.observers.TestSubscriber;
 
@@ -17,19 +19,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ListDirectoryTest {
 
+    @Rule
+    public TemporaryFolder folder= new TemporaryFolder();
+
     @Test
     public void shouldReturnFilesStructureAsNode() throws IOException {
-        FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
-        Path home = fileSystem.getPath("resources");
-        Files.createDirectory(home);
+        File createdFile= folder.newFile("myfile.txt");
+        File createdFolder= folder.newFolder("subfolder");
+//        FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
+//        Path home = fileSystem.getPath("resources");
+//        Files.createDirectory(home);
 //        Path hello = home.resolve("hello.txt"); //
 
-        System.out.println(home);
-        Files.newInputStream(home, StandardOpenOption.READ);
-        Observable<File> observable = FileService.convert(home.toFile());
-        TestSubscriber<File> subscriber = new TestSubscriber<>();
+        System.out.println(folder);
+        Observable<File> observable = FileService.convert(folder.getRoot());
+//        TestSubscriber<File> subscriber = new TestSubscriber<>();
 
-
+        observable.subscribe(System.out::println);
 
 //        observable.subscribe(subscriber);
 //        File resultFile = subscriber.getOnNextEvents().get(0);
