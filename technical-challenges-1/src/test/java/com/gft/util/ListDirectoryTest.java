@@ -1,5 +1,6 @@
 package com.gft.util;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
 import com.google.common.jimfs.SystemJimfsFileSystemProvider;
@@ -12,6 +13,7 @@ import rx.observers.TestSubscriber;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,15 +39,29 @@ public class ListDirectoryTest {
     @Test
     public void shouldReturnFilesStructureAsNode() throws IOException {
         FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
-        Path home = fileSystem.getPath("resources");
+        Path home = fileSystem.getPath("/resources");
         Files.createDirectory(home);
         Path hello = home.resolve("hello.txt"); //
+        Files.write(hello, ImmutableList.of("hello world"), StandardCharsets.UTF_8);
 
-        System.out.println(home);
-        Observable<File> observable = FileService.convert(home.toFile());
+        Path linkToHello = home.resolve("test.txt.link");
+        Files.createSymbolicLink(linkToHello, hello);
+
+        Files.list(home).forEach(file -> {
+            try {
+                System.out.println(String.format("%s (%db)", file, Files.readAllBytes(file).length));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        assertThat(home).isEqualTo(Paths.get("/resources").toFile());
+
+        FileService.convert(new File(""));
+//        Observable<File> observable = FileService.convert(home.toFile());
 //        TestSubscriber<File> subscriber = new TestSubscriber<>();
 
-        observable.subscribe(System.out::println);
+//        observable.subscribe(System.out::println);
 
 //        observable.subscribe(subscriber);
 //        File resultFile = subscriber.getOnNextEvents().get(0);
