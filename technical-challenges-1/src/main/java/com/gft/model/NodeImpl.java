@@ -15,11 +15,11 @@ public final class NodeImpl<T> implements Node<T> {
     public NodeImpl() {}
 
     public NodeImpl(T payload) {
-        super();
         this.payload = payload;
     }
 
-    public NodeImpl(Node... children) {
+    @SuppressWarnings("unchecked")
+    public NodeImpl(Node<T>... children) {
         this.children = Arrays.asList(children);
     }
 
@@ -29,7 +29,6 @@ public final class NodeImpl<T> implements Node<T> {
         return children;
     }
 
-    @Override
     public T getPayload() {
         return payload;
     }
@@ -37,7 +36,4 @@ public final class NodeImpl<T> implements Node<T> {
     public void setChildren(List<Node<T>> children) {
         this.children = children;
     }
-
-
-
 }

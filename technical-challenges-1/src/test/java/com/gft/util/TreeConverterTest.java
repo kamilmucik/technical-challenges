@@ -13,7 +13,8 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnFalseWhenNodeHasNotGotChildren(){
-        TreeConverter tree = new TreeConverter(new NodeImpl());
+        Node n = new NodeImpl();
+        TreeConverter tree = new TreeConverter(n);
 
         Iterator<Node> it = tree.iterator();
 
@@ -37,11 +38,20 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnedSize(){
-        NodeImpl root = new NodeImpl(new NodeImpl(new NodeImpl(),new NodeImpl()), new NodeImpl(new NodeImpl()));
+        NodeImpl node11 = new NodeImpl();
+        NodeImpl node12 = new NodeImpl();
+        NodeImpl node1 = new NodeImpl(node11,node12);
+        NodeImpl node21 = new NodeImpl();
+        NodeImpl node2 = new NodeImpl();
+        node2.getChildren().add(node21);
+        NodeImpl root = new NodeImpl();
+        root.getChildren().add(node1);
+        root.getChildren().add(node2);
         TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
         assertThat(it).hasSize(5);
     }
+
 }
