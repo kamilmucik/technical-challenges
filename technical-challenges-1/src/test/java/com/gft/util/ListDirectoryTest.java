@@ -23,16 +23,26 @@ public class ListDirectoryTest {
     public TemporaryFolder folder= new TemporaryFolder();
 
     @Test
-    public void shouldReturnFilesStructureAsNode() throws IOException {
+    public void shouldReturnFilesStructureAsNodeByTemporaryFolder() throws IOException {
         File createdFile= folder.newFile("myfile.txt");
-        File createdFolder= folder.newFolder("subfolder");
-//        FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
-//        Path home = fileSystem.getPath("resources");
-//        Files.createDirectory(home);
-//        Path hello = home.resolve("hello.txt"); //
-
-        System.out.println(folder);
         Observable<File> observable = FileService.convert(folder.getRoot());
+        TestSubscriber<File> subscriber = new TestSubscriber<>();
+
+        observable.subscribe(subscriber);
+        File resultFile = subscriber.getOnNextEvents().get(0);
+
+        subscriber.assertNoErrors();
+        assertThat(resultFile).isEqualTo(createdFile);
+    }
+    @Test
+    public void shouldReturnFilesStructureAsNode() throws IOException {
+        FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
+        Path home = fileSystem.getPath("resources");
+        Files.createDirectory(home);
+        Path hello = home.resolve("hello.txt"); //
+
+        System.out.println(home);
+        Observable<File> observable = FileService.convert(home.toFile());
 //        TestSubscriber<File> subscriber = new TestSubscriber<>();
 
         observable.subscribe(System.out::println);
