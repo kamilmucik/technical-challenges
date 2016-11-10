@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.util.Iterator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,32 +39,25 @@ public class ListDirectoryTest {
     }
     @Test
     public void shouldReturnFilesStructureAsNode() throws IOException {
-        FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
-        Path home = fileSystem.getPath("/resources");
+        FileSystem fs = Jimfs.newFileSystem(Configuration.unix());
+        Path home = fs.getPath("/data");
         Files.createDirectory(home);
-        Path hello = home.resolve("hello.txt"); //
-        Files.write(hello, ImmutableList.of("hello world"), StandardCharsets.UTF_8);
+        Path filePath = home.resolve("test1.pdf");
+        Path anotherFilePath = home.resolve("test2.pdf");
+        Files.createDirectory(filePath);
+        Files.createDirectory(anotherFilePath);
 
-        Path linkToHello = home.resolve("test.txt.link");
-        Files.createSymbolicLink(linkToHello, hello);
+        try (final DirectoryStream<Path> dirStream = Files.newDirectoryStream(home, "*.pdf")) {
+            final Iterator<Path> pathIterator = dirStream.iterator();
 
-        Files.list(home).forEach(file -> {
-            try {
-                System.out.println(String.format("%s (%db)", file, Files.readAllBytes(file).length));
-            } catch (Exception e) {
-                e.printStackTrace();
+            while (pathIterator.hasNext()){
+                System.out.println(pathIterator.next());
             }
-        });
-        Observable<File> observable = FileService.convert(home);
-//        TestSubscriber<File> subscriber = new TestSubscriber<>();
+        }
 
-        observable.subscribe(System.out::println);
 
-//        observable.subscribe(subscriber);
-//        File resultFile = subscriber.getOnNextEvents().get(0);
-//
-//        subscriber.assertNoErrors();
-//        System.out.println(hello);
-//        assertThat(resultFile).isEqualTo(dir);
+//        Observable<File> observable = FileService.convert(home);
+//        observable.subscribe(System.out::println,System.out::println,System.out::println);
+
     }
 }

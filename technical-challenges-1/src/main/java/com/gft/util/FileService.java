@@ -17,8 +17,12 @@ final class FileService {
 //    }
 
     static Observable<File> convert(Path root){
+        Node<Path> rootNode = new NodeImpl<>(root);
+
+
+        System.out.println(root);
         return Observable.create(s -> {
-            s.onNext(root.toFile());
+            s.onNext(rootNode.getPayload().toFile());
             s.onCompleted();
         });
 //         return null;
@@ -31,7 +35,7 @@ final class FileService {
 
         return Observable.create(s -> {
             while (it.hasNext()) {
-                s.onNext(((File)it.next().getPayload()));
+                s.onNext( ((File)it.next().getPayload()) );
             }
             s.onCompleted();
         });
