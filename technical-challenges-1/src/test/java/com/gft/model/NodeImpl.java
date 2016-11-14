@@ -29,18 +29,8 @@ public final class NodeImpl<T> implements Node<T> {
         return children;
     }
 
-    @NotNull
-    @Override
-    public void setChildren(List<Node<T>> children) {
-        this.children = children;
-    }
-
     public T getPayload() {
         return payload;
     }
 
-    @Override
-    public void setPayload(T t) {
-        this.payload = t;
-    }
 }

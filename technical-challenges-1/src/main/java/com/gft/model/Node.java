@@ -12,15 +12,9 @@ public interface Node<T> {
     @NotNull
     List<Node<T>> getChildren();
 
-    @NotNull
-    void setChildren(List<Node<T>> children);
-
     /**
      * Return payload.
      * @return payload of own type
      */
     T getPayload();
-
-    void setPayload(T t);
-
 }
