@@ -17,34 +17,30 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class ListDirectoryTest {
 
     @Rule
     public TemporaryFolder folder= new TemporaryFolder();
 
-//    @Test
-//    public void shouldReturnFilesStructureAsNodeByTemporaryFolder() throws IOException {
-//        File createdFile= folder.newFile("myfile.txt");
+    @Test
+    public void shouldReturnFilesStructureAsNodeByTemporaryFolder() throws IOException {
+        File createdFile= folder.newFile("myfile.txt");
+
+        Node<Path> rootNode = new NodeImpl<>(folder.getRoot().toPath());
+        rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
+        Observable<Path> observable = FileService.convert(new TreeConverter(rootNode));
+        observable.subscribe(System.out::println,System.out::println,System.out::println);
+//        TestSubscriber<File> subscriber = new TestSubscriber<>();
+
+        observable.subscribe(System.out::println);
+//        File resultFile = subscriber.getOnNextEvents().get(0);
 //
-//        Node<File> rootNode = new NodeImpl<>(folder.getRoot());
-//        rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
-//
-//        Observable<File> observable = FileService.convert(new TreeConverter(rootNode));
-////        TestSubscriber<File> subscriber = new TestSubscriber<>();
-//
-//        observable.subscribe(System.out::println);
-////        File resultFile = subscriber.getOnNextEvents().get(0);
-////
-////        subscriber.assertNoErrors();
-////        assertThat(resultFile).isEqualTo(createdFile);
-//    }
+//        subscriber.assertNoErrors();
+//        assertThat(resultFile).isEqualTo(createdFile);
+    }
     @Test
     public void shouldReturnFilesStructureAsNode() throws IOException {
         FileSystem fs = Jimfs.newFileSystem(Configuration.unix());
@@ -58,7 +54,6 @@ public class ListDirectoryTest {
         Files.createDirectory(subdir1);
         Path hello2 = subdir1.resolve("test2.txt");
         Files.write(hello2, ImmutableList.of("3"), StandardCharsets.UTF_8);
-//        Path home = Paths.get("C:\\temp");
 
         Node<Path> rootNode = new NodeImpl<>(home);
         rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
