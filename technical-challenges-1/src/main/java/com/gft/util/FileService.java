@@ -3,7 +3,6 @@ package com.gft.util;
 import com.gft.model.Node;
 import rx.Observable;
 
-import java.io.File;
 import java.util.Iterator;
 
 final class FileService {
@@ -19,10 +18,5 @@ final class FileService {
             s.onCompleted();
         });
     }
-
-    static Observable<File> convert(Node root){
-         return convert(new TreeConverter(root));
-    }
-
 
 }

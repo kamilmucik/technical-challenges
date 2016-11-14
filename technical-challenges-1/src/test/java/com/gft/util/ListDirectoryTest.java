@@ -20,6 +20,8 @@ import java.nio.file.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ListDirectoryTest {
 
     @Rule
@@ -28,18 +30,16 @@ public class ListDirectoryTest {
     @Test
     public void shouldReturnFilesStructureAsNodeByTemporaryFolder() throws IOException {
         File createdFile= folder.newFile("myfile.txt");
-
         Node<Path> rootNode = new NodeImpl<>(folder.getRoot().toPath());
         rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
         Observable<Path> observable = FileService.convert(new TreeConverter(rootNode));
-        observable.subscribe(System.out::println,System.out::println,System.out::println);
-//        TestSubscriber<File> subscriber = new TestSubscriber<>();
+        TestSubscriber<Path> subscriber = new TestSubscriber<>();
 
-        observable.subscribe(System.out::println);
-//        File resultFile = subscriber.getOnNextEvents().get(0);
-//
-//        subscriber.assertNoErrors();
-//        assertThat(resultFile).isEqualTo(createdFile);
+        observable.subscribe(subscriber);
+        File resultFile = subscriber.getOnNextEvents().get(0).toFile();
+
+        subscriber.assertNoErrors();
+        assertThat(resultFile).isEqualTo(createdFile);
     }
     @Test
     public void shouldReturnFilesStructureAsNode() throws IOException {
@@ -50,16 +50,11 @@ public class ListDirectoryTest {
         Files.write(hello, ImmutableList.of("1"), StandardCharsets.UTF_8);
         Path csv = home.resolve("data.csv");
         Files.write(csv, ImmutableList.of("2"), StandardCharsets.UTF_8);
-        Path subdir1 = fs.getPath("/data/dir1");
-        Files.createDirectory(subdir1);
-        Path hello2 = subdir1.resolve("test2.txt");
-        Files.write(hello2, ImmutableList.of("3"), StandardCharsets.UTF_8);
 
         Node<Path> rootNode = new NodeImpl<>(home);
         rootNode.getChildren().addAll(getNodeImplChildren(rootNode));
         Observable<Path> observable = FileService.convert(new TreeConverter(rootNode));
         observable.subscribe(System.out::println,System.out::println,System.out::println);
-
     }
 
     private static List<Node<Path>> getNodeImplChildren(Node<Path> parentNode) {
