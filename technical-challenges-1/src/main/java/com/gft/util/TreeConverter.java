@@ -4,7 +4,7 @@ import com.gft.model.Node;
 
 import java.util.*;
 
-class TreeConverter<T extends Node> implements Iterable {
+class TreeConverter<T extends Node<T>> implements Iterable<T> {
 
     private T t;
 
@@ -20,11 +20,11 @@ class TreeConverter<T extends Node> implements Iterable {
     /**
      * Iterator convert tree-based structure to flat iterable collection.
      */
-    private static class TreeConverterIterator<T extends Node> implements Iterator  {
+    private static class TreeConverterIterator<T extends Node> implements Iterator<T>  {
 
         private final Vector<T> knownNodes = new Vector<>();
 
-        TreeConverterIterator(Node root) {
+        TreeConverterIterator(T root) {
             knownNodes.addAll(root.getChildren());
         }
 

@@ -8,7 +8,7 @@ import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
 import org.junit.Test;
 import rx.Observable;
-import rx.observers.TestSubscriber;
+import rx.subjects.ReplaySubject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -25,15 +25,15 @@ public class ListDirectoryTest {
         Files.createDirectory(home);
         Path onePath = home.resolve("test.txt");
         Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
-        TestSubscriber<Path> subscriber = new TestSubscriber<>();
-
         Node<Path> rootNode = new NodeImpl<>(home);
+        ReplaySubject<Path> subject = ReplaySubject.create();
+        subject.onNext(onePath);
+
         rootNode.getChildren().addAll(FileService.getNodeImplChildren(rootNode));
         Observable observable = NodeConverter.convert(new TreeConverter(rootNode));
-        observable.subscribe(subscriber);
 
-        subscriber.assertNoErrors();
-        assertThat(subscriber.getOnNextEvents().iterator()).hasSize(1);
+        assertThat(observable.toBlocking().first()).isEqualTo(subject.toBlocking().first());
     }
+
 
 }
