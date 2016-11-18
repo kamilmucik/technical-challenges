@@ -2,6 +2,7 @@ package com.gft.util;
 
 import com.gft.model.Node;
 import com.gft.model.NodeImpl;
+import com.gft.service.FileService;
 import com.google.common.collect.ImmutableList;
 import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
@@ -28,7 +29,7 @@ public class DirectoryWatcherIT {
         Path home = fs.getPath("/data");
         Files.createDirectory(home);
         Node<Path> rootNode = new NodeImpl<>(home);
-        CountDownLatch latch = new CountDownLatch(1);
+        CountDownLatch latch = new CountDownLatch(2);
         Observable<Node> fileSystemWatcher =
                 DirectoryWatcher
                         .newBuilder()
@@ -38,23 +39,33 @@ public class DirectoryWatcherIT {
         TestSubscriber subscriber = new TestSubscriber();
         Subscription subscribe = fileSystemWatcher
                 .doOnNext(a -> {
-                    System.out.println("Got an event for " + a.getPayload());
+                    System.out.println(">> " + a.getPayload());
+                    latch.countDown();
                 })
                 .subscribe(subscriber);
 
-        fileSystemWatcher.subscribe(System.out::println);
-
-
         Path onePath = home.resolve("test.txt");
         Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
-
+        onePath = home.resolve("testFolder");
+        Files.createDirectory(onePath);
+        onePath = onePath.resolve("test2.txt");
+        Files.write(onePath, ImmutableList.of("2"), StandardCharsets.UTF_8);
         Thread.sleep(3000);
 
-//        latch.await();
+        Files.walk(home)
+                .forEach( file -> {
 
-        subscribe.unsubscribe();
+                    System.out.println(file + " : " + file.toFile().isDirectory() );
+                });
+//        rootNode.getChildren().addAll(FileService.getNodeImplChildren(rootNode));
+//        Observable observable = NodeConverter.convert(new TreeConverter(rootNode));
+//        observable.subscribe(System.out::println);
 
-        assertThat(subscribe.isUnsubscribed()).isTrue();
+
+        latch.await();
+
+//        subscribe.unsubscribe();
+//        assertThat(subscribe.isUnsubscribed()).isTrue();
 
     }
 }
