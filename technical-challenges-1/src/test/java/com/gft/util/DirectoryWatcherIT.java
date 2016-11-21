@@ -10,6 +10,7 @@ import org.junit.Test;
 import rx.Observable;
 import rx.Subscription;
 import rx.observers.TestSubscriber;
+import rx.subjects.ReplaySubject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -24,13 +25,43 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class DirectoryWatcherIT {
 
+    @Test
+    public void shouldReturnFilesStructureAsNode() throws IOException {
+        FileSystem fs = Jimfs.newFileSystem(Configuration.unix());
+        Path root = fs.getPath("/root");
+        Files.createDirectory(root);
+        Path onePath = root.resolve("test.txt");
+        Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
+        onePath = root.resolve("testFolder");
+        Files.createDirectory(onePath);
+        onePath = onePath.resolve("test2.txt");
+        Files.write(onePath, ImmutableList.of("2"), StandardCharsets.UTF_8);
+        onePath = root.resolve("testFolder2");
+        Files.createDirectory(onePath);
+        Node<Path> rootNode = FileService.getNodeImplChildren(root);
+        ReplaySubject<Path> subject = ReplaySubject.create();
+        subject.onNext(onePath);
+
+        Observable observable = NodeConverter.convert(new TreeConverter(rootNode));
+
+        assertThat(observable.toBlocking().last()).isEqualTo(subject.toBlocking().first());
+    }
 
     @Test(timeout = 15_000)
     public void shouldReturnChangesInPath() throws IOException, InterruptedException {
         FileSystem fs = Jimfs.newFileSystem(Configuration.unix());
         Path home = fs.getPath("/data");
         Files.createDirectory(home);
-        Node<Path> rootNode = new NodeImpl<>(home);
+        Path onePath = home.resolve("test.txt");
+        Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
+        onePath = home.resolve("testFolder");
+        Files.createDirectory(onePath);
+        onePath = onePath.resolve("test2.txt");
+        Files.write(onePath, ImmutableList.of("2"), StandardCharsets.UTF_8);
+        onePath = home.resolve("testFolder2");
+        Files.createDirectory(onePath);
+
+        Node<Path> rootNode = FileService.getNodeImplChildren(home);
 //        CountDownLatch latch = new CountDownLatch(2);
 //        Observable<Node> fileSystemWatcher =
 //                DirectoryWatcher
@@ -46,22 +77,10 @@ public class DirectoryWatcherIT {
 //                })
 //                .subscribe(subscriber);
 
-        Path onePath = home.resolve("test.txt");
-        Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
-        onePath = home.resolve("testFolder");
-        Files.createDirectory(onePath);
-        onePath = onePath.resolve("test2.txt");
-        Files.write(onePath, ImmutableList.of("2"), StandardCharsets.UTF_8);
-        Thread.sleep(3000);
 
-        try (Stream<Path> paths = Files.find(
-                home, Integer.MAX_VALUE,
-                (path,attrs) -> attrs.isDirectory() || attrs.isRegularFile() )) {
-            paths.skip(1l).forEach( p -> {
-                boolean isDir = Files.isDirectory(p);
-                System.out.printf("file: %s : %s \n" , p, isDir );
-            });
-        }
+//        Thread.sleep(3000);
+
+
 
 //        rootNode.getChildren().addAll(FileService.getNodeImplChildren(rootNode));
 //        Observable observable = NodeConverter.convert(new TreeConverter(rootNode));

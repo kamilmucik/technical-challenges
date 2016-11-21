@@ -7,23 +7,23 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedList;
-import java.util.List;
 
 public class FileService {
 
-     public static List<Node<Path>> getNodeImplChildren(Node<Path> parentNode) {
-        List<Node<Path>> children = new LinkedList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(parentNode.getPayload())) {
+     public static Node<Path> getNodeImplChildren(Path parentNode) {
+         Node<Path> resultNode = new NodeImpl<>(parentNode);
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(parentNode)) {
             for (Path entry : stream) {
-                children.add(new NodeImpl<>(entry));
                 if (Files.isDirectory(entry)) {
-                    children.addAll(getNodeImplChildren(new NodeImpl<>(entry)));
+                    resultNode.getChildren().add(getNodeImplChildren(entry));
+                } else {
+                    resultNode.getChildren().add(new NodeImpl<>(entry));
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return children;
+        return resultNode;
     }
+
 }
