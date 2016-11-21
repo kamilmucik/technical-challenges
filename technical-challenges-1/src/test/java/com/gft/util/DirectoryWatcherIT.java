@@ -16,7 +16,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.CountDownLatch;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -29,20 +31,20 @@ public class DirectoryWatcherIT {
         Path home = fs.getPath("/data");
         Files.createDirectory(home);
         Node<Path> rootNode = new NodeImpl<>(home);
-        CountDownLatch latch = new CountDownLatch(2);
-        Observable<Node> fileSystemWatcher =
-                DirectoryWatcher
-                        .newBuilder()
-                        .addPath(rootNode)
-                        .build();
-
-        TestSubscriber subscriber = new TestSubscriber();
-        Subscription subscribe = fileSystemWatcher
-                .doOnNext(a -> {
-                    System.out.println(">> " + a.getPayload());
-                    latch.countDown();
-                })
-                .subscribe(subscriber);
+//        CountDownLatch latch = new CountDownLatch(2);
+//        Observable<Node> fileSystemWatcher =
+//                DirectoryWatcher
+//                        .newBuilder()
+//                        .addPath(rootNode)
+//                        .build();
+//
+//        TestSubscriber subscriber = new TestSubscriber();
+//        Subscription subscribe = fileSystemWatcher
+//                .doOnNext(a -> {
+//                    System.out.println(">> " + a.getPayload());
+//                    latch.countDown();
+//                })
+//                .subscribe(subscriber);
 
         Path onePath = home.resolve("test.txt");
         Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
@@ -52,17 +54,21 @@ public class DirectoryWatcherIT {
         Files.write(onePath, ImmutableList.of("2"), StandardCharsets.UTF_8);
         Thread.sleep(3000);
 
-        Files.walk(home)
-                .forEach( file -> {
+        try (Stream<Path> paths = Files.find(
+                home, Integer.MAX_VALUE,
+                (path,attrs) -> attrs.isDirectory() || attrs.isRegularFile() )) {
+            paths.skip(1l).forEach( p -> {
+                boolean isDir = Files.isDirectory(p);
+                System.out.printf("file: %s : %s \n" , p, isDir );
+            });
+        }
 
-                    System.out.println(file + " : " + file.toFile().isDirectory() );
-                });
 //        rootNode.getChildren().addAll(FileService.getNodeImplChildren(rootNode));
 //        Observable observable = NodeConverter.convert(new TreeConverter(rootNode));
 //        observable.subscribe(System.out::println);
 
 
-        latch.await();
+//        latch.await();
 
 //        subscribe.unsubscribe();
 //        assertThat(subscribe.isUnsubscribed()).isTrue();
