@@ -76,9 +76,9 @@
                         </coberturaReport>
                     </coberturaReports>
                     <sourceEncoding>UTF-8</sourceEncoding>
-                    <!--<serviceName>travis-ci</serviceName>-->
+                    <serviceName>travis-ci</serviceName>
                     <serviceJobId>1</serviceJobId>
-                    <!--<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>-->
+                    <serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>
                 </configuration>
             </plugin>
         </plugins>
