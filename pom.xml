@@ -59,14 +59,7 @@
                     <maxmem>256m</maxmem>
                     <!-- aggregated reports for multi-module projects -->
                     <aggregate>true</aggregate>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
                     <check />
-                    <instrumentation>
-                        <ignoreTrivial>true</ignoreTrivial>
-                    </instrumentation>
                 </configuration>
             </plugin>
             <plugin>
@@ -81,7 +74,7 @@
                     </coberturaReports>
                     <sourceEncoding>UTF-8</sourceEncoding>
                     <serviceName>travis-ci</serviceName>
-                    <serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>
+                    <!--<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>-->
                 </configuration>
             </plugin>
         </plugins>
