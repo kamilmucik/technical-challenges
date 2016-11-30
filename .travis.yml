@@ -11,5 +11,5 @@ script:
 before_install:
     - pip install --user codecov
 after_success:
-  - mvn cobertura:cobertura 
+  - mvn clean -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID cobertura:cobertura coveralls:report
   - bash <(curl -s https://codecov.io/bash)
