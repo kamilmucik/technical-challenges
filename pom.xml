@@ -57,9 +57,12 @@
                     <outputDirectory>${basedir}/target</outputDirectory>
                     <quiet>true</quiet>
                     <maxmem>256m</maxmem>
-                    <format>xml</format>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
                     <aggregate>true</aggregate>
-                    <check />
+                    <check>true</check>
                 </configuration>
             </plugin>
             <plugin>
@@ -69,13 +72,13 @@
                 <configuration>
                     <coberturaReports>
                         <coberturaReport>
-                            ${basedir}/target/coverage.xml
+                            ${basedir}/technical-challenges-1/target/coverage.xml
                         </coberturaReport>
                     </coberturaReports>
                     <sourceEncoding>UTF-8</sourceEncoding>
                     <serviceName>travis-ci</serviceName>
-                    <!--<serviceJobId>1</serviceJobId>-->
-                    <serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>
+                    <serviceJobId>1</serviceJobId>
+                    <!--<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>-->
                 </configuration>
             </plugin>
         </plugins>
