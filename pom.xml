@@ -57,7 +57,7 @@
                     <outputDirectory>${basedir}/target</outputDirectory>
                     <quiet>true</quiet>
                     <maxmem>256m</maxmem>
-                    <!-- aggregated reports for multi-module projects -->
+                    <format>xml</format>
                     <aggregate>true</aggregate>
                     <check />
                 </configuration>
@@ -65,7 +65,7 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>4.3.0</version>
                 <configuration>
                     <coberturaReports>
                         <coberturaReport>
@@ -74,7 +74,8 @@
                     </coberturaReports>
                     <sourceEncoding>UTF-8</sourceEncoding>
                     <serviceName>travis-ci</serviceName>
-                    <!--<serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>-->
+                    <!--<serviceJobId>1</serviceJobId>-->
+                    <serviceJobId>${env.TRAVIS_JOB_ID} </serviceJobId>
                 </configuration>
             </plugin>
         </plugins>
