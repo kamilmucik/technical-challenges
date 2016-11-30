@@ -9,7 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileService {
-
+    /**
+     * Method convert tree structure to Node type
+     * @param parentNode Path as root in tree structure
+     * @return Node with path as payload
+     */
      public static Node<Path> convertPathToNode(Path parentNode) {
         Node<Path> resultNode = new NodeImpl<>(parentNode);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(parentNode)) {

@@ -36,11 +36,11 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnContainsValues(){
-        NodeImpl root = new NodeImpl();
-        NodeImpl node1 = new NodeImpl();
-        NodeImpl node2 = new NodeImpl();
-        root.getChildren().add(new NodeImpl(node1,node2));
-        TreeConverter tree = new TreeConverter(root);
+        NodeImpl root = new NodeImpl<>();
+        NodeImpl node1 = new NodeImpl<>();
+        NodeImpl node2 = new NodeImpl<>();
+        root.getChildren().add(new NodeImpl<>(node1,node2));
+        TreeConverter tree = new TreeConverter<>(root);
 
         Iterator<Node> it = tree.iterator();
 
@@ -50,16 +50,12 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnedSize(){
-        NodeImpl node11 = new NodeImpl();
-        NodeImpl node12 = new NodeImpl();
-        NodeImpl node1 = new NodeImpl(node11,node12);
-        NodeImpl node21 = new NodeImpl();
-        NodeImpl node2 = new NodeImpl();
-        node2.getChildren().add(node21);
-        NodeImpl root = new NodeImpl();
-        root.getChildren().add(node1);
+        NodeImpl<Node> node2 = new NodeImpl<>();
+        node2.getChildren().add(new NodeImpl<>());
+        NodeImpl<Node> root = new NodeImpl<>();
+        root.getChildren().add(new NodeImpl<>(new NodeImpl<>(),new NodeImpl<>()));
         root.getChildren().add(node2);
-        TreeConverter tree = new TreeConverter(root);
+        TreeConverter tree = new TreeConverter<Node>(root);
 
         Iterator<Node> it = tree.iterator();
 

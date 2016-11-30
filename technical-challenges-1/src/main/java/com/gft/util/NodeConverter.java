@@ -8,9 +8,9 @@ import java.util.Iterator;
 final class NodeConverter {
 
     /**
-     * Convert
-     * @param root
-     * @param <T>
+     * Convert Node with payload to reactive stream
+     * @param root main object in tree structure to iterate
+     * @param <T> Generic type of Node
      * @return generic param
      */
     static <T> Observable<T> convert(Iterable<Node<T>> root){
