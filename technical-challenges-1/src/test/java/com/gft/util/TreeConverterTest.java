@@ -8,7 +8,6 @@ import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.Test;
-import rx.*;
 import rx.Observable;
 import rx.subjects.ReplaySubject;
 
@@ -26,7 +25,7 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnFalseWhenNodeHasNotGotChildren(){
-        Node n = new NodeImpl();
+        Node<Path> n = new NodeImpl<>();
         TreeConverter tree = new TreeConverter(n);
 
         Iterator<Node> it = tree.iterator();

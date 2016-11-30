@@ -45,8 +45,7 @@ public class DirectoryWatcher {
                 }
 
                 for (WatchEvent<?> event : key.pollEvents()) {
-                    Path p = (Path)event.context();
-                    subscriber.onNext(p);
+                    subscriber.onNext(((Path)event.context()).toAbsolutePath() );
                 }
 
                 if (!key.reset()) {
