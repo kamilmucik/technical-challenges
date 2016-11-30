@@ -25,10 +25,10 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnFalseWhenNodeHasNotGotChildren(){
-        Node<Path> n = new NodeImpl<>();
+        Node n = new NodeImpl<>();
         TreeConverter tree = new TreeConverter(n);
 
-        Iterator<Node> it = tree.iterator();
+        Iterator it = tree.iterator();
 
         assertThat(it.hasNext()).isFalse();
         assertThatThrownBy(it::next).isInstanceOf(NoSuchElementException.class);
@@ -39,10 +39,10 @@ public class TreeConverterTest {
         NodeImpl root = new NodeImpl<>();
         NodeImpl node1 = new NodeImpl<>();
         NodeImpl node2 = new NodeImpl<>();
-        root.getChildren().add(new NodeImpl<>(node1,node2));
-        TreeConverter tree = new TreeConverter<>(root);
+        root.getChildren().add(new NodeImpl(node1,node2));
+        TreeConverter tree = new TreeConverter(root);
 
-        Iterator<Node> it = tree.iterator();
+        Iterator it = tree.iterator();
 
         assertThat(it.hasNext()).isTrue();
         assertThat(it).containsSequence(node1,node2);
@@ -50,12 +50,12 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnedSize(){
-        NodeImpl<Node> node2 = new NodeImpl<>();
+        NodeImpl node2 = new NodeImpl<>();
         node2.getChildren().add(new NodeImpl<>());
-        NodeImpl<Node> root = new NodeImpl<>();
-        root.getChildren().add(new NodeImpl<>(new NodeImpl<>(),new NodeImpl<>()));
+        NodeImpl root = new NodeImpl<>();
+        root.getChildren().add(new NodeImpl(new NodeImpl(),new NodeImpl()));
         root.getChildren().add(node2);
-        TreeConverter tree = new TreeConverter<Node>(root);
+        TreeConverter tree = new TreeConverter(root);
 
         Iterator<Node> it = tree.iterator();
 
