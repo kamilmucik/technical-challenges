@@ -10,12 +10,12 @@ import java.nio.file.Path;
 
 public class FileService {
 
-     public static Node<Path> getNodeImplChildren(Path parentNode) {
-         Node<Path> resultNode = new NodeImpl<>(parentNode);
+     public static Node<Path> convertPathToNode(Path parentNode) {
+        Node<Path> resultNode = new NodeImpl<>(parentNode);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(parentNode)) {
             for (Path entry : stream) {
                 if (Files.isDirectory(entry)) {
-                    resultNode.getChildren().add(getNodeImplChildren(entry));
+                    resultNode.getChildren().add(convertPathToNode(entry));
                 } else {
                     resultNode.getChildren().add(new NodeImpl<>(entry));
                 }
@@ -25,5 +25,6 @@ public class FileService {
         }
         return resultNode;
     }
+
 
 }

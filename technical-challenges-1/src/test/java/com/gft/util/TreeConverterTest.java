@@ -2,8 +2,21 @@ package com.gft.util;
 
 import com.gft.model.Node;
 import com.gft.model.NodeImpl;
+import com.gft.service.FileService;
+import com.google.common.collect.ImmutableList;
+import com.google.common.jimfs.Configuration;
+import com.google.common.jimfs.Jimfs;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.Test;
+import rx.*;
+import rx.Observable;
+import rx.subjects.ReplaySubject;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,6 +65,22 @@ public class TreeConverterTest {
         Iterator<Node> it = tree.iterator();
 
         assertThat(it).hasSize(5);
+    }
+
+    @Test
+    public void shouldReturnFilesStructureAsNode() throws IOException {
+        FileSystem fs = Jimfs.newFileSystem(Configuration.unix());
+        Path root = fs.getPath("/root");
+        Files.createDirectory(root);
+        Path onePath = root.resolve("test.txt");
+        Files.write(onePath, ImmutableList.of("1"), StandardCharsets.UTF_8);
+        Node<Path> rootNode = FileService.convertPathToNode(root);
+        ReplaySubject<Path> subject = ReplaySubject.create();
+        subject.onNext(onePath);
+
+        Observable<Node> observable = NodeConverter.convert(new TreeConverter(rootNode));
+
+        AssertionsForClassTypes.assertThat(observable.toBlocking().last()).isEqualTo(subject.toBlocking().first());
     }
 
 }

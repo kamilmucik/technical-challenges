@@ -7,6 +7,12 @@ import java.util.Iterator;
 
 final class NodeConverter {
 
+    /**
+     * Convert
+     * @param root
+     * @param <T>
+     * @return generic param
+     */
     static <T> Observable<T> convert(Iterable<Node<T>> root){
         Iterator<Node<T>> it = root.iterator();
         return Observable.create(s -> {
