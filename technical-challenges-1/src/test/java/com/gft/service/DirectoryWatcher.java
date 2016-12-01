@@ -18,7 +18,7 @@ public class DirectoryWatcher {
     public static Observable<Path> changed(Path root) throws IOException {
         watcher = root.getFileSystem().newWatchService();
         root.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
-        Observable.OnSubscribe<Path> subscribeFunction = (s) -> asyncProcessingOnSubscribe((Subscriber<Path>)s);
+        Observable.OnSubscribe<Path> subscribeFunction = DirectoryWatcher::asyncProcessingOnSubscribe;
         return Observable.create(subscribeFunction);
     }
 
@@ -26,8 +26,8 @@ public class DirectoryWatcher {
      * Method start new thread and invoke method to produce paths
      * @param s is subscriber with Path type
      */
-    private static void asyncProcessingOnSubscribe(Subscriber<Path> s) {
-        final Subscriber<Path> subscriber = s;
+    private static void asyncProcessingOnSubscribe(Subscriber<? super Path> s) {
+        final Subscriber<? super Path> subscriber = s;
         Thread thread = new Thread(() -> producePathsFromFileSystem(subscriber));
         thread.start();
     }
@@ -36,7 +36,7 @@ public class DirectoryWatcher {
      * Method produce Path from watched service
      * @param subscriber Path
      */
-    private static void producePathsFromFileSystem(Subscriber<Path> subscriber) {
+    private static void producePathsFromFileSystem(Subscriber<? super Path> subscriber) {
         do {
             try {
                 WatchKey key = watcher.take();
