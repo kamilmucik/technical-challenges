@@ -6,15 +6,15 @@ import java.util.*;
 
 class TreeConverter implements Iterable {
 
-    private Node t;
+    private Node rootNode;
 
-    TreeConverter(Node t) {
-        this.t = t;
+    TreeConverter(Node rootNode) {
+        this.rootNode = rootNode;
     }
 
     @Override
     public Iterator iterator() {
-        return new TreeConverterIterator(t);
+        return new TreeConverterIterator(rootNode);
     }
 
     /**

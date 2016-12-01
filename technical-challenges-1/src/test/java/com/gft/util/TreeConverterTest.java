@@ -20,12 +20,13 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.Assert.assertTrue;
 
 public class TreeConverterTest {
 
     @Test
     public void shouldReturnFalseWhenNodeHasNotGotChildren(){
-        Node n = new NodeImpl<>();
+        Node<Object> n = new NodeImpl<>();
         TreeConverter tree = new TreeConverter(n);
 
         Iterator it = tree.iterator();
@@ -36,28 +37,28 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnContainsValues(){
-        NodeImpl root = new NodeImpl<>();
+        NodeImpl<Object> root = new NodeImpl<>();
         NodeImpl node1 = new NodeImpl<>();
         NodeImpl node2 = new NodeImpl<>();
-        root.getChildren().add(new NodeImpl(node1,node2));
+        root.getChildren().add(new NodeImpl<>(node1,node2));
         TreeConverter tree = new TreeConverter(root);
 
         Iterator it = tree.iterator();
 
         assertThat(it.hasNext()).isTrue();
-        assertThat(it).containsSequence(node1,node2);
+        assertThat(it).contains(node1,node2);
     }
 
     @Test
     public void shouldReturnedSize(){
-        NodeImpl node2 = new NodeImpl<>();
+        NodeImpl<Object> node2 = new NodeImpl<>();
         node2.getChildren().add(new NodeImpl<>());
-        NodeImpl root = new NodeImpl<>();
+        NodeImpl<Object> root = new NodeImpl<>();
         root.getChildren().add(new NodeImpl(new NodeImpl(),new NodeImpl()));
         root.getChildren().add(node2);
         TreeConverter tree = new TreeConverter(root);
 
-        Iterator<Node> it = tree.iterator();
+        Iterator it = tree.iterator();
 
         assertThat(it).hasSize(5);
     }
@@ -72,8 +73,10 @@ public class TreeConverterTest {
         Node<Path> rootNode = FileService.convertPathToNode(root);
         ReplaySubject<Path> subject = ReplaySubject.create();
         subject.onNext(onePath);
+        TreeConverter tree = new TreeConverter(rootNode);
+        Iterator it = tree.iterator();
 
-        Observable<Node> observable = NodeConverter.convert(new TreeConverter(rootNode));
+        Observable observable = NodeConverter.convert(it);
 
         AssertionsForClassTypes.assertThat(observable.toBlocking().last()).isEqualTo(subject.toBlocking().first());
     }

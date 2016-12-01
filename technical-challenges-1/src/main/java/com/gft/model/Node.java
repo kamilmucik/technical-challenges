@@ -10,7 +10,7 @@ public interface Node<T> {
      * @return List of own Type
      */
     @NotNull
-    List<Node<T>> getChildren();
+    List<Node> getChildren();
 
     /**
      * Return payload.

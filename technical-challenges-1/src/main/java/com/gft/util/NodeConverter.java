@@ -10,14 +10,12 @@ final class NodeConverter {
     /**
      * Convert Node with payload to reactive stream
      * @param root main object in tree structure to iterate
-     * @param <T> Generic type of Node
      * @return generic param
      */
-    static <T> Observable<T> convert(Iterable<Node<T>> root){
-        Iterator<Node<T>> it = root.iterator();
+    static  Observable<Object> convert(Iterator root){
         return Observable.create(s -> {
-            while (it.hasNext()) {
-                s.onNext(it.next().getPayload());
+            while (root.hasNext()) {
+                s.onNext(((Node)root.next()).getPayload());
             }
             s.onCompleted();
         });
