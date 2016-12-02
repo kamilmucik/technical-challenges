@@ -20,7 +20,6 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.Assert.assertTrue;
 
 public class TreeConverterTest {
 
@@ -46,7 +45,7 @@ public class TreeConverterTest {
         Iterator it = tree.iterator();
 
         assertThat(it.hasNext()).isTrue();
-        assertThat(it).contains(node1,node2);
+        assertThat(it).containsExactly(node1,node2);
     }
 
     @Test
