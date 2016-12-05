@@ -3,13 +3,11 @@ package com.gft.service;
 import rx.Observable;
 import rx.Scheduler;
 import rx.Subscriber;
-import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class DirectoryWatcher {
@@ -63,10 +61,10 @@ public class DirectoryWatcher {
                     for (WatchEvent<?> event : key.pollEvents()) {
                         Path tmp = (Path)event.context();
 
-//                        System.out.println("d.1: " + tmp + " : " + Files.isDirectory(tmp));
-//                    if (Files.isDirectory(tmp)){
-//                        registerRecursive(tmp,watcher);
-//                    }
+                        System.out.println("d.1: " + tmp + " : " + event.kind());
+                    if (Files.isDirectory(tmp)){
+                        registerRecursive(tmp,watcher);
+                    }
 //                        System.out.println("d.2: " + tmp);
 
 //                        subscriber.onNext(Paths.get("d1") );
@@ -77,11 +75,10 @@ public class DirectoryWatcher {
                         close();
                     }
                 } catch (Throwable t) {
-//                    t.printStackTrace();
                     subscriber.onError(t);
                 }
             } while (!close);
-//            subscriber.onCompleted();
+            subscriber.onCompleted();
         }, 200, TimeUnit.MILLISECONDS );
 
 
@@ -103,14 +100,14 @@ public class DirectoryWatcher {
         Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-//                System.out.println("d: " + dir);
+                System.out.println("d: " + dir);
                 dir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
 //                watchedPaths.add(dir);
                 return FileVisitResult.CONTINUE;
             }
             @Override
             public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
-//                System.out.println("f: " + path);
+                System.out.println("f: " + path);
                 return FileVisitResult.CONTINUE;
             }
         });
