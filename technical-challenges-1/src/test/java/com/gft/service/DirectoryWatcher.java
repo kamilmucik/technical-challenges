@@ -50,37 +50,37 @@ public class DirectoryWatcher {
         subscriber.add(worker);
 
         worker.schedule(() -> {
-            System.out.println("d.2: " + new Date());
-            subscriber.onNext(Paths.get("d1") );
+//            subscriber.onNext(Paths.get("d1") );
 //            subscriber.unsubscribe();
 //            worker.unsubscribe();
-//            do {
-//                try {
-//                    WatchKey key = watcher.take();
-//                    if (key == null) {
-//                        continue;
-//                    }
-//
-//                    for (WatchEvent<?> event : key.pollEvents()) {
-//                        Path tmp = (Path)event.context();
-//
+            do {
+                try {
+                    WatchKey key = watcher.take();
+                    if (key == null) {
+                        continue;
+                    }
+
+                    for (WatchEvent<?> event : key.pollEvents()) {
+                        Path tmp = (Path)event.context();
+
 //                        System.out.println("d.1: " + tmp + " : " + Files.isDirectory(tmp));
-////                    if (Files.isDirectory(tmp)){
-////                        registerRecursive(tmp,watcher);
-////                    }
+//                    if (Files.isDirectory(tmp)){
+//                        registerRecursive(tmp,watcher);
+//                    }
 //                        System.out.println("d.2: " + tmp);
-//
-//                        subscriber.onNext(tmp.toAbsolutePath() );
-//                    }
-//
-//                    if (!key.reset()) {
-//                        close();
-//                    }
-//                } catch (Throwable t) {
-////                    t.printStackTrace();
-//                    subscriber.onError(t);
-//                }
-//            } while (!close);
+
+//                        subscriber.onNext(Paths.get("d1") );
+                        subscriber.onNext(tmp.toAbsolutePath() );
+                    }
+
+                    if (!key.reset()) {
+                        close();
+                    }
+                } catch (Throwable t) {
+//                    t.printStackTrace();
+                    subscriber.onError(t);
+                }
+            } while (!close);
 //            subscriber.onCompleted();
         }, 200, TimeUnit.MILLISECONDS );
 
