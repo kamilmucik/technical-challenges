@@ -1,5 +1,6 @@
 package com.gft.service;
 
+import com.gft.model.Node;
 import com.gft.model.NodeImpl;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ public class FileService {
      * @param parentNode Path as root in tree structure
      * @return Node with path as payload
      */
-     public static NodeImpl<Path> convertPathToNode(Path parentNode) {
-         NodeImpl<Path> resultNode = new NodeImpl<>(parentNode);
+     public static Node<Path> convertPathToNode(Path parentNode) {
+         Node<Path> resultNode = new NodeImpl<>(parentNode);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(parentNode)) {
             for (Path entry : stream) {
                 if (Files.isDirectory(entry)) {
