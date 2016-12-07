@@ -1,6 +1,5 @@
 package com.gft.util;
 
-import com.gft.model.Node;
 import rx.Observable;
 
 import java.util.Iterator;
