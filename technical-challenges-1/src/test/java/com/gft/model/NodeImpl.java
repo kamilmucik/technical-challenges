@@ -8,7 +8,7 @@ import java.util.List;
 
 public final class NodeImpl<T> implements Node<T> {
 
-    private List<Node> children = new LinkedList<>();
+    private List<Node<T>> children = new LinkedList<>();
 
     private T payload;
 
@@ -25,7 +25,7 @@ public final class NodeImpl<T> implements Node<T> {
 
     @NotNull
     @Override
-    public List<Node> getChildren() {
+    public List<Node<T>> getChildren() {
         return children;
     }
 

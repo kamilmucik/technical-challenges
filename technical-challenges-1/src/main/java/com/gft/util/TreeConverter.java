@@ -4,27 +4,27 @@ import com.gft.model.Node;
 
 import java.util.*;
 
-class TreeConverter implements Iterable {
+class TreeConverter <T extends Node> implements Iterable<T> {
 
-    private Node rootNode;
+    private final Node<T> rootNode;
 
-    TreeConverter(Node rootNode) {
+    TreeConverter(Node<T> rootNode) {
         this.rootNode = rootNode;
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new TreeConverterIterator(rootNode);
     }
 
     /**
      * Iterator convert tree-based structure to flat iterable collection.
      */
-    private static class TreeConverterIterator implements Iterator  {
+    private class TreeConverterIterator implements Iterator<T>  {
 
-        private final Vector<Object> knownNodes = new Vector<>();
+        private final Vector<Node<T>> knownNodes = new Vector<>();
 
-        TreeConverterIterator(Node root) {
+        TreeConverterIterator(Node<T> root) {
             knownNodes.addAll(root.getChildren());
         }
 
@@ -44,14 +44,14 @@ class TreeConverter implements Iterable {
          * @return Node or NoSuchElementException
          */
         @Override
-        public Node next() throws NoSuchElementException {
+        public T next() throws NoSuchElementException {
             if (this.knownNodes.isEmpty())
                 throw new NoSuchElementException();
-            Node nextNode = (Node)knownNodes.remove(0);
+            Node<T> nextNode = knownNodes.remove(0);
             for (int i = nextNode.getChildren().size() - 1; i >= 0; i--) {
                 knownNodes.add(0, nextNode.getChildren().get(i));
             }
-            return nextNode;
+            return nextNode.getPayload();
         }
     }
 }

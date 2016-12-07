@@ -15,13 +15,13 @@ public class FileService {
      * @return Node with path as payload
      */
      public static Node<Path> convertPathToNode(Path parentNode) {
-        Node<Path> resultNode = new NodeImpl<>(parentNode);
+        Node<Path> resultNode = new NodeImpl(parentNode);
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(parentNode)) {
             for (Path entry : stream) {
                 if (Files.isDirectory(entry)) {
                     resultNode.getChildren().add(convertPathToNode(entry));
                 } else {
-                    resultNode.getChildren().add(new NodeImpl<>(entry));
+                    resultNode.getChildren().add(new NodeImpl(entry));
                 }
             }
         } catch (IOException e) {

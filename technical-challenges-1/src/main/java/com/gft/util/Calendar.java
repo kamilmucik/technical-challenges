@@ -19,7 +19,6 @@ class Calendar implements Iterable<LocalDate>{
 
     private static class CalendarIterator implements Iterator<LocalDate> {
 
-        //TODO:
         private LocalDate date;
 
         CalendarIterator(LocalDate date){

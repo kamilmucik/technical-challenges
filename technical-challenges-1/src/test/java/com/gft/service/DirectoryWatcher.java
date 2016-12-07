@@ -5,26 +5,28 @@ import rx.Scheduler;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
+import javax.swing.tree.FixedHeightLayoutCache;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.concurrent.TimeUnit;
 
-public class DirectoryWatcher {
-    private static WatchService watcher;
-    private static volatile boolean close = false;
-    private static Scheduler scheduler = Schedulers.computation();
+public final class DirectoryWatcher {
 
+    private  volatile boolean close = false;
+    private  Scheduler scheduler = Schedulers.io();
+    // FIXME: 2016-12-06 Add list of subscribers and notify them when something is happend
+    // FIXME: 2016-12-06 Propose strategy of close
 
     /**
-     * Method return new created paths.
+     * Method return new created paths, and add subscribes to subscribersList
      * @param root path
      * @return Observable <Path> stream
      */
     public static Observable<Path> changed(Path root) throws IOException {
-        watcher = root.getFileSystem().newWatchService();
-//        root.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
-        registerRecursive(root,watcher);
+        // FIXME: 2016-12-06 need to by closed
+        WatchService watcher = root.getFileSystem().newWatchService();
+        root.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY);
         Observable.OnSubscribe<Path> subscribeFunction = DirectoryWatcher::asyncProcessingOnSubscribe;
         return Observable.create(subscribeFunction);
     }
@@ -44,72 +46,57 @@ public class DirectoryWatcher {
      * @param subscriber Path
      */
     private static void producePathsFromFileSystem(Subscriber<? super Path> subscriber) {
-        final Scheduler.Worker worker = scheduler.createWorker();
-        subscriber.add(worker);
-
-        worker.schedule(() -> {
-//            subscriber.onNext(Paths.get("d1") );
-//            subscriber.unsubscribe();
-//            worker.unsubscribe();
-            do {
-                try {
-                    WatchKey key = watcher.take();
-                    if (key == null) {
-                        continue;
-                    }
-
-                    for (WatchEvent<?> event : key.pollEvents()) {
-                        Path tmp = (Path)event.context();
-
-                        System.out.println("d.1: " + tmp + " : " + event.kind());
-                    if (Files.isDirectory(tmp)){
-                        registerRecursive(tmp,watcher);
-                    }
-//                        System.out.println("d.2: " + tmp);
-
-//                        subscriber.onNext(Paths.get("d1") );
-                        subscriber.onNext(tmp.toAbsolutePath() );
-                    }
-
-                    if (!key.reset()) {
-                        close();
-                    }
-                } catch (Throwable t) {
-                    subscriber.onError(t);
-                }
-            } while (!close);
-            subscriber.onCompleted();
-        }, 200, TimeUnit.MILLISECONDS );
-
-
+//        final Scheduler.Worker worker = scheduler.createWorker();
+//        subscriber.add(worker);
+//
+//        worker.schedule(() -> {
+////            do {
+//                try {
+//                    WatchKey key = watcher.take();
+//                    if (key == null) {
+//
+//                        throw new IOException("Watcher returned WatchKey that is null");
+//                    }
+//                    for (WatchEvent<?> event : key.pollEvents()) {
+//                        Path tmp = (Path)event.context();
+//                        if (Files.isDirectory(tmp) && (StandardWatchEventKinds.ENTRY_CREATE.equals(event.kind()) || StandardWatchEventKinds.ENTRY_MODIFY.equals(event.kind()) )){
+//                            Files.walkFileTree(tmp, new SimpleFileVisitor<Path>() {
+//                                @Override
+//                                public FileVisitResult preVisitDirectory(Path path, BasicFileAttributes attrs) throws IOException {
+//                                    path.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
+//                                    subscriber.onNext(path.toAbsolutePath() );
+//                                    return FileVisitResult.CONTINUE;
+//                                }
+//                                @Override
+//                                public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
+//                                    subscriber.onNext(path.toAbsolutePath() );
+//                                    return FileVisitResult.CONTINUE;
+//                                }
+//                            });
+//                        } else {
+//                            subscriber.onNext(tmp.toAbsolutePath() );
+//                        }
+//                    }
+//                    if (!key.reset()) {
+//                        close();
+//                    }
+//                } catch (Throwable t) {
+//                    subscriber.onError(t);
+//                }
+////            } while (!close);
+//            subscriber.onCompleted();
+//        }, 200, TimeUnit.MILLISECONDS );
     }
 
     /**
      * Method close watcher service. It must be invoke to stop infinity watch loop.
      */
     private static void close() {
-        close = true;
-        try {
-            watcher.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void registerRecursive(final Path root,WatchService watcher) throws IOException {
-        Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
-            @Override
-            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-                System.out.println("d: " + dir);
-                dir.register(watcher, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
-//                watchedPaths.add(dir);
-                return FileVisitResult.CONTINUE;
-            }
-            @Override
-            public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
-                System.out.println("f: " + path);
-                return FileVisitResult.CONTINUE;
-            }
-        });
+//        close = true;
+//        try {
+//            watcher.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }
