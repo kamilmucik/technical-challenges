@@ -4,7 +4,7 @@ import com.gft.model.Node;
 
 import java.util.*;
 
-class TreeConverter <T extends Node> implements Iterable<T> {
+class TreeConverter <T> implements Iterable<T> {
 
     private final Node<T> rootNode;
 

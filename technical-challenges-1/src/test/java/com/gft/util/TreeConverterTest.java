@@ -16,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,8 +26,8 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnFalseWhenNodeHasNotGotChildren(){
-        NodeImpl<Node<Path>> n = new NodeImpl<>();
-        TreeConverter<Node<Path>> tree = new TreeConverter<>(n);
+        Node<Path> n = new NodeImpl<>();
+        TreeConverter<Path> tree = new TreeConverter<>(n);
 
         Iterator it = tree.iterator();
 
@@ -36,16 +37,17 @@ public class TreeConverterTest {
 
     @Test
     public void shouldReturnContainsValues(){
-        NodeImpl<Node<Path>> root = new NodeImpl<>();
-        NodeImpl node1 = new NodeImpl<>();
-        NodeImpl node2 = new NodeImpl<>();
-        root.getChildren().add(new NodeImpl<>(node1,node2));
-        TreeConverter<Node<Path>> tree = new TreeConverter<>(root);
+        Node<Path> root = new NodeImpl<>(Paths.get("root"));
+        NodeImpl<Path> node1 = new NodeImpl<>(Paths.get("t1"));
+        NodeImpl<Path> node2 = new NodeImpl<>(Paths.get("t2"));
+        root.getChildren().add(node1);
+        root.getChildren().add(node2);
+        TreeConverter<Path> tree = new TreeConverter<>(root);
 
-        Iterator<Node<Path>> it = tree.iterator();
+        Iterator<Path> it = tree.iterator();
 
         assertThat(it.hasNext()).isTrue();
-        assertThat(it).containsExactly(node1,node2);
+        assertThat(it).containsExactly(node1.getPayload(),node2.getPayload());
     }
 
     @Test
@@ -72,7 +74,7 @@ public class TreeConverterTest {
         Node<Path> rootNode = FileService.convertPathToNode(root);
         ReplaySubject<Path> subject = ReplaySubject.create();
         subject.onNext(onePath);
-        TreeConverter<Node<Path>> tree = new TreeConverter<>( new NodeImpl<>(rootNode));
+        TreeConverter<Path> tree = new TreeConverter<>(rootNode);
         Iterator it = tree.iterator();
 
         Observable observable = NodeConverter.convert(it);

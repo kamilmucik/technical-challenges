@@ -4,6 +4,7 @@ import com.gft.service.DirectoryWatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
+import org.junit.Ignore;
 import org.junit.Test;
 import rx.Observable;
 import rx.observers.TestSubscriber;
@@ -19,6 +20,7 @@ import java.util.concurrent.CountDownLatch;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Ignore
 public class DirectoryWatcherTest {
 
     @Test(timeout =  5_000)

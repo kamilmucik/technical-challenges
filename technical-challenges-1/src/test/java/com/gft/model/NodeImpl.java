@@ -19,7 +19,7 @@ public final class NodeImpl<T> implements Node<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public NodeImpl(Node... children) {
+    public NodeImpl(NodeImpl... children) {
         this.children = Arrays.asList(children);
     }
 

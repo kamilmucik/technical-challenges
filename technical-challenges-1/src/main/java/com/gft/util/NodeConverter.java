@@ -15,7 +15,7 @@ final class NodeConverter {
     static  Observable<Object> convert(Iterator root){
         return Observable.create(s -> {
             while (root.hasNext()) {
-                s.onNext(((Node)root.next()).getPayload());
+                s.onNext((root.next()));
             }
             s.onCompleted();
         });
