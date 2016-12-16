@@ -4,11 +4,11 @@ import com.gft.model.Node;
 
 import java.util.*;
 
-class TreeConverter <T> implements Iterable<T> {
+public class TreeConverter <T> implements Iterable<T> {
 
     private final Node<T> rootNode;
 
-    TreeConverter(Node<T> rootNode) {
+    public TreeConverter(Node<T> rootNode) {
         this.rootNode = rootNode;
     }
 
