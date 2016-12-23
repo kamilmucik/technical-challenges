@@ -1,22 +1,18 @@
 package com.gft.service;
 
-import com.gft.model.Node;
-import com.gft.model.NodeImpl;
 import com.gft.util.TreeConverter;
 import rx.Observable;
+import rx.Scheduler;
 import rx.Subscriber;
-import rx.functions.Action1;
-import rx.functions.Func0;
-import rx.functions.Func1;
+import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 import rx.subjects.ReplaySubject;
 
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
@@ -28,18 +24,20 @@ public final class DirectoryWatcher {
      * Map has object of path, that observer will watch and CompletableFuture object, that will be call when
      * some event happened.
      */
-    private Map<Path,Subscriber> registredSubscribers = new ConcurrentHashMap<>();
+    private Map<Path,Subscriber> registeredSubscribers = new ConcurrentHashMap<>();
+    // FIXME: 2016-12-21 sposób na zamykanie strumienia watchera
     private WatchService watcher = null;
-    private Thread watcherThread = new Thread(() ->producePathsFromFileSystem());
 
+    /**
+     * Object hold all emitted elements from watched path.
+     * In case when new observer will registered, then it get all elements filtered by declared path.
+     */
     private final ReplaySubject<Path> replaySubject = ReplaySubject.create();
 
-    final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    final ExecutorService executor = Executors.newFixedThreadPool(1);
-
+    private Thread watcherThread = new Thread(() ->producePathsFromFileSystem());
 
     private void producePathsFromFileSystem(){
-        while (!watcherThread.isInterrupted() || Thread.currentThread().isInterrupted()) {
+        while (!watcherThread.isInterrupted()) {
             try {
                 WatchKey key = watcher.take();
                 if (key == null) {
@@ -49,80 +47,38 @@ public final class DirectoryWatcher {
                     final Path dir = (Path)key.watchable();
                     final Path fullPath = dir.resolve((Path)event.context());
 
-                    registredSubscribers.keySet()
-                            .stream()
-                            .filter(registredPath -> fullPath.toAbsolutePath().startsWith(registredPath))
-                            .forEach(registredPath -> {
-                                    if (event.kind().equals(ENTRY_CREATE)){
-                                        registredSubscribers.get(registredPath).onNext(fullPath.toAbsolutePath());
-                                        replaySubject.onNext(fullPath.toAbsolutePath());
-                                    }
-                                    if (Files.isDirectory(fullPath)){
-                                        try {
-                                            fullPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                                        } catch (IOException e) {}
-                                    }
+                    registeredSubscribers.keySet()
+                        .stream()
+                        .filter(registeredPath -> fullPath.toAbsolutePath().startsWith(registeredPath))
+                        .forEach(registeredPath -> {
+                                if (event.kind().equals(ENTRY_CREATE)){
+                                    registeredSubscribers.get(registeredPath).onNext(fullPath.toAbsolutePath());
+                                    replaySubject.onNext(fullPath.toAbsolutePath());
                                 }
-                            );
+                                if (Files.isDirectory(fullPath)){
+                                    try {
+                                        fullPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+                                    } catch (IOException e) {}
+                                }
+                            }
+                        );
                 }
                 if (!key.reset()) {
                     break;
                 }
-            } catch (Throwable t) {
-                t.printStackTrace();
+            } catch (final InterruptedException e) {
+                System.out.println("Interrupted while waiting for a watch event; stopping.");
+                // Preserve the interrupt flag.
+                watcherThread.interrupt();
+            } catch (final ClosedWatchServiceException e) {
+                System.out.println("Stopped processing watch events; watcher has been closed.");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void execute(){
-        executor.submit(scheduleTask());
-    }
-
-    public Runnable scheduleTask(){
-        return new Runnable() {
-            public void run() {
-                final ScheduledFuture cancel = scheduler.scheduleAtFixedRate(new Runnable() {
-                    public void run() {
-                        try {
-                            WatchKey key = watcher.take();
-                            if (key != null) {
-                                for (WatchEvent<?> event : key.pollEvents()) {
-                                    final Path dir = (Path)key.watchable();
-                                    final Path fullPath = dir.resolve((Path)event.context());
-
-                                    if (event.kind().equals(ENTRY_CREATE)){
-                                        System.out.println(event + " : " + fullPath.toAbsolutePath());
-                                        replaySubject.onNext(fullPath.toAbsolutePath());
-                                    }
-                                    if (Files.isDirectory(fullPath)){
-                                        try {
-                                            fullPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                                        } catch (IOException e) {}
-                                    }
-
-                                }
-                                if (!key.reset()) {
-//                                break;
-                                }
-                            }
-
-                        } catch (Throwable t) {
-                            t.printStackTrace();
-                        }
-                    }
-                }, 0, 1, TimeUnit.SECONDS);
-                scheduler.schedule(new Runnable() {
-                    public void run() {
-                        cancel.cancel(true);
-                        execute();
-                    }
-                }, 1, TimeUnit.MINUTES);
-            }
-        };
-    }
-
-
-    public Observable<Path> register2(Path path) {
+    public Observable<Path> register(Path path) {
         if (!Files.isDirectory(path))
             throw new IllegalStateException("Can register only directory.");
 
@@ -130,11 +86,7 @@ public final class DirectoryWatcher {
             try {
                 watcher = path.getFileSystem().newWatchService();
                 path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                Node<Path> root = FileService.convertPathToNode(path);
-                Iterator<Path> it = new TreeConverter<>(root).iterator();
-                while (it.hasNext()) {
-                    Path tmpPath = it.next();
-
+                for (Path tmpPath : new TreeConverter<>(FileService.convertPathToNode(path))) {
                     if (Files.isDirectory(tmpPath))
                         try {
                             tmpPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
@@ -147,114 +99,40 @@ public final class DirectoryWatcher {
                 e.printStackTrace();
             }
 
-            replaySubject.subscribe( _path -> {
-                registredSubscribers.keySet()
+            replaySubject.subscribe( _path -> registeredSubscribers.keySet()
                     .stream()
-                    .filter(registredPath -> _path.toAbsolutePath().startsWith(registredPath))
-                    .forEach(registredPath -> {
-                             registredSubscribers.get(registredPath).onNext(_path.toAbsolutePath());
-                            }
-                    );
-            });
+                    .filter(registeredPath -> _path.toAbsolutePath().startsWith(registeredPath))
+                    .forEach(registeredPath -> registeredSubscribers.get(registeredPath).onNext(_path.toAbsolutePath())
+                ));
+            watcherThread.start();
         }
-        execute();
 
-
-
-        return Observable.using(
-                () -> path,
-                (clientPath) -> {
-                    return Observable.create((Observable.OnSubscribe<Path>) subscriber -> {
-                        registredSubscribers.put(path,subscriber);
-                        replaySubject.subscribe(new Action1<Path>() {
-                            @Override
-                            public void call(Path path) {
-                                if (path.toAbsolutePath().startsWith(clientPath)) {
-//                                    System.out.println("po rejestracji: " + clientPath + " : " + path);
-//                                    subscriber.onNext(path);
-                                }
+        return Observable.merge(
+                Observable.using(
+                        () -> path,
+                        (clientPath) -> Observable.create(subscriber -> registeredSubscribers.put(path,subscriber)),
+                        (clientPath) -> {
+                            if (registeredSubscribers.containsKey(clientPath)) {
+                                registeredSubscribers.remove(clientPath);
                             }
-                        });
 
-                    });
-                },
-                (clientPath) -> {
-                    if (registredSubscribers.containsKey(clientPath)) {
-                        registredSubscribers.remove(clientPath);
-                    }
-                });
-    }
+                            if (registeredSubscribers.size() == 0) {
+                                System.out.println("zamykanie: " + registeredSubscribers.size());
 
+                                try {
+                                    watcher.close();
+                                    watcher = null;
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                watcherThread.interrupt();
 
-    /**
-     * Register CustomSubscriber subscriber object.
-     *
-     * @param path
-     * @throws  IllegalStateException
-     *          In the case of the set Path object is not directory.
-     */
-    public Observable<Path> register(Path path) {
-        if (!Files.isDirectory(path))
-            throw new IllegalStateException("Can register only directory.");
-
-        Func0<Path> resourceFactory = () -> {
-            if (watcher == null)
-                try {
-                    watcher = path.getFileSystem().newWatchService();
-                    path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            System.out.println(Thread.currentThread().getName() + ": Created and started the client.");
-            return path;
-        };
-        Func1<Path, Observable<Path>> observableFactory = (clientPath) -> {
-            System.out.println(Thread.currentThread().getName() + " : " + clientPath + " : About to create Observable.");
+                            }
 
 
-            return Observable.create((Observable.OnSubscribe<Path>) subscriber -> {
-                if (registredSubscribers.size() == 0 ){
-                    watcherThread.start();
-                }
-                registredSubscribers.put(path,subscriber);
-
-                Node<Path> root = FileService.convertPathToNode(path);
-                Iterator<Path> it = new TreeConverter<>(root).iterator();
-                while (it.hasNext()) {
-                    Path tmpPath = it.next();
-
-                    if (Files.isDirectory(tmpPath))
-                        try {
-                            tmpPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    subscriber.onNext(tmpPath.toAbsolutePath());
-                }
-            });
-        };
-        Action1<Path> disposeAction = (clientPath) -> {
-            if (registredSubscribers.containsKey(clientPath)) {
-                registredSubscribers.remove(clientPath);
-            }
-            if (registredSubscribers.size() == 0 ){
-//                watcherThread.interrupt();
-
-                try {
-                    watcher.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println(Thread.currentThread().getName() + " : " + clientPath + " : Closing the client.");
-        };
-
-        return Observable.using(
-                resourceFactory,
-                observableFactory,
-                disposeAction);
-
+                        }),
+                replaySubject.filter( filterPath -> filterPath.toAbsolutePath().startsWith(path))
+        ).distinct();
     }
 
 }
