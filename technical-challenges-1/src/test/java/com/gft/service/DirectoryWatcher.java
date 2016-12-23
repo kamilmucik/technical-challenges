@@ -2,15 +2,11 @@ package com.gft.service;
 
 import com.gft.util.TreeConverter;
 import rx.Observable;
-import rx.Scheduler;
 import rx.Subscriber;
-import rx.functions.Action0;
-import rx.schedulers.Schedulers;
 import rx.subjects.ReplaySubject;
 
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.*;
 
@@ -24,8 +20,8 @@ public final class DirectoryWatcher {
      * Map has object of path, that observer will watch and CompletableFuture object, that will be call when
      * some event happened.
      */
-    private Map<Path,Subscriber> registeredSubscribers = new ConcurrentHashMap<>();
-    // FIXME: 2016-12-21 sposób na zamykanie strumienia watchera
+    private final Map<Path,Subscriber> registeredSubscribers = new ConcurrentHashMap<>();
+
     private WatchService watcher = null;
 
     /**
@@ -34,14 +30,14 @@ public final class DirectoryWatcher {
      */
     private final ReplaySubject<Path> replaySubject = ReplaySubject.create();
 
-    private Thread watcherThread = new Thread(() ->producePathsFromFileSystem());
+    private final Thread watcherThread = new Thread(this::producePathsFromFileSystem);
 
     private void producePathsFromFileSystem(){
-        while (!watcherThread.isInterrupted()) {
+        while (!watcherThread.isInterrupted() && watcher!= null) {
             try {
                 WatchKey key = watcher.take();
                 if (key == null) {
-                    throw new IOException("Watcher returned WatchKey that is null");
+                    break;
                 }
                 for (WatchEvent<?> event : key.pollEvents()) {
                     final Path dir = (Path)key.watchable();
@@ -58,7 +54,7 @@ public final class DirectoryWatcher {
                                 if (Files.isDirectory(fullPath)){
                                     try {
                                         fullPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                                    } catch (IOException e) {}
+                                    } catch (IOException ignored) {}
                                 }
                             }
                         );
@@ -68,20 +64,47 @@ public final class DirectoryWatcher {
                 }
             } catch (final InterruptedException e) {
                 System.out.println("Interrupted while waiting for a watch event; stopping.");
-                // Preserve the interrupt flag.
                 watcherThread.interrupt();
             } catch (final ClosedWatchServiceException e) {
                 System.out.println("Stopped processing watch events; watcher has been closed.");
-            } catch (IOException e) {
-                e.printStackTrace();
+                break;
             }
         }
     }
 
+    /**
+     *
+     * @param path - path to watch
+     * @return - observable with all emitted elements
+     */
     public Observable<Path> register(Path path) {
         if (!Files.isDirectory(path))
             throw new IllegalStateException("Can register only directory.");
 
+        prepareAndStartWatcher(path);
+
+        return Observable.merge(
+                Observable.using(
+                        () -> path,
+                        (clientPath) -> Observable.create(subscriber -> registeredSubscribers.put(path,subscriber)),
+                        (clientPath) -> {
+                            if (registeredSubscribers.containsKey(clientPath)) {
+                                registeredSubscribers.remove(clientPath);
+                            }
+                            if (registeredSubscribers.size() == 0) {
+                                closeWatcher();
+                            }
+                        }),
+                replaySubject.filter( filterPath -> filterPath.toAbsolutePath().startsWith(path))
+        ).distinct();
+    }
+
+    /**
+     * 
+     * @param path - path as root 
+     */
+    // FIXME: 2016-12-23 zmienić na jeden katalog, będzie błąd jak pierw podamy niższy katalog, a potem spróbujemy główny
+    private void prepareAndStartWatcher(Path path){
         if (watcher == null) {
             try {
                 watcher = path.getFileSystem().newWatchService();
@@ -103,36 +126,24 @@ public final class DirectoryWatcher {
                     .stream()
                     .filter(registeredPath -> _path.toAbsolutePath().startsWith(registeredPath))
                     .forEach(registeredPath -> registeredSubscribers.get(registeredPath).onNext(_path.toAbsolutePath())
-                ));
+                    ));
             watcherThread.start();
         }
+    }
 
-        return Observable.merge(
-                Observable.using(
-                        () -> path,
-                        (clientPath) -> Observable.create(subscriber -> registeredSubscribers.put(path,subscriber)),
-                        (clientPath) -> {
-                            if (registeredSubscribers.containsKey(clientPath)) {
-                                registeredSubscribers.remove(clientPath);
-                            }
-
-                            if (registeredSubscribers.size() == 0) {
-                                System.out.println("zamykanie: " + registeredSubscribers.size());
-
-                                try {
-                                    watcher.close();
-                                    watcher = null;
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                watcherThread.interrupt();
-
-                            }
-
-
-                        }),
-                replaySubject.filter( filterPath -> filterPath.toAbsolutePath().startsWith(path))
-        ).distinct();
+    /**
+     * Close watcher service if is working and interrupting watcher thread.
+     */
+    private void closeWatcher(){
+        try {
+            if (watcher != null) {
+                watcher.close();
+                watcher = null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        watcherThread.interrupt();
     }
 
 }
