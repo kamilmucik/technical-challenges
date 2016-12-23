@@ -110,13 +110,10 @@ public final class DirectoryWatcher {
                 watcher = path.getFileSystem().newWatchService();
                 path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
                 for (Path tmpPath : new TreeConverter<>(FileService.convertPathToNode(path))) {
-                    if (Files.isDirectory(tmpPath))
-                        try {
-                            tmpPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    replaySubject.onNext(tmpPath.toAbsolutePath());
+                    if (Files.isDirectory(tmpPath)) {
+                        tmpPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+                        replaySubject.onNext(tmpPath.toAbsolutePath());
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
