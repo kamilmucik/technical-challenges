@@ -4,7 +4,7 @@ addons:
   sonarqube:
     token:
       secure: de1638dc069b38a05b4801e0840e76aec5614a5e
-script: mvn clean install sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=limakkicum
+script: mvn clean -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID cobertura:cobertura coveralls:report package sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=limakkicum
 sudo: false
 notifications:
     email:
@@ -16,5 +16,4 @@ script:
 before_install:
     - pip install --user codecov
 after_success:
-  - mvn clean -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID cobertura:cobertura coveralls:report
   - bash <(curl -s https://codecov.io/bash)
