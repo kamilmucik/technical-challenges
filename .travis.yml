@@ -5,7 +5,7 @@ addons:
     token:
       secure: de1638dc069b38a05b4801e0840e76aec5614a5e
 script: mvn clean -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID cobertura:cobertura coveralls:report package sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=de1638dc069b38a05b4801e0840e76aec5614a5e
-sudo: false
+sudo: true
 notifications:
     email:
     - kamil.mucik@gft.com
