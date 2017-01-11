@@ -17,7 +17,6 @@
 
     <modules>
         <module>technical-challenges-1</module>
-        <!--<module>web-client</module>-->
     </modules>
 
     <developers>

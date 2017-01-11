@@ -4,7 +4,7 @@ addons:
   sonarqube:
     token:
       secure: de1638dc069b38a05b4801e0840e76aec5614a5e
-script: mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=limakkicum
+script: mvn sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=limakkicum
 sudo: false
 notifications:
     email:
