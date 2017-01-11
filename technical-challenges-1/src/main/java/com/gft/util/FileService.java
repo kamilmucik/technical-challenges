@@ -1,4 +1,4 @@
-package com.gft.service;
+package com.gft.util;
 
 import com.gft.model.Node;
 import com.gft.model.NodeImpl;
@@ -29,6 +29,4 @@ public class FileService {
         }
         return resultNode;
      }
-
-
 }

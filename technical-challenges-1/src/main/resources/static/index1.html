@@ -1,0 +1,52 @@
+<html ng-app>
+    <head>
+        <script src="https://cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+        <script>
+            var sock = new SockJS('http://localhost:8090/counter');
+            function ChatCtrl($scope,$http) {
+                $scope.messages = [];
+                $scope.sendMessage = function() {
+                    $http.get('http://localhost:8090/path/add', { params: $scope.path },
+                        function (response) { $scope.results = response; },
+                        function (failure) { console.log("failed :(", failure); });
+                };
+
+                sock.onmessage = function(event) {
+                    try {
+                        var response = angular.fromJson(event.data);
+                        $scope.messages = angular.fromJson(event.data);
+                        $scope.$apply();
+                    } catch (e) {
+                        console.err(e);
+                    }
+                };
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="container" ng-controller="ChatCtrl" >
+            <div class="col-md-3 column">
+                <h2>Dodaj</h2>
+                <form ng-submit="sendMessage()">
+                    <input type="text" ng-model="path.name">
+                    <input type="submit" value="Dodaj">
+                </form>
+            </div>
+            <div class="col-md-9 column">
+                <h2>Listing</h2>
+                <div >
+                    <ul>
+                        <li ng-repeat="message in messages">{{message.name}}</li>
+                    </ul>
+                    <p ng-show="messages.length == 0" class="text-info">
+                        No messages to display.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

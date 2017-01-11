@@ -1,5 +1,6 @@
-package com.gft.service;
+package com.gft.util;
 
+import com.gft.util.FileService;
 import com.gft.util.TreeConverter;
 import rx.Observable;
 import rx.Subscriber;
@@ -14,6 +15,10 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
+/**
+ * 1. Definicja ścieżki root powinna być w konfiguracji aplikacji.
+ * 2. Podłączony użytkownik może tylko otrzymywać powiadomienia o zmianach z roota lub potomnych
+ */
 public final class DirectoryWatcher {
 
     /**
@@ -47,17 +52,17 @@ public final class DirectoryWatcher {
                         .stream()
                         .filter(registeredPath -> fullPath.toAbsolutePath().startsWith(registeredPath))
                         .forEach(registeredPath -> {
-                                if (event.kind().equals(ENTRY_CREATE)){
-                                    registeredSubscribers.get(registeredPath).onNext(fullPath.toAbsolutePath());
-                                    replaySubject.onNext(fullPath.toAbsolutePath());
-                                }
-                                if (Files.isDirectory(fullPath)){
-                                    try {
-                                        fullPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-                                    } catch (IOException ignored) {}
-                                }
+                            if (event.kind().equals(ENTRY_CREATE)){
+                                registeredSubscribers.get(registeredPath).onNext(fullPath.toAbsolutePath());
+                                replaySubject.onNext(fullPath.toAbsolutePath());
                             }
-                        );
+                            if (Files.isDirectory(fullPath)){
+                                try {
+                                    fullPath.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+                                } catch (IOException ignored) {}
+                            }
+                        }
+                    );
                 }
                 if (!key.reset()) {
                     break;
@@ -91,9 +96,6 @@ public final class DirectoryWatcher {
                             if (registeredSubscribers.containsKey(clientPath)) {
                                 registeredSubscribers.remove(clientPath);
                             }
-                            if (registeredSubscribers.size() == 0) {
-                                closeWatcher();
-                            }
                         }),
                 replaySubject.filter( filterPath -> filterPath.toAbsolutePath().startsWith(path))
         ).distinct();
@@ -120,10 +122,10 @@ public final class DirectoryWatcher {
             }
 
             replaySubject.subscribe( _path -> registeredSubscribers.keySet()
-                    .stream()
-                    .filter(registeredPath -> _path.toAbsolutePath().startsWith(registeredPath))
-                    .forEach(registeredPath -> registeredSubscribers.get(registeredPath).onNext(_path.toAbsolutePath())
-                    ));
+                .stream()
+                .filter(registeredPath -> _path.toAbsolutePath().startsWith(registeredPath))
+                .forEach(registeredPath -> registeredSubscribers.get(registeredPath).onNext(_path.toAbsolutePath())
+                ));
             watcherThread.start();
         }
     }
@@ -131,7 +133,7 @@ public final class DirectoryWatcher {
     /**
      * Close watcher service if is working and interrupting watcher thread.
      */
-    private void closeWatcher(){
+    public void closeWatcher(){
         try {
             if (watcher != null) {
                 watcher.close();

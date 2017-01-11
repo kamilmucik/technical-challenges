@@ -2,7 +2,6 @@ package com.gft.util;
 
 import com.gft.model.Node;
 import com.gft.model.NodeImpl;
-import com.gft.service.FileService;
 import com.google.common.collect.ImmutableList;
 import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;

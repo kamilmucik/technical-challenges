@@ -1,6 +1,5 @@
 package com.gft.util;
 
-import com.gft.service.DirectoryWatcher;
 import com.google.common.collect.ImmutableList;
 import com.google.common.jimfs.Configuration;
 import com.google.common.jimfs.Jimfs;
@@ -45,5 +44,7 @@ public class DirectoryWatcherTest {
 
         Thread.sleep(5000);
         subscriber.unsubscribe();
+
+        watcher.closeWatcher();
     }
 }

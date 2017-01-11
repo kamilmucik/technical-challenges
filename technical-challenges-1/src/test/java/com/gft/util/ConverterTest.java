@@ -1,6 +1,7 @@
 package com.gft.util;
 
 import org.assertj.core.api.Assertions;
+import org.junit.Ignore;
 import org.junit.Test;
 import rx.Observable;
 
@@ -9,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
+@Ignore
 public class ConverterTest {
 
     @Test
