@@ -1,10 +1,15 @@
 language: java
 jdk: oraclejdk8
-script: mvn clean test
+addons:
+  sonarqube:
+    token:
+      secure: de1638dc069b38a05b4801e0840e76aec5614a5e
+script: mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=limakkicum
 sudo: false
 notifications:
     email:
-      - kamil.mucik@gft.com
+    - kamil.mucik@gft.com
+    on_success: always
 script:
     - echo "Travis branch is $TRAVIS_BRANCH"
     - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
