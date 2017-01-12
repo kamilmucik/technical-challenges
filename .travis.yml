@@ -2,8 +2,6 @@ language: java
 jdk: oraclejdk8
 env:
   secure: "NHEFaTS1s23ENa0IUR+wZLD0F6ZZgDaww6Q1E8MfmRR/vHrAj0loa9yM5vm0GFgeMPQJuW0rRXA/Std3MreRQJR55KMPw3yAhGHQIgZleWp9Pj3ck2G49UUXRzH2/tti9uHdDnDC4Obl1Mwq5IWwuaPPmnRf2Sj9HQVimqdItBRqJLRtZt3vfi66dlqtImblfOLMvJ7KZbxj9EH61oHEHodWJZAGOc5it27Ez0KJeQV5V3kNtopeFwpfyByZmXt8MYNXHxKNnnRiSg46E8EZPyKVcQAADL08FuvTEl4FTuFgAUzpoyokG6oBbdE+zajUYsm2JCrcYnDLNdr8I/FJ+wDDK6iYGuG4tzhWeehKeOCbZf9lBKLqrGL7QaYL8zTZKj+ews6W4BdIYCeQWZbob12swnJuGB5uA5+IMGnCzYrUEiGcaaAiYw4tPp29wXW/CuZOPF8HyCitS2YjsBA4QbRgxvVzrCDsFqxEZVDZAS/kqAlHvvy+TbRdnOLkTsI/iVm+RP1vqfdvrcv8LuQrGRAponU5vpW8gBLHrm2Aoa4xAjG2wm8akTnElS6pj6iG3iXhmUlWMg6ogmiLSH8vVxPze6xTrWcVBwb1EOF7wVwj815Csr7MHAe/YQ2ISuWjyPzhpGudGl4i+NAgfVJtkSy80fgrD55L61RR4prUwDU="
-script:
-  - mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=${SOMEVAR}
 cache:
   directories:
     - '$HOME/.m2/repository'
@@ -12,9 +10,9 @@ sudo: true
 notifications:
     email:
     - kamil.mucik@gft.com
-    on_success: always
 script:
-    - echo "Travis branch is $TRAVIS_BRANCH"
-    - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
+  - mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=${SOMEVAR}
+  - echo "Travis branch is $TRAVIS_BRANCH"
+  - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
