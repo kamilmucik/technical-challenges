@@ -11,7 +11,7 @@ notifications:
     email:
     - kamil.mucik@gft.com
 script:
-  - mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=${SOMEVAR}
+  - mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=7f78c375d70efd2de6e53fc4caf5734219aae32d
   - echo "Travis branch is $TRAVIS_BRANCH"
   - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
 after_success:
