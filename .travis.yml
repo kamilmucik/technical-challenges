@@ -2,7 +2,7 @@ language: java
 jdk: oraclejdk8
 env:
   secure: "ooPrv2JKGQnrU7yZNKbmE9KI1bqXIAOSqjeTsSawSrE+TwTwn3cBtSwogNPI40q+M9ZoYOHnKhSB1vl/c5yybN9EIVVIygZWNoKT4a3gL+ITPWorwlSDHfMRYagmNSVZOLIZgYtPNVAqXXe8mr21hkUwl5ia4CiYSGt3ExcOnlug9azdDRJjZiT6WE+RepKPwJ3lFqK2gN9QX3PcCQukNbyv1F96rCg17mTn6Xl88S146H4Y+2k2uQ1Tam3ZNqSEeCHmk5WOqODpTevaXeg73WjileTmD0vB+jBEuNv9CnlVjuS2fwTdy4bsfPEl+wAjvYDJjsYKyIYF9Q1bMRIZMYZsywpYc7msrQbMa4TG8+JhRgFRAc4KdHDKMbL5n9bJiOzwb5xzR89TrAbg8Df6d32pWiuYNB6nnxmACpClHVIG5Cu7FwV0Zvtw7D0jML4dYwGTCZt9mvaJ6n7RQ68JvPRq3v8CYjFUkrNU69sU2uPgt9vFwecxzC5BJayE0zEh8lUOL00ISANyRMqf21apNhLomXw36nfUof1udO0cO6nyqwVd7nH1ciBkkZ3l1hgZj5rGZojpdYeFdPBFDadwyDipVPpcmwfKq8Uv5hC6V53Asb4aOaVnsDzgkZ5qj6w+Z+TUWlPp/IuEFGklzwspN8SuXypr/K3tNTPHrkybxcU="
-script: mvn clean install sonar:sonar -Dsonar.host.url=https://sonarqube.com -Dsonar.login=${SOMEVAR}
+script: mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=${SOMEVAR}
 cache:
   directories:
     - '$HOME/.m2/repository'
