@@ -1,9 +1,9 @@
 language: java
 jdk: oraclejdk8
 env:
-  global:
-    secure: TQJFPyDj6636KKKE0F6tZwaM7CTLx0tv3ZTxKjJ74Ud7mpErRxJqn7oyDv9fLK3Vzcs0HeKVipbxCLKEtxxFq+WnbR8v+8iN8uaUTrZCz6vB63BzT3Qg0DE0mix/ia0nEOYJhxY3G/eIz5Zi5wqHyPGV0UyaFveBiM9IztoFwpwTfS5y2c3acPyPFubV6faYgrq+Eed8vbfR0PDOZwU00BYhI+Ab4nCC1EcKvz48HfVFr/mjuO5GiNyAAVzZ/Xxa1YDqLSZZIzCRxNnI/t+RyFr2OW8S8FRmo1LCxjWZrWX0rz2hceDHoTLSDDtz/1+KVYSYgP9+GGPtu6n6uKoRm/ZwthWrTpVh5hYBjdz0IZJqSCALxZxcsKtSuBR7mR3UqJmaEUhQUZ1qWhn3wNa/bEwp3BaJ8Yd9nROLKGPv8ZjM1nS3qXIBBM9KiTRAmupxX/h2k6LzWuJPj8zBSCb//4jla6/okfNYf12ZJszI+1tLy7dhcQPkwHEOv0iJkaoGgfZjysUEHxufR1lTtzSozd/GDo0wX5k9fQWoulLDoAZvFQxMNvxT+P4Fkd8+58PfUW2UkmF+k1Z3xD9MZyre6UaHpFFFt/fFCwSLGovKIRnJA1WYk3RwDePFvQt6DNXX5iJUqT95FtsH7/OZRNkGpF+djQO4QtQ/uDuf3lbfBWA=
-script: mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=${SOMEVAR}
+  secure: "TQJFPyDj6636KKKE0F6tZwaM7CTLx0tv3ZTxKjJ74Ud7mpErRxJqn7oyDv9fLK3Vzcs0HeKVipbxCLKEtxxFq+WnbR8v+8iN8uaUTrZCz6vB63BzT3Qg0DE0mix/ia0nEOYJhxY3G/eIz5Zi5wqHyPGV0UyaFveBiM9IztoFwpwTfS5y2c3acPyPFubV6faYgrq+Eed8vbfR0PDOZwU00BYhI+Ab4nCC1EcKvz48HfVFr/mjuO5GiNyAAVzZ/Xxa1YDqLSZZIzCRxNnI/t+RyFr2OW8S8FRmo1LCxjWZrWX0rz2hceDHoTLSDDtz/1+KVYSYgP9+GGPtu6n6uKoRm/ZwthWrTpVh5hYBjdz0IZJqSCALxZxcsKtSuBR7mR3UqJmaEUhQUZ1qWhn3wNa/bEwp3BaJ8Yd9nROLKGPv8ZjM1nS3qXIBBM9KiTRAmupxX/h2k6LzWuJPj8zBSCb//4jla6/okfNYf12ZJszI+1tLy7dhcQPkwHEOv0iJkaoGgfZjysUEHxufR1lTtzSozd/GDo0wX5k9fQWoulLDoAZvFQxMNvxT+P4Fkd8+58PfUW2UkmF+k1Z3xD9MZyre6UaHpFFFt/fFCwSLGovKIRnJA1WYk3RwDePFvQt6DNXX5iJUqT95FtsH7/OZRNkGpF+djQO4QtQ/uDuf3lbfBWA="
+script:
+  - mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login=${SOMEVAR}
 cache:
   directories:
     - '$HOME/.m2/repository'
@@ -16,7 +16,5 @@ notifications:
 script:
     - echo "Travis branch is $TRAVIS_BRANCH"
     - echo "Travis branch is in pull request $TRAVIS_PULL+REQUEST"
-before_install:
-    - pip install --user codecov
 after_success:
   - bash <(curl -s https://codecov.io/bash)
