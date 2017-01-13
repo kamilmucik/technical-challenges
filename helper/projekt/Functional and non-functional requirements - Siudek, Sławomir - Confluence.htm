@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+		
+
+
+
+
+
+	    
+
+
+
+	
+            <title>Functional and non-functional requirements - Siudek, Sławomir - Confluence</title>
+	
+        
+
+                        
+    
+                        
+    
+
+            <meta http-equiv="X-UA-Compatible" content="IE=EDGE,chrome=IE7">
+<meta charset="UTF-8">
+<meta id="confluence-context-path" name="confluence-context-path" content="/confluence">
+<meta id="confluence-base-url" name="confluence-base-url" content="https://agema.gft.com/confluence">
+
+<meta id="atlassian-token" name="atlassian-token" content="00cb601f00474dc8fcc123195dae5b6ec6edd5c0">
+
+
+<meta id="confluence-space-key" name="confluence-space-key" content="~srsk">
+<script type="text/javascript">
+        var contextPath = '/confluence';
+</script>
+
+    
+
+    <meta name="confluence-request-time" content="1473428152375">
+        
+    
+        
+            <meta name="ajs-is-confluence-admin" content="false">
+            <meta name="ajs-connection-timeout" content="10000">
+            <meta name="ajs-discovered-plugin-features" content="{}">
+            <meta name="ajs-use-keyboard-shortcuts" content="true">
+            <meta name="ajs-show-space-welcome-dialog" content="true">
+            <meta name="ajs-keyboardshortcut-hash" content="19cdf8b62187df490e405a357fa47f8f">
+            <meta id="team-calendars-has-jira-link" content="true">
+            <meta name="ajs-team-calendars-display-time-format" content="displayTimeFormat12">
+            <meta id="team-calendars-show-timezone-setup" content="true">
+            <meta id="team-calendars-user-timezone" content="Europe/Berlin">
+            <script type="text/x-template" id="team-calendars-messages" title="team-calendars-messages"><fieldset class="i18n hidden"><input type="hidden" name="calendar3.month.short.april" value="Apr"><input type="hidden" name="calendar3.month.short.november" value="Nov"><input type="hidden" name="calendar3.month.long.november" value="November"><input type="hidden" name="calendar3.day.short.friday" value="Fri"><input type="hidden" name="calendar3.month.long.february" value="February"><input type="hidden" name="calendar3.month.short.february" value="Feb"><input type="hidden" name="calendar3.day.long.wednesday" value="Wednesday"><input type="hidden" name="calendar3.month.long.december" value="December"><input type="hidden" name="calendar3.day.short.sunday" value="Sun"><input type="hidden" name="calendar3.month.long.april" value="April"><input type="hidden" name="calendar3.month.long.july" value="July"><input type="hidden" name="calendar3.month.long.september" value="September"><input type="hidden" name="calendar3.month.short.august" value="Aug"><input type="hidden" name="calendar3.month.short.june" value="Jun"><input type="hidden" name="calendar3.month.short.may" value="May"><input type="hidden" name="calendar3.day.short.tuesday" value="Tue"><input type="hidden" name="calendar3.day.short.wednesday" value="Wed"><input type="hidden" name="calendar3.day.long.thursday" value="Thursday"><input type="hidden" name="calendar3.month.long.march" value="March"><input type="hidden" name="calendar3.month.long.october" value="October"><input type="hidden" name="calendar3.day.short.saturday" value="Sat"><input type="hidden" name="calendar3.month.short.january" value="Jan"><input type="hidden" name="calendar3.month.long.may" value="May"><input type="hidden" name="calendar3.month.long.january" value="January"><input type="hidden" name="calendar3.month.short.october" value="Oct"><input type="hidden" name="calendar3.day.short.thursday" value="Thu"><input type="hidden" name="calendar3.day.long.friday" value="Friday"><input type="hidden" name="calendar3.day.long.sunday" value="Sunday"><input type="hidden" name="calendar3.month.long.june" value="June"><input type="hidden" name="calendar3.month.long.august" value="August"><input type="hidden" name="calendar3.day.long.tuesday" value="Tuesday"><input type="hidden" name="calendar3.day.long.saturday" value="Saturday"><input type="hidden" name="calendar3.month.short.september" value="Sep"><input type="hidden" name="calendar3.day.long.monday" value="Monday"><input type="hidden" name="calendar3.month.short.july" value="Jul"><input type="hidden" name="calendar3.month.short.march" value="Mar"><input type="hidden" name="calendar3.day.short.monday" value="Mon"><input type="hidden" name="calendar3.month.short.december" value="Dec"></fieldset></script>
+            <meta name="ajs-public-signup-permitted" content="false">
+            <meta name="ajs-cq-is-anonymous" content="false"><meta name="ajs-cq-is-admin" content="false">
+            
+            <style>.ia-fixed-sidebar, .ia-splitter-left {width: 285px;}.theme-default .ia-splitter #main {margin-left: 285px;}.ia-fixed-sidebar {visibility: hidden;}</style>
+            
+
+    
+            
+    
+    
+            <meta name="ajs-page-id" content="35816831">
+            <meta name="ajs-latest-page-id" content="35816831">
+            <meta name="ajs-content-type" content="page">
+            <meta name="ajs-page-title" content="Functional and non-functional requirements">
+            <meta name="ajs-parent-page-title" content="Program Junior+ 2016">
+            <meta name="ajs-parent-page-id" content="34441382">
+            <meta name="ajs-space-key" content="~srsk">
+            <meta name="ajs-space-name" content="Siudek, Sławomir">
+            <meta name="ajs-jira-metadata-count" content="0">
+            <meta name="ajs-from-page-title" content="">
+            <meta name="ajs-can-remove-page" content="false">
+            <meta name="ajs-browse-page-tree-mode" content="view">
+            <meta name="ajs-editor.loader.comment.resources" content="&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/e332f38245214a4dca5103f408467dcb/_/download/contextbatch/css/comment-editor/batch.css&quot; media=&quot;all&quot;&gt;
+">
+            <meta name="ajs-context-path" content="/confluence">
+            <meta name="ajs-base-url" content="https://agema.gft.com/confluence">
+            <meta name="ajs-version-number" content="5.6.5">
+            <meta name="ajs-build-number" content="5638">
+            <meta name="ajs-remote-user" content="kamu">
+            <meta name="ajs-current-user-fullname" content="Mucik, Kamil">
+            <meta name="ajs-current-user-avatar-url" content="/images/icons/profilepics/default.png">
+            <meta name="ajs-static-resource-url-prefix" content="/confluence/s/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/_">
+            <meta name="ajs-global-settings-attachment-max-size" content="31457280">
+            <meta name="ajs-user-locale" content="en_GB">
+            <meta name="ajs-enabled-dark-features" content="notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageEditedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.tasklist.event.SendTaskEmailEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.comment.CommentCreateEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageMovedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.follow.FollowEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.sharepage.api.ShareContentEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostUpdateEvent,notification.plugin.api.enabled.com.atlassian.confluence.plugins.mentions.api.ConfluenceMentionEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.attachment.AttachmentBatchUploadCompletedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.security.ForgotPasswordEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.page.async.PageCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.like.LikeCreatedEvent,notification.plugin.api.enabled.com.atlassian.confluence.event.events.content.blogpost.BlogPostMovedEvent">
+            <meta name="ajs-atl-token" content="00cb601f00474dc8fcc123195dae5b6ec6edd5c0">
+            <meta name="ajs-confluence-flavour" content="VANILLA">
+            <meta name="ajs-user-date-pattern" content="dd MMM yyyy">
+            <meta name="ajs-editor.loader.resources" content="&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/4ed625f8a70821ee24639242e2c106eb/_/download/contextbatch/css/editor,macro-browser,fullpage-editor,-page,-viewcontent,-atl.general/batch.css?build-number=5638&quot; media=&quot;all&quot;&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/4ed625f8a70821ee24639242e2c106eb/_/download/contextbatch/css/editor,macro-browser,fullpage-editor,-page,-viewcontent,-atl.general/batch.css?media=%28max-width%3A+1450px%29&amp;amp;build-number=5638&quot; media=&quot;(max-width: 1450px)&quot;&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/4ed625f8a70821ee24639242e2c106eb/_/download/contextbatch/css/editor,macro-browser,fullpage-editor,-page,-viewcontent,-atl.general/batch.css?media=print&amp;amp;build-number=5638&quot; media=&quot;print&quot;&gt;
+&lt;!--[if lt IE 9]&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/4ed625f8a70821ee24639242e2c106eb/_/download/contextbatch/css/editor,macro-browser,fullpage-editor,-page,-viewcontent,-atl.general/batch.css?conditionalComment=lt+IE+9&amp;amp;build-number=5638&quot; media=&quot;all&quot;&gt;
+&lt;![endif]--&gt;
+&lt;!--[if IE]&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/4ed625f8a70821ee24639242e2c106eb/_/download/contextbatch/css/editor,macro-browser,fullpage-editor,-page,-viewcontent,-atl.general/batch.css?ieonly=true&amp;amp;build-number=5638&quot; media=&quot;all&quot;&gt;
+&lt;![endif]--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/confluence/s/28a02af3ef80b4347a155a2318662473-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/4ed625f8a70821ee24639242e2c106eb/_/download/contextbatch/js/editor,macro-browser,fullpage-editor,-page,-viewcontent,-atl.general/batch.js?locale=en-GB&amp;amp;build-number=5638&quot; &gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/1.1.3/_/download/batch/com.atlassian.confluence.plugins.editor.confluence-source-editor:atlassian-source-editor-javascript/com.atlassian.confluence.plugins.editor.confluence-source-editor:atlassian-source-editor-javascript.js&quot; &gt;&lt;/script&gt;
+">
+            <meta name="ajs-date.format" content="MMM dd, yyyy">
+    
+    <link rel="shortcut icon" href="https://agema.gft.com/confluence/s/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/_/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://agema.gft.com/confluence/s/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/_/favicon.ico">
+
+<link rel="search" type="application/opensearchdescription+xml" href="https://agema.gft.com/confluence/opensearch/osd.action" title="Confluence">
+
+<script>
+window.WRM=window.WRM||{};window.WRM._unparsedData=window.WRM._unparsedData||{};
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\"/confluence\"";
+WRM._unparsedData["com.atlassian.confluence.plugins.confluence-license-banner:confluence-license-banner-resources.license-details"]="{\"daysBeforeLicenseExpiry\":0,\"daysBeforeMaintenanceExpiry\":0,\"showLicenseExpiryBanner\":false,\"showMaintenanceExpiryBanner\":false,\"renewUrl\":null,\"salesEmail\":null}";
+</script>
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch_002.css" media="print">
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/103/_/download/superbatch/css/batch.css?conditionalComment=lt+IE+9" media="all">
+<![endif]-->
+<!--[if lte IE 8]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/103/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+8" media="all">
+<![endif]-->
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/103/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch_004.css" media="all">
+<!--[if lt IE 9]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/07b42a89bdd151b8dadbaca22e09c1ee/_/download/contextbatch/css/page,viewcontent,atl.general,main/batch.css?conditionalComment=lt+IE+9&amp;highlightactions=true&amp;locale=en-GB&amp;flavour=VANILLA&amp;hostenabled=true" media="all">
+<![endif]-->
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/confluence/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/07b42a89bdd151b8dadbaca22e09c1ee/_/download/contextbatch/css/page,viewcontent,atl.general,main/batch.css?conditionalComment=lte+IE+9&amp;highlightactions=true&amp;locale=en-GB&amp;flavour=VANILLA&amp;hostenabled=true" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch_003.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/com_004.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/com_002.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/com.css" media="print">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/com_003.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/confluence.css" media="all">
+<script type="text/javascript" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch.js"></script>
+<!--[if lte IE 8]>
+<script type="text/javascript" src="/confluence/s/6c0981174e94142364564819dc0d1413-CDN/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/103/_/download/superbatch/js/batch.js?conditionalComment=lte+IE+8&amp;locale=en-GB" ></script>
+<![endif]-->
+<script type="text/javascript" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch_003.js"></script><style type="text/css"></style>
+<script type="text/javascript" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/batch_002.js"></script>
+<script type="text/javascript" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/com.js"></script>
+<script type="text/javascript" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/com_002.js"></script>
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/colors.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/default-theme.css" media="all">
+<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/theme-colors.css" media="all">
+
+
+        
+    
+		
+
+
+
+
+
+
+
+
+<script>
+	
+			if (typeof RW === 'undefined') {
+    	var RW = {};
+	}
+	
+		// Should not be used - but kept for third parties. Use RW.versionChecker instead.
+	RW.confluenceVersion = 5.65;
+    RW.versionChecker = {
+	  comparedTo510: -1,
+	  comparedTo59: -1,
+	  comparedTo58: -1,
+	  comparedTo57: -1
+	};
+
+		
+	
+		RW.isConfluenceAdministrator = false
+	
+				var contextPath = '/confluence';
+	
+					RW.scrollSearchActive = true;
+	
+            RW.blogPortalEnabled = true
+    
+		RW.userDashboardRedirection = true;
+	
+				RW.remoteUser = 'kamu'; 
+		
+		var originalTheme = RW;
+	
+		RW.cacheSettings = {};
+	RW.cacheSettings.params = {};
+	RW.cacheSettings.lastChange = {}
+
+	    
+    		RW.cacheSettings.params['footer'] = false;
+    	    		RW.cacheSettings.params['category'] = true;
+    	    		RW.cacheSettings.params['globalmenu'] = true;
+    	    		RW.cacheSettings.params['usercategory'] = false;
+    	    		RW.cacheSettings.params['userdetails'] = false;
+    	    		RW.cacheSettings.params['docache'] = true;
+    	            			RW.cacheSettings.lastChange['footer'] = 1473396278317;
+        			RW.cacheSettings.lastChange['category'] = 1473426012105;
+        			RW.cacheSettings.lastChange['globalmenu'] = 1472678299418;
+        			RW.cacheSettings.lastChange['usercategory'] = 1473426012104;
+        			RW.cacheSettings.lastChange['userdetails'] = 1473426012104;
+    	RW.activeCategoryKey = '';
+</script>
+
+
+
+	
+				
+	
+
+<!--[if !IE]><!-->
+ 	<style type="text/css">
+		.rw_toolbar_menu li .rw_toolbar_dropdown li a:hover
+		{
+			color: #ffffff;	
+			background: #3b73af;
+		}
+		
+		/* Scroll office fix */
+		#com-k15t-confluence-scroll-pdf-launcher:hover
+		{
+			color: #ffffff;	
+			background: #3b73af;
+		}
+	</style>
+<!--<![endif]-->
+
+		
+<!--[if IE 6]>
+	<link type="text/css" rel="stylesheet" href="/confluence/download/resources/com.refinedwiki.confluence.plugins.theme.original/styles/legacy/ie6-fix.css" media="all"/>
+<![endif]-->
+
+<!--[if IE 7]>
+	<link type="text/css" rel="stylesheet" href="/confluence/download/resources/com.refinedwiki.confluence.plugins.theme.original/styles/legacy/ie7-fix.css" media="all"/>
+<![endif]-->
+
+
+
+
+
+
+
+			
+		
+
+
+            
+            
+            
+
+
+            
+            
+            
+
+
+            
+            
+            
+
+
+            
+            
+            
+
+
+            
+            
+                                                                        
+                                                                        
+                                                                        
+            
+            
+
+	<link type="text/css" rel="stylesheet" href="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/theme-7-1.css" media="all">
+
+
+			<style type="text/css">
+  #rw_wrapper.rw_effects_popup_shadow .rw_shadow_top { width: calc(100% + 40px); }
+  #rw_wrapper.rw_effects_popup_shadow .rw_shadow_top:after { width: calc(100% - 40px); }
+  #rw_wrapper.rw_effects_popup_border .rw_shadow_top { width: calc(100% + 2px); }
+</style>
+
+
+
+
+<style type="text/css">
+	/* Key navigation in popup */
+	li.rw_selected a { background: #fd9602 !important; border-color: #fd9602 !important; }
+	li.rw_selected * { color: #fff !important; }
+	li.rw_selected a span.rw_item_left { background: none !important; border-color:none !important;}
+	
+	/* Key navigation category menu */
+	#rw_category_menu ul li.rw_active.rw_selected a > span { border-color: #fd9602; }
+	
+	/* Key navigation for page tree */
+	.rw_pagetree_list li.rw_selected > div.rw_icon_content { background: #fd9602 !important; border-color: #fd9602 !important; }
+	.rw_pagetree_list li.rw_selected > div.rw_icon_content a { color:#fff !important;}
+	.rw_pagetree_list li.rw_selected a {background: none !important; border-color: none; color:#333 !important;}
+	
+	/* Key navigation for activity popup */
+	li.rw_selected div.rw_no_link { background: #fd9602 !important; border-color: #fd9602 !important; }
+	
+	/* Main Key Navigation */
+	.rw_keynavigation_row > div.rw_selected { background: #fd9602 !important; color:#fff !important;}
+	.rw_keynavigation_container > div.rw_keynavigation_empty_item { background: none;}
+	
+	/* Menu keynav exceptions */
+	#notifications-anchor.rw_selected {background: #fd9602 !important; color:#fff !important;}
+	
+	
+	
+
+	#rw_menu_bar #rw_create_button .aui-button,
+	#rw_inline_dialog_page_menu #rw_create_button .aui-button,
+    .rw_create_blogpost_button.aui-button
+	{
+	  background-image: -moz-linear-gradient(top, #3b7fc4, #336ea9);
+	  background-image: -ms-linear-gradient(top,  #3b7fc4, #336ea9);
+	  background-image: -webkit-linear-gradient(top,  #3b7fc4, #336ea9);
+	  background-image: -o-linear-gradient(top,  #3b7fc4, #336ea9);
+	  background-image: linear-gradient(top,  #3b7fc4, #336ea9);
+	  text-shadow: none;
+	  color: #ffffff;
+	}
+
+    #rw_menu_bar #rw_create_button .aui-button,
+    #rw_inline_dialog_page_menu #rw_create_button .aui-button,
+    .rw_create_blogpost_button.aui-button
+    {
+      border-color: #3b7fc4;
+    }
+    #rw_main #rw_create_button .aui-button:hover,
+    #rw_main #rw_create_button .aui-button:focus,
+    #rw_inline_dialog_page_menu #rw_create_button .aui-button:hover,
+    #rw_inline_dialog_page_menu #rw_create_button .aui-button:focus,
+    .rw_create_blogpost_button.aui-button:hover,
+    .rw_create_blogpost_button.aui-button:focus
+    {
+      background-image: -moz-linear-gradient(top, #4796e6, #3773af);
+      background-image: -ms-linear-gradient(top, #4796e6, #3773af);
+      background-image: -webkit-linear-gradient(top, #4796e6, #3773af);
+      background-image: -o-linear-gradient(top, #4796e6, #3773af);
+      background-image: linear-gradient(top, #4796e6, #3773af);
+    }
+
+    .rw_create_blogpost_button.aui-button {
+	  border: 0;
+    }
+    .rw_create_blogpost_button.aui-button:hover {
+      color: #ffffff;
+	}
+
+	
+				
+	
+	
+    	        #com-atlassian-confluence #inline-dialog-notifications-miniview
+        {
+            position:fixed;
+            top: 57px !important;
+            right: 80px !important;
+			margin: 0px !important;
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:after,
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:before
+        {
+            border: medium solid transparent;
+            bottom: 100%;
+            content: " ";
+            height: 0;
+            pointer-events: none;
+            position: absolute;
+            width: 0;
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:after
+        {
+            
+            border-color: rgba(237, 237, 237, 0) rgba(237, 237, 237, 0) rgba(237, 237, 237, 0) #fff;
+            border-width: 8px;  
+            top:22px;
+            right: -15px;   
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview:before
+        {
+            border-color: rgba(221, 221, 221, 0) rgba(221, 221, 221, 0) rgba(221, 221, 221, 0) #ddd;
+            border-width: 10px;  
+            top: 20px;
+            right: -19px;
+        }
+        #com-atlassian-confluence #inline-dialog-notifications-miniview #arrow-notifications-miniview
+        {
+            display:none;
+        }
+	
+
+</style>
+
+
+
+    
+
+    
+                <link rel="canonical" href="https://agema.gft.com/confluence/display/%7Esrsk/Functional+and+non-functional+requirements">
+        <link rel="shortlink" href="https://agema.gft.com/confluence/x/f4UiAg">
+    <meta name="wikilink" content="[~srsk:Functional and non-functional requirements]">
+    <meta name="page-version" content="39">
+
+
+        
+
+    
+</head>
+
+<body data-aui-version="5.4.4-CONFDEV-21873" onload="placeFocus()" id="com-atlassian-confluence" class="RefinedWikiTheme50 rw_version_5  aui-layout aui-theme-default confluence_5    rw_body_gray rw_category_dd_theme_dark rw_popup_design_default   ">
+
+
+        
+            <div id="stp-licenseStatus-banner"></div>
+    <ul id="assistive-skip-links" class="assistive">
+    <li><a href="#rw_page_title">Skip to content</a></li>
+    <li><a href="#rw_page_breadcrumbs">Skip to breadcrumbs</a></li>
+    <li><a href="#rw_category_menu">Skip to header menu</a></li>
+    <li><a href="#navigation">Skip to action menu</a></li>
+    <li><a href="#rw_search_query">Skip to quick search</a></li>
+</ul>
+
+
+<div id="page">
+<div id="full-height-container">
+   
+      <div id="header" style="display:none;"></div>
+   
+   <div id="header-precursor">
+        <div class="cell">
+            
+                        </div>
+    </div>
+	
+						
+		
+				
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<div id="rw_side_menu" class=" rw_theme_dark" data-mode="responsive">
+	<div id="rw_side_menu_handle" class="rw_handle"></div> 
+    <div id="rw_side_menu_container">
+		<ul>
+	                                                    				
+        <li>
+    		<a id="user-menu-link" class="rw_has_dd rw_tooltip" data-username="kamu" href="#" title="Mucik, Kamil" data-dd="user-menu-link-dd" data-tooltip="Mucik, Kamil">
+                            <div class="aui-avatar aui-avatar-small">
+                    <div class="aui-avatar-inner">
+                        <img src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/default.png">
+                    </div>
+                </div>
+                            </a>
+            <nav id="user-menu-link-dd" class="rw_side_menu_dd" data-owner="user-menu-link">
+                                    <div class="rw_section">
+                        <ul id="user-menu-link-user-preferences" class="section-user-preferences first">
+                                                            
+        
+        
+<li><a id="create-personal-space-link" href="https://agema.gft.com/confluence/spaces/createpersonalspace.action" class="  user-item personal-space create-personal-space-link " title="">
+        Add Personal Space…
+</a></li>
+                                                            
+    
+        
+<li><a id="view-user-history-link" href="https://agema.gft.com/confluence/users/viewuserhistory.action" class="  user-item user-history popup-link " title=" (g , r)">
+        Recently Viewed
+</a></li>
+                                                    </ul>
+                    </div>
+                                    <div class="rw_section">
+                        <ul id="user-menu-link-user-content" class="section-user-content">
+                                                            
+    
+        
+<li><a href="https://agema.gft.com/confluence/users/view-user-dashboard.action" class="   " title="">
+        User dashboard
+</a></li>
+                                                            
+    
+        
+<li><a id="view-user-profile-link" href="https://agema.gft.com/confluence/users/viewmyprofile.action" class="  user-item user-profile " title="">
+        Profile
+</a></li>
+                                                            
+    
+        
+<li><a id="view-mytasks-link" href="https://agema.gft.com/confluence/plugins/inlinetasks/mytasks.action" class="  user-item list-user-status " title="">
+        Tasks
+</a></li>
+                                                            
+    
+        
+<li><a id="user-favourites-link" href="https://agema.gft.com/confluence/users/viewmyfavourites.action" class="  user-item " title="">
+        Favourites
+</a></li>
+                                                            
+    
+        
+<li><a id="user-watches-link" href="https://agema.gft.com/confluence/users/viewnotifications.action" class="  user-item " title="">
+        Watches
+</a></li>
+                                                            
+    
+        
+<li><a id="user-drafts-link" href="https://agema.gft.com/confluence/users/viewmydrafts.action" class="  user-item " title="">
+        Drafts
+</a></li>
+                                                            
+    
+        
+<li><a id="user-network-link" href="https://agema.gft.com/confluence/users/viewfollow.action?username=kamu" class="  follow-link " title="">
+        Network
+</a></li>
+                                                            
+    
+        
+<li><a id="user-settings-link" href="https://agema.gft.com/confluence/users/viewmysettings.action" class="  user-item " title="">
+        Settings
+</a></li>
+                                                    </ul>
+                    </div>
+                                    <div class="rw_section">
+                        <ul id="user-menu-link-user-operations" class="section-user-operations">
+                                                            
+    
+        
+<li><a id="logout-link" href="https://agema.gft.com/confluence/logout.action" class="  user-item logout-link " title="">
+        Log Out
+</a></li>
+                                                    </ul>
+                    </div>
+                			</nav>
+		</li>
+                    				
+            <li>
+			        
+            	<a id="notifications-anchor" href="#" class="rw_tooltip mw-anchor read" title="Open Notifications (g , n)" data-tooltip=""><div class="badge-i aui-icon aui-icon-small"><span class="badge-w"><span class="badge">0</span></span></div></a>
+    </li>
+    			
+				
+	    <li><a id="help-menu-link" href="#" title="Help" class="rw_has_dd rw_tooltip" data-dd="help-menu-link-dd" data-tooltip="Help">
+      <span class="rw_item_icon aui-iconfont-help"></span>
+    </a>
+      <nav id="help-menu-link-dd" class="rw_side_menu_dd" data-owner="help-menu-link">
+		              <div class="rw_section">
+              <ul id="help-menu-link-leading" class="section-leading first">
+				                          
+    
+        
+<li><a id="confluence-help-link" href="https://docs.atlassian.com/confluence/docs-56/Getting+Help+And+Support" class="   " title="Visit the Confluence documentation home" target="_blank">
+        Online Help
+</a></li>
+                                            
+    
+        
+<li><a id="keyboard-shortcuts-link" href="https://agema.gft.com/confluence" class="   " title="View available keyboard shortcuts (?)">
+        Keyboard Shortcuts
+</a></li>
+                                            
+    
+        
+<li><a id="feed-builder-link" href="https://agema.gft.com/confluence/dashboard/configurerssfeed.action" class="   " title="Create your custom RSS feed.">
+        Feed Builder
+</a></li>
+                                            
+    
+        
+<li><a id="whats-new-menu-link" href="https://docs.atlassian.com/confluence/docs-56/whatsnew/iframe?od=false&amp;a=false" class="   " title="">
+        What’s new
+</a></li>
+                                            
+    
+        
+<li><a id="gadget-directory-link" href="https://agema.gft.com/confluence" class="  user-item administration-link " title="Browse gadgets provided by Confluence">
+        Available Gadgets
+</a></li>
+                                            
+    
+        
+<li><a id="confluence-about-link" href="https://agema.gft.com/confluence/aboutconfluencepage.action" class="   " title="Get more information about Confluence">
+        About Confluence
+</a></li>
+                                  </ul>
+            </div>
+		        </nav>
+    </li>
+	
+	    </ul>
+		<ul>
+			<li>	
+				<a id="rw_search_popup_button" title="Search (/)">
+        			<span class="rw_item_icon rw_iconfont_search"></span>
+        		</a>
+			</li>
+		<li><a class="rw_item_favourite_content" title="Favourite ( Type 'M', shift + m )"><span class="rw_item_icon rw_favourite_content"><img style="display:none;"></span><span class="rw_item_content">Favourite</span></a></li><li><a class="rw_item_activity_popup" title="Activity stream (A)"><span class="rw_item_icon rw_activity_popup"><img style="display:none;"></span><span class="rw_item_content">Activity stream</span></a></li></ul>	
+	
+    <ul><li><a href="https://agema.gft.com/confluence/spacedirectory/view.action" class="rw_item_space-directory-link" id="space-directory-link" title="Spaces"><span class="rw_item_icon rw_header-spaces-link"><img style="display:none;"></span><span class="rw_item_content">Spaces</span></a></li><li><a href="https://agema.gft.com/confluence/peopledirectory.action" class="rw_item_people-directory-link" id="people-directory-link" title="People"><span class="rw_item_icon rw_header-people-link"><img style="display:none;"></span><span class="rw_item_content">People</span></a></li><li><a href="https://agema.gft.com/confluence/questions?src=header" class="rw_item_confluence-questions-link" id="confluence-questions-link" title="Questions"><span class="rw_item_icon rw_confluence.restricted.header.item"><img style="display:none;"></span><span class="rw_item_content">Questions</span></a></li><li><a href="https://agema.gft.com/confluence/calendar/mycalendar.action" class="rw_item_header-teamcalendars-link" title="Calendars"><span class="rw_item_icon rw_header-teamcalendars-link"><img style="display:none;"></span><span class="rw_item_content">Calendars</span></a></li><li><a href="https://agema.gft.com/confluence/blog" class="rw_item_rw-blogs-header-link" title="Blogs"><span class="rw_item_icon rw_rw-blogs-header-link"><img style="display:none;"></span><span class="rw_item_content">Blogs</span></a></li></ul><ul class="rw_user_settings_section"><li><a id="rw_user_settings_link" href="#" title="Global Menu configuration" class="rw_has_dd rw_tooltip" data-dd="rw_user_settings_link_dd"><span class="rw_item_icon rw_iconfont_edit"></span></a><nav id="rw_user_settings_link_dd" class="rw_side_menu_dd" data-owner="rw_user_settings_link"><h7 style="border:0px; padding:5px;">DISPLAY MODE </h7><div class="rw_section" style="padding:5px; padding-top:15px;">	 <select name="sideMenuSettings" id="rw_side_menu_settings_dropDown"><option value="responsive" selected="selected">Responsive</option><option value="closed">Always closed</option><option value="open">Always open</option></select></div></nav></li><div class="rw_done_cover"></div></ul></div>
+    <div class="rw_done_cover"></div> 
+</div>
+		
+				
+				
+
+
+
+        
+
+
+
+		<div id="rw_wrapper" class="rw_menu_layout_v2   rw_has_side_menu   rw_background_top rw_effects_shadow_down rw_header_theme_1row rw_header_height_tight rw_category_menu_theme_traditional rw_content_menu_solid rw_content_spaces_gray1 rw_content_menu_open ">
+
+			<div style="padding-bottom: 230px;" id="rw_main">
+
+								
+									    <div id="rw_theme_header" class=" rw_text_size_regular rw_logo_size_medium">
+
+                        
+                    <div class="rw_row_1 rw_header_row">
+
+                                                    <div class="rw_header_left rw_has_logo rw_has_app_switcher">
+                        
+				<ul id="rw_app_switcher" class="rw_inline_menu rw_header_menu rw_left">
+			<li>
+				<a class="aui-dropdown2-trigger app-switcher-trigger" aria-owns="app-switcher" aria-haspopup="true" tabindex="0"><span class="aui-icon aui-icon-small aui-iconfont-appswitcher">Linked Applications</span></a><div id="app-switcher" class="aui-dropdown2 aui-style-default"><div class="aui-dropdown2-section"><ul class="nav-links"><li class="nav-link"><a href="https://agema.gft.com/jira/" class="aui-dropdown2-radio interactive" title="https://agema.gft.com/jira/"><span class="nav-link-label">Agema JIRA</span></a></li><li class="nav-link nav-link-local"><a href="https://agema.gft.com/confluence/" class="aui-dropdown2-radio interactive checked" title="https://agema.gft.com/confluence/"><span class="nav-link-label">Confluence</span></a></li></ul></div></div><script>
+            (function (NL) {
+                var initialise = function () {
+                    // For some milestones of AUI, the atlassian soy namespace was renamed to aui. Handle that here by ensuring that window.atlassian is defined.
+                    window.atlassian = window.atlassian || window.aui;
+                    new NL.AppSwitcher({
+                        dropdownContents: '#app-switcher'
+                    });
+                };
+                if (NL.AppSwitcher) {
+                    initialise();
+                } else {
+                    NL.onInit = initialise;
+                }
+            }(window.NL = (window.NL || {})));
+            window.NL.isUserAdmin = false</script>
+			</li>
+		</ul>
+	                        	
+
+
+
+
+<div id="rw_logo_container" class="rw_has_app_switcher  ">
+		<a href="https://agema.gft.com/confluence/homepage.action">
+		<img src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/confluence-logo.png">
+	</a>
+
+		
+		</div>
+                    </div>
+                
+
+                                <div class="rw_header_center">	
+		
+		
+		<div id="rw_category_menu" class=" rw_version_3 rw_theme_traditional  rw_text_size_regular  "><div id="rw_category_menu_right_container" style="height: 50px;"><a id="rw_category_menu_right_button"></a></div>
+
+					<div style="height: 100px; margin-right: 25px;" id="rw_category_menu_scroll_container">
+					<ul style="width: 1116px;" class="rw_category_items">
+				               				<li id="rw_dashboard_link" class="rw_first">
+					<a href="https://agema.gft.com/confluence/dashboard.action" title="Dashboard ( Type 'n' )">
+																										
+
+
+							<span class="rw_item_name">
+																	Dashboard
+															</span>
+
+				   							</a>
+				</li>
+                           <li id="rw_category_key_gft" data-name-key="gft" data-tooltip="Internal / Corporate spaces"><a href="https://agema.gft.com/confluence/category/gft"><span class="rw_item_name">GFT</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_tmohr" data-name-key="tmohr"><a href="https://agema.gft.com/confluence/category/tmohr"><span class="rw_item_name">TMO &amp; HR</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_sm" data-name-key="sm"><a href="https://agema.gft.com/confluence/category/sm"><span class="rw_item_name">Sales &amp; Marketing</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_ss" data-name-key="ss"><a href="https://agema.gft.com/confluence/category/ss"><span class="rw_item_name">Systems &amp; Support</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_bc" data-name-key="bc"><a href="https://agema.gft.com/confluence/category/bc"><span class="rw_item_name">Business Consulting</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_del" data-name-key="del"><a href="https://agema.gft.com/confluence/category/del"><span class="rw_item_name">Delivery</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_reg" data-name-key="reg"><a href="https://agema.gft.com/confluence/category/reg"><span class="rw_item_name">Regional</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li><li id="rw_category_key_proj" data-name-key="proj"><a href="https://agema.gft.com/confluence/category/proj"><span class="rw_item_name">Projects</span><span class="rw_item_dd rw_dropdown_btn"></span></a></li></ul>
+					</div><!-- # rw_category_menu_scroll_container -->
+			</div>		
+
+		<div id="rw_category_menu_parameters" style="display:none;" data-drop-down-content-size="medium">
+	
+						<div id="rw_category_dd_disabled">false</div>
+		<div id="rw_category_dd_layout">dynamic_column</div>
+		<div id="rw_sub_category_collapsed">false</div>
+		<div id="rw_show_category_logo">false</div>
+		<div id="rw_exclude_archived_spaces">false</div>
+		<div id="rw_show_space_logo">true</div>
+		<div id="rw_show_space_icon">true</div>
+		<div id="rw_min_column_width">340</div>
+		<div id="rw_active_category_key"></div>
+		<div id="rw_is_dashboard"></div>
+		<div id="rw_manual_permissions">true</div>
+		<div id="rw_disable_category_dashboards">true</div>
+		<div id="rw_disable_subcategory_dashboards">true</div>
+		          <div id="rw_version">3</div>
+			  	<div id="rw_dashboard_title"></div>
+	</div>
+
+</div>
+
+                                <div class="rw_header_right ">
+                                           
+                    	<div id="rw_search_container">
+		<div id="rw_search" class="rw_search">
+			
+						<form style="width:0px; height:0px; overflow:hidden; "><input name="hack" onfocus="this.blur()" type="text"></form>
+			    
+			<form id="rw_search_form" class="rw_search_form" method="get" action="/confluence/dosearchsite.action">
+		   		<label for="rw_search_query" class="assistive">Quick Search</label>
+				<input value="Search" class="rw_search_query" id="rw_search_query" accesskey="search-pages-action.accesskey" autocomplete="off" name="queryString" size="25" type="text">
+		    
+		   		<div style="clear:both;"></div>
+		        <div id="rw_search_result_container" class="rw_search_result_container rw_corners" style="display:none;">
+		        	
+		        </div>
+		
+		        <fieldset class="hidden parameters">
+		            <input id="quickNavEnabled" value="true" type="hidden">
+		            		        </fieldset>
+		    </form>	
+	    </div>
+	</div>
+
+                                        	
+	
+	                </div>
+
+            </div>
+            </div>
+
+<div id="rw_theme_content" class=" rw_corners_rounded">
+<div style="clear:both;"></div>
+
+	
+			
+		
+			<div style="clear:both;"></div>
+
+
+									
+
+		    <div id="main">
+
+													
+
+			
+            <!-- putMetadata failed to add value for key "abstract-category-key" so rendering metadata inline - see server debug log for details -->
+        <meta name="ajs-abstract-category-key" content="">
+    
+
+		
+				
+		
+
+<div id="rw_menu_bar_wrapper" class="">
+		
+			<div id="rw_menu_bar_icon">
+
+			<a data-user-hover-bound="true" title="" class="userLogoLink userlink-0" data-username="srsk" href="https://agema.gft.com/confluence/display/%7Esrsk">
+               <img class="userLogo logo" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/default_002.png" alt="User icon: srsk" title="">
+           </a>
+		</div>
+		<div id="rw_menu_bar_content">
+	
+	<div id="rw_menu_bar" class="rw_corners">
+
+								
+																																		<div id="rw_create_button" class="rw_create_button_container">
+					<a title="Create Content (c)" href="https://agema.gft.com/confluence/pages/createpage.action?spaceKey=%7Esrsk&amp;fromPageId=35816831" id="create-page-button" class="aui-button aui-style aui-button-primary aui-nav-imagelink">
+						<span>Create</span>
+					</a>
+				</div>
+									
+
+				
+										
+				
+
+								
+				
+			
+
+
+
+<div id="rw_space_nav" class="rw_corners">
+
+    <div class="rw_item_content rw_has_favourite">
+                <a title="Siudek, Sławomir" href="https://agema.gft.com/confluence/spaces/viewspace.action?key=%7Esrsk">
+
+            Siudek, Sławomir
+                                                                </a>
+    </div>
+
+            <div class="rw_item_favourite">
+          <span class="rw_favourite_space rw_icon rw_iconfont_star " title="Add to your favourite list" data-key="~srsk"></span>
+        </div>
+    
+            <div class="rw_item_actions rw_inline_dialog_button" id="rw_space_menu_button">
+            <span class="rw_icon rw_iconfont_top_menu"></span>
+        </div>
+                    
+	
+	
+	<div class="rw_dialog_menu" id="browse-space-menu" style="display:none;">
+                    <ul id="browse-space-menu-leading">
+		  		<h3 class="rw_section_title">Content</h3>
+                                    
+
+    
+
+    
+    		    
+    
+<li class="acs-nav-item profile"><a href="https://agema.gft.com/confluence/users/viewuserprofile.action?username=srsk" class="profile" title="Profile">
+    
+        
+          <span class="rw_item_icon rw_iconfont_user"></span>
+      <span class="rw_item_content">Profile</span>
+</a></li>
+                                    
+
+    
+
+    
+    		    
+    
+<li class="acs-nav-item wiki"><a href="https://agema.gft.com/confluence/collector/pages.action?key=%7Esrsk" class="wiki" title="Pages">
+    
+        
+          <span class="rw_item_icon rw_iconfont_pages"></span>
+      <span class="rw_item_content">Pages</span>
+</a></li>
+                                    
+
+    
+
+    
+    		    
+    
+<li class="acs-nav-item blog"><a href="https://agema.gft.com/confluence/pages/viewrecentblogposts.action?key=%7Esrsk" class="blog" title="Blog">
+    
+        
+          <span class="rw_item_icon rw_iconfont_feed"></span>
+      <span class="rw_item_content">Blog</span>
+</a></li>
+                                    
+
+    
+
+    
+    		    
+    
+<li class="acs-nav-item cq-space-sidebar-link"><a href="https://agema.gft.com/confluence/display/%7Esrsk/questions/all" class="cq-space-sidebar-link" title="">
+    
+        
+          <span class="rw_item_icon rw_iconfont_question"></span>
+      <span class="rw_item_content">Questions</span>
+</a></li>
+                                    
+
+    
+
+    
+    		    
+    
+<li class="acs-nav-item space-calendar-sidebar-link"><a href="https://agema.gft.com/confluence/display/%7Esrsk/calendars" class="space-calendar-sidebar-link" title="">
+    
+        
+          <span class="rw_item_icon rw_iconfont_calendar"></span>
+      <span class="rw_item_content">Calendars</span>
+<span class="aui-badge teamcal-sidebar-upcoming-msg hidden"></span></a></li>
+                
+								            </ul>
+		
+  		<ul>
+			<h3 class="rw_section_title">Space Tools</h3>
+
+			
+							<li>
+
+					
+										
+											
+					<a title="Overview" href="https://agema.gft.com/confluence/spaces/viewspacesummary.action?key=%7Esrsk">
+													<span class="rw_item_icon rw_iconfont_text"></span>
+												<span class="rw_item_content">Overview</span>
+					</a>
+
+
+														</li>
+							<li>
+
+					
+										
+											
+					<a title="Content Tools" href="https://agema.gft.com/confluence/pages/reorderpages.action?key=%7Esrsk">
+												  <span class="rw_item_icon rw_iconfont_tree"></span>
+												<span class="rw_item_content">Content Tools</span>
+					</a>
+
+
+														</li>
+			      	</ul>
+
+ 			</div>
+            </div>
+
+		
+
+	</div> <!-- #rw_menu_bar -->
+	</div>
+</div> <!-- #rw_menu_bar_wrapper -->
+				
+
+												
+		
+		        
+
+								
+					
+											
+
+    <div class="rw_content_section page view">
+
+
+              <div original-title="" data-tooltip="Collapse left column" class="ui-draggable ui-draggable-handle" style="left: 233px; position: relative; height: 12030px;" id="rw_splitter"><div style="top: 6005px;" id="rw_splitter_handle" class=""></div></div>
+    
+            <div style="width: 250px; position: static;" id="rw_left_column" class="rw_custom_section rw_corners wiki-content">
+            
+
+							
+
+<ul class="rw_sidebar_menu">
+	<li>
+	  <a href="https://agema.gft.com/confluence/users/view-user-dashboard.action?username=srsk" title="View user profile">
+		<span class="rw_item_icon rw_iconfont_grid"></span>
+		<span class="rw_item_content rw_has_icon">
+			User dashboard
+		</span>
+	  </a>
+	</li>
+
+	<li title="More user features">
+	  <a class="rw_corners_bottom" href="https://agema.gft.com/confluence/users/viewuserprofile.action?username=srsk">
+		<span class="rw_item_icon rw_iconfont_user"></span>
+		<span class="rw_item_content rw_has_icon">
+		  Profile
+		</span>
+	  </a>
+	</li>
+				<li class="rw_active" title="View personal space ">
+		  		  <a href="https://agema.gft.com/confluence/spaces/viewspace.action?key=%7Esrsk">
+			<span class="rw_item_icon rw_iconfont_space"></span>
+			<span class="rw_item_content rw_has_icon">
+				Personal Space
+			</span>
+		  </a>
+		</li>
+	</ul>
+
+
+<div class="rw_sidebar_section">
+	<a class="rw_sidebar_icon" href="https://agema.gft.com/confluence/users/view-user-dashboard.action?username=srsk" title="View user profile"><span class="rw_icon rw_iconfont_grid"></span></a>
+	<a class="rw_sidebar_icon" href="https://agema.gft.com/confluence/users/viewuserprofile.action?username=srsk"><span class="rw_icon rw_iconfont_user"></span></a>
+
+			<a class="rw_sidebar_icon rw_active" href="https://agema.gft.com/confluence/spaces/viewspace.action?key=%7Esrsk"><span class="rw_icon rw_iconfont_space"></span></a>
+	</div>
+						    
+    
+<div id="rw_page_tree_wrapper" class="rw_page_tree_wrapper">
+    	<div class="rw_param_start_page_id" style="display:none;" data-value=""></div>
+    <div class="rw_param_theme" style="display:none;" data-value=""></div>
+	<div class="rw_param_search" style="display:none;" data-value=""></div>
+	<div class="rw_param_expand_collapse" style="display:none;" data-value="false"></div>
+	<div class="rw_param_page_id" style="display:none;" data-value="35816831"></div>
+	<div class="rw_param_space_key" style="display:none;" data-value="~srsk"></div>
+	<div class="rw_param_space_admin" style="display:none;" data-value="false"></div> 	<div class="rw_param_space_shortcuts" style="display:none;" data-value="true"></div>
+
+		
+  	<div class="rw_pagetree rw_corners
+	  		  		  		rw_theme_default
+	  		  	 rw_theme_default">
+
+	    
+	  		  				<div class="rw_quick_links_container" style=""><h5>Space shortcuts</h5><div style="display: none;" class="rw_loader_box rw_size_medium "><div class="rw_loader_wrapper"><div class="rw_loader_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div><ul id="rw_quick_links" class="rw_items rw_quick_links"><li data-id="146" class="acs-nav-item pinned_page blueprint file-list"><a href="https://agema.gft.com/confluence/display/%7Esrsk/File+lists"><span class="rw_item_icon icon"></span><span class="rw_item_content rw_has_icon">File lists</span></a></li></ul></div>
+ 		
+		 		            
+		  
+	  	        <div class="rw_page_tree_container"><ul class="rw_pagetree_list rw_toplevel rw_sidebar_content rw_corners"><li id="rw_pagetree_item_34441376"><div class="rw_icon_content"><div id="34441376" class="rw_item_icon"><span class="rw_icon rw_icon_minus"></span></div><div class="rw_item_content"><a title="Siudek, Sławomir’s Home" href="https://agema.gft.com/confluence/pages/viewpage.action?pageId=34441376">Siudek, Sławomir’s Home</a></div></div><ul class="rw_pagetree_list"><li id="rw_pagetree_item_35127475"><div class="rw_icon_content"><div id="35127475" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="File lists" href="https://agema.gft.com/confluence/display/%7Esrsk/File+lists">File lists</a></div></div></li><li id="rw_pagetree_item_41485885"><div class="rw_icon_content"><div id="41485885" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="Proces zmiany procesu rekrutacji dla Delivery #draft" href="https://agema.gft.com/confluence/display/%7Esrsk/Proces+zmiany+procesu+rekrutacji+dla+Delivery+%23draft">Proces zmiany procesu rekrutacji dla Delivery #draft</a></div></div></li><li id="rw_pagetree_item_34441382"><div class="rw_icon_content"><div id="34441382" class="rw_item_icon"><span class="rw_icon rw_icon_minus"></span></div><div class="rw_item_content"><a title="Program Junior+ 2016" href="https://agema.gft.com/confluence/pages/viewpage.action?pageId=34441382">Program Junior+ 2016</a></div></div><ul class="rw_pagetree_list"><li id="rw_pagetree_item_35816831"><div class="rw_icon_content"><div id="35816831" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a class="rw_current_page_item" title="Functional and non-functional requirements" href="https://agema.gft.com/confluence/display/%7Esrsk/Functional+and+non-functional+requirements">Functional and non-functional requirements</a></div></div></li><li id="rw_pagetree_item_35127624"><div class="rw_icon_content"><div id="35127624" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="Job advertisements" href="https://agema.gft.com/confluence/display/%7Esrsk/Job+advertisements">Job advertisements</a></div></div></li><li id="rw_pagetree_item_35816607"><div class="rw_icon_content"><div id="35816607" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="Program description" href="https://agema.gft.com/confluence/display/%7Esrsk/Program+description">Program description</a></div></div></li><li id="rw_pagetree_item_35816605"><div class="rw_icon_content"><div id="35816605" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="Project Checklist and Keypoints" href="https://agema.gft.com/confluence/display/%7Esrsk/Project+Checklist+and+Keypoints">Project Checklist and Keypoints</a></div></div></li><li id="rw_pagetree_item_35815484"><div class="rw_icon_content"><div id="35815484" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="Survey summary" href="https://agema.gft.com/confluence/display/%7Esrsk/Survey+summary">Survey summary</a></div></div></li></ul></li><li id="rw_pagetree_item_42929665"><div class="rw_icon_content"><div id="42929665" class="rw_item_icon"><span></span></div><div class="rw_item_content"><a title="Technical challenges" href="https://agema.gft.com/confluence/display/%7Esrsk/Technical+challenges">Technical challenges</a></div></div></li></ul></li></ul></div>
+
+  	</div>
+
+	<div id="rw_sidebar_icon_quicklinks" class="rw_sidebar_icon rw_inline_dialog_button" data-tooltip="Space shortcuts"><span class="rw_icon rw_iconfont_pages"></span></div>
+	<div id="rw_sidebar_icon_pagetree" class="rw_sidebar_icon rw_inline_dialog_button" data-tooltip="Pagetree"><span class="rw_icon rw_iconfont_tree"></span></div>
+
+</div>
+    
+    
+
+
+
+		
+        </div>
+        <script>
+          // We check for left column width already here to avoid flickering by changeing the width after render.
+
+          var width;
+          if(RW && RW.storage) {
+            width = RW.storage.getValue('leftcolumn.width');
+          }
+          if(!width) {
+            width = 250;
+          }
+          $('#rw_left_column').width(width);
+        </script>
+    
+    <div id="rw_main_column" class="rw_has_left_column">
+        <!--
+          #rw_page_right is @deprecated @since RWOT 3.1 the id of this tag will be
+          removed in future version of this theme. NOTE: The div-tag will remain
+          it's just the ID which will be removed.
+
+          id="rw_page_right"
+          id="blogpost_container"
+        -->
+        <div class="rw_content">
+            
+                            
+
+
+            <div id="main-header">
+
+                <div class="rw_page_buttons">
+    <a id="rw_open_fullscreen" title="Open page in fullscreen ( Type 'F', shift + f )" class="aui-button aui-button-subtle" href="#">
+        <span>
+			<span class="rw_icon rw_iconfont_fullscreen"></span>
+		</span>
+    </a>
+    <a id="rw_close_fullscreen" style="display:none;" class="aui-button aui-button-subtle" title="Exit fullscreen mode ( Type 'esc' )">
+        <span>
+            <span class="rw_icon rw_iconfont_minimize"></span>
+        </span>
+    </a>
+</div>
+
+                
+
+                
+    <div id="navigation" class="content-navigation view">
+                    <ul class="ajs-menu-bar">
+                            <li class="ajs-button normal">
+
+    
+        
+                            
+     
+
+    
+    <a id="watch-content-button" href="https://agema.gft.com/confluence?watchingPage=false&amp;watchingSpace=false&amp;watchingBlogs=false&amp;isAdmin=false&amp;isBlogPost=false" rel="nofollow" class="watch-menu not-watching" title="Watch (w)">
+                <span><u>W</u>atch</span>    </a>
+</li>
+                <li class="ajs-button normal">
+
+    
+        
+                            
+     
+
+    
+    <a id="shareContentLink" href="https://agema.gft.com/confluence" rel="nofollow" class="share" title="Share this content by emailing other users (s)">
+                <span><u>S</u>hare</span>    </a>
+</li>
+                        
+                    
+        <li class="normal ajs-menu-item">
+        <a id="action-menu-link" class="action ajs-menu-title aui-dropdown2-trigger" href="#" aria-haspopup="true" aria-owns="action-menu" data-container="#navigation"><span><span>Tools</span></span></a>         <div style="margin: 0px; right: auto; left: 0px;" id="action-menu" class="aui-dropdown2 aui-style-default most-right-menu-item">
+                            <ul id="action-menu-primary" class="section-primary first aui-dropdown2-section">
+                                            <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="view-attachments-link" href="https://agema.gft.com/confluence/pages/viewpageattachments.action?pageId=35816831" rel="nofollow" class="action-view-attachments" accesskey="t" title="View Attachments (t)">
+                <span>A<u>t</u>tachments (36)</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="action-view-history-link" href="https://agema.gft.com/confluence/pages/viewpreviousversions.action?pageId=35816831" rel="nofollow" class="action-view-history" title="">
+                <span>Page History</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="action-page-permissions-link" href="https://agema.gft.com/confluence/pages/viewinfo.action?pageId=35816831" rel="nofollow" class="action-page-permissions" title="Edit restrictions">
+                <span>Restrictions</span>    </a>
+</li>
+                                </ul>
+                            <ul id="action-menu-marker" class="section-marker aui-dropdown2-section">
+                                            <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="page-favourite" href="https://agema.gft.com/confluence/labels/addfavourite.action?entityId=35816831&amp;atl_token=00cb601f00474dc8fcc123195dae5b6ec6edd5c0" rel="nofollow" class="action-page-favourite" title="">
+                <span>Favourite</span>    </a>
+</li>
+                                </ul>
+                            <ul id="action-menu-secondary" class="section-secondary aui-dropdown2-section">
+                                            <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="view-page-info-link" href="https://agema.gft.com/confluence/pages/viewinfo.action?pageId=35816831" rel="nofollow" class="action-view-info" title="">
+                <span>Page Information</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="link-to-page-link" href="https://agema.gft.com/confluence/pages/viewinfo.action?pageId=35816831" rel="nofollow" class="" title="Link to this Page (k)">
+                <span>Link to this Page…</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="view-in-hierarchy-link" href="https://agema.gft.com/confluence/pages/listpages-dirview.action?key=%7Esrsk&amp;openId=35816831#selectedPageInHierarchy" rel="nofollow" class="" title="">
+                <span>View in Hierarchy</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="action-source-editor-view-storage-link" href="https://agema.gft.com/confluence/plugins/viewstorage/viewpagestorage.action?pageId=35816831" rel="nofollow" class="action-view-storage view-storage-link popup-link" title="">
+                <span>View Storage Format</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="action-view-source-link" href="https://agema.gft.com/confluence/plugins/viewsource/viewpagesrc.action?pageId=35816831" rel="nofollow" class="action-view-source popup-link" title="">
+                <span>View Source</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="action-export-pdf-link" href="https://agema.gft.com/confluence/spaces/flyingpdf/pdfpageexport.action?pageId=35816831" rel="nofollow" class="" title="">
+                <span>Export to PDF</span>    </a>
+</li>
+                                        <li>
+
+    
+        
+                            
+     
+
+    
+    <a id="action-export-word-link" href="https://agema.gft.com/confluence/exportword?pageId=35816831" rel="nofollow" class="action-export-word" title="">
+                <span>Export to Word</span>    </a>
+</li>
+                                </ul>
+                    </div>
+    </li>
+            </ul>
+    </div>
+
+        
+
+
+         <div id="title-heading" class="pagetitle with-breadcrumbs">
+
+                            <div id="breadcrumb-section">
+                    
+    
+    
+    <ol id="breadcrumbs">
+                    
+                
+        <li class="first">
+                
+
+                    <span class=""><a href="https://agema.gft.com/confluence/collector/pages.action?key=%7Esrsk&amp;src=breadcrumbs-collector">Pages</a></span>
+                            
+                
+        </li><li>
+                
+
+                    <span class=""><a href="https://agema.gft.com/confluence/pages/viewpage.action?pageId=34441376&amp;src=breadcrumbs">Siudek, Sławomir’s Home</a></span>
+                            
+                
+        </li><li>
+                
+
+                    <span class=""><a href="https://agema.gft.com/confluence/pages/viewpage.action?pageId=34441382&amp;src=breadcrumbs-parent">Program Junior+ 2016</a></span>
+                </li></ol>
+
+
+                </div>
+            
+            
+		<a href="#page-banner-end" class="assistive">Skip to end of banner</a>
+<div id="page-banner-start" class="assistive"></div>
+
+                    
+            <div style="visibility: visible;" id="page-metadata-banner"><ul class="banner"><li id="system-content-items" class="noprint"><a href="" title="Restrictions apply" id="content-metadata-page-restrictions" class="hidden"><img class="page-banner-item-icon" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/red_padlock.png" style="height: 16px; width: 16px;"></a><a href="https://agema.gft.com/confluence/pages/viewpageattachments.action?pageId=35816831&amp;metadataLink=true" title="36 attachments" id="content-metadata-attachments"><img class="page-banner-item-icon" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/grey_attach.png" style="height: 16px; width: 16px;"></a></li><li class="page-metadata-item noprint has-button" id="content-metadata-jira-wrapper"><a href="" title="" id="content-metadata-jira" class="aui-button aui-button-subtle content-metadata-jira tipsy-disabled hidden"><span>JIRA links</span></a></li></ul></div>
+            
+
+<a href="#page-banner-start" class="assistive">Go to start of banner</a>
+<div id="page-banner-end" class="assistive"></div>
+	
+
+
+                            <h1 id="title-text" class="with-breadcrumbs">
+                                                        <a href="https://agema.gft.com/confluence/display/%7Esrsk/Functional+and+non-functional+requirements">Functional and non-functional requirements</a>
+                                        </h1>
+                    </div>
+    </div><!-- \#main-header -->
+
+
+
+            
+            
+    
+
+        
+
+
+
+
+        <!-- this is page.vmd -->
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+    
+    
+        
+    
+    
+                    
+    
+
+	                    
+    
+	
+
+
+
+
+
+	
+
+		
+
+		
+
+
+
+
+
+
+
+
+							
+	
+
+
+
+
+
+<div id="action-messages">
+                        </div>
+
+
+
+        <script type="text/x-template" title="searchResultsGrid">
+    <table class="aui">
+        <thead>
+            <tr class="header">
+                <th class="search-result-title">Page Title</th>
+                <th class="search-result-space">Space</th>
+                <th class="search-result-date">Updated</th>
+            </tr>
+        </thead>
+    </table>
+</script>
+<script type="text/x-template" title="searchResultsGridCount">
+    <p class="search-result-count">{0}</p>
+</script>
+<script type="text/x-template" title="searchResultsGridRow">
+    <tr class="search-result">
+        <td class="search-result-title"><a href="{1}" class="content-type-{2}"><span>{0}</span></a></td>
+        <td class="search-result-space"><a class="space" href="/confluence/display/{4}/" title="{3}">{3}</a></td>
+        <td class="search-result-date"><span class="date" title="{6}">{5}</span></td>
+    </tr>
+</script>
+
+
+        
+                        
+    
+
+        
+
+            
+
+        
+
+
+
+            <div class="page-metadata-wrapper">
+    
+    <a href="#page-metadata-end" class="assistive">Skip to end of metadata</a>
+<div id="page-metadata-start" class="assistive"></div>
+
+    <div class="page-metadata">
+        <ul>
+            <li class="page-metadata-modification-info">
+                
+        
+    
+        
+    
+        
+        
+            Created by <span class="author">     <a data-user-hover-bound="true" title="" href="https://agema.gft.com/confluence/display/%7Eazck" class="url fn confluence-userlink userlink-1" data-username="azck">Cieslak, Arkadiusz</a></span>, last modified by <span class="editor">     <a data-user-hover-bound="true" title="" href="https://agema.gft.com/confluence/display/%7Eklti" class="url fn confluence-userlink userlink-2" data-username="klti">Trepczyński, Kamil</a></span> on <a class="last-modified" title="Aug 31, 2016 15:54" href="https://agema.gft.com/confluence/pages/diffpagesbyversion.action?pageId=35816831&amp;selectedPageVersions=38&amp;selectedPageVersions=39">Aug 31, 2016</a>
+                </li>
+        </ul>
+    </div>
+
+
+<a href="#page-metadata-start" class="assistive">Go to start of metadata</a>
+<div id="page-metadata-end" class="assistive"></div>
+    </div>
+
+
+
+
+
+
+<div style="clear:both;"></div>
+
+        
+  <div id="content" class="page view">
+		<article>
+		<div id="main-content" class="wiki-content">
+		                   
+        <h1 class="confluence-link" id="Functionalandnon-functionalrequirements-Functionalrequirements">Functional requirements</h1><h3 id="Functionalandnon-functionalrequirements-Story1.JakoDEALERchciałbymzłożyćofertekupna/sprzedażyproduktuabydokonaćtransakcji">Story 1. Jako DEALER chciałbym złożyć oferte kupna/sprzedaży produktu aby dokonać transakcji</h3><p>Wymagania wstępne:</p><ul><li>Zarejestrowany użytkownik w bazie danych</li><li>Dostępny jeden produkt biznesowy w bazie</li><li>Przydzielona kwota wstępna użytkownikowi</li></ul><p>Scenariusz:</p><ul><li>Dealer wpisuje zarejestrowany wcześniej login w polu ‘Login’</li><li>Dealer wprowadza prawidłowe hasło w polu ‘Hasło’</li><li>Dealer klika ‘Zaloguj’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/login_page_mock.png" data-image-src="/confluence/download/attachments/35816831/login_page_mock.png?version=2&amp;modificationDate=1467385056000&amp;api=v2" width="300"></li><li>Przeglądarka przenosi użytkownika do ‘Ekran startowy’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/start_screen_mock.png" data-image-src="/confluence/download/attachments/35816831/start_screen_mock.png?version=2&amp;modificationDate=1467385058000&amp;api=v2" width="300"></li><li>Dealer klika ‘ Wykonaj Zlecenie’</li><li>Przeglądarka przenosi do okna ‘Zlecenie’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/dealer_buy_sell_mock%2520Alternate%2520779o.png" data-image-src="/confluence/download/attachments/35816831/dealer_buy_sell_mock%20%28Alternate%20779o%29.png?version=2&amp;modificationDate=1467385055000&amp;api=v2" width="300"></li><li>Kwota wolnych środków jest widoczna w polu ‘Wolne środki:’</li><li>Aktualna najlepsza cena produktu zawarta jest w polu 'Cena produktu'</li><li><span style="line-height: 1.42857;">Cena zlecenia przemnożona przez wolumen jest widoczna w polu 'Wartość transakcji'</span></li><li>‘Kupno’ oraz ‘Sprzedaż’ radio button są dostępne</li><li>‘Kupno’ radio button jest zaznaczony domyślnie</li><li>Dealer wybiera dostępny ‘Produkt’ z listy<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/dealer_buy_sell_with_product_mock%2520Alternate%2520779o.png" data-image-src="/confluence/download/attachments/35816831/dealer_buy_sell_with_product_mock%20%28Alternate%20779o%29.png?version=1&amp;modificationDate=1467385055000&amp;api=v2" width="300"></li><li>Dealer wpisuje liczbę w polu ‘Cena’</li><li>Dealer wpisuje liczbę w polu ‘Wolumen’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/dealer_buy_sell_filled_mock%2520Alternate%2520779o.png" data-image-src="/confluence/download/attachments/35816831/dealer_buy_sell_filled_mock%20%28Alternate%20779o%29.png?version=1&amp;modificationDate=1467385054000&amp;api=v2" width="300"></li><li>Dealer klika ‘Złóż zlecenie’</li><li>Po złożeniu zlecenia Dealer powinien być przeniesiony do Panelu głównego</li></ul><p>Scenariusz alternatywny:</p><ul><li>Dealer wybiera ‘Sprzedaż’ radio button</li></ul><p>Weryfikacja (Acceptance criteria):</p><ul><li>Dealer loguje się pomyślnie po wpisaniu prawidłowego loginu i hasła</li><li>Cena prawidłowo obliczona po uwzględnieniu liczby wolumenu</li><li>Transakcja
+ została zaakceptowana jeśli było wystarczająco wolnych środków i 
+zarejestrowana w systemie z następującymi argumentami:Nazwa produktu, 
+Wolumen zlecenia, Typ zlecenia (kupno/sprzedaż), Cena, Zlecający, Data 
+zlecenia.</li><li>Transakcja została odrzucona w przypadku 
+niewystarczającej liczbie wolnych środków oraz komunikat ‘Brak 
+wystarczająco dostępnych środków’ zostaje wyświetlony</li></ul><p>Q/A:&nbsp;</p><ul><li>Kiedy środki użytkownika zostają zdjęte z jego konta? <em>Środki na zlecenie kupna zostają zdjęte z konta użytkownika z chwilą realizacji zlecenia kupna.</em></li><li>Czy Ekran Startowy, zawierający operacje biznesowe, jest dostępny dla Admina? <em>Nie,
+ ponieważ Admin nie wykonuje zleca operacji finansowych a jedynie 
+posiada role związane z przeglądaniem operacji i zarządzaniem 
+użytkownikami</em></li><li>Jak jest wyliczana wartość w polu "Zmiana Kursu" w Ekranie Startowym? <em>Jest wyliczana na podstawie zmiany kursu w ciągu ostatniej godziny.</em></li></ul><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Story1.a)JakoDEALERchciałbymzlecićofertękupna/sprzedażyproduktuabydokonaćtransakcji">Story 1.a) Jako DEALER chciałbym zlecić ofertę kupna/sprzedaży produktu aby dokonać transakcji</h3><p>Wymagania wstępne:</p><ul><li>Zarejestrowany użytkownik w bazie danych</li><li>Dostępny jeden produkt biznesowy w bazie</li><li>Przydzielona kwota wstępna użytkownikowi</li></ul><p>Scenariusz:</p><ul><li>Dealer wpisuje zarejestrowany wcześniej login w polu ‘Login’</li><li>Dealer wprowadza prawidłowe hasło w polu ‘Hasło’</li><li>Dealer klika ‘Zaloguj’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/login_page_mock.png" data-image-src="/confluence/download/attachments/35816831/login_page_mock.png?version=2&amp;modificationDate=1467385056000&amp;api=v2" width="300"></li><li>Przeglądarka przenosi użytkownika do ‘Panel główny’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/08-22-2016_updated_start_screen_mock.png" data-image-src="/confluence/download/attachments/35816831/08-22-2016_updated_start_screen_mock.png?version=1&amp;modificationDate=1471862491000&amp;api=v2" width="300"></li><li>Dealer klika ‘ Wykonaj Zlecenie’</li><li>Przeglądarka przenosi do okna ‘Zlecenie’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/image2016-8-4%2520133645.png" data-image-src="/confluence/download/attachments/35816831/image2016-8-4%2013%3A36%3A45.png?version=1&amp;modificationDate=1470310606000&amp;api=v2" width="300"></li><li>Kwota wolnych środków jest widoczna w polu ‘Wolne środki:’</li><li>Aktualna najlepsza cena produktu zawarta jest w polu 'Kurs notowań wybranego produktu'</li><li><span>Cena zlecenia przemnożona przez wolumen jest widoczna w polu 'Wartość transakcji'</span></li><li>‘Kupno’ oraz ‘Sprzedaż’ radio button są dostępne</li><li>‘Kupno’ radio button jest zaznaczony domyślnie</li><li>Przycisk 'Złóż zlecenie' jest nieaktywny</li><li>Dealer wybiera dostępny ‘Produkt’ z listy<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/image2016-8-4%2520134113.png" data-image-src="/confluence/download/attachments/35816831/image2016-8-4%2013%3A41%3A13.png?version=1&amp;modificationDate=1470310873000&amp;api=v2" width="300"></li><li>Dealer wpisuje liczbę w polu ‘Cena’</li><li>Dealer wpisuje liczbę w polu ‘Wolumen’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/image2016-8-4%2520134542.png" data-image-src="/confluence/download/attachments/35816831/image2016-8-4%2013%3A45%3A42.png?version=1&amp;modificationDate=1470311142000&amp;api=v2" width="300"></li><li>Po wypełnieniu wszystkich pól przycisk 'Złóż zlecenie' staje się aktywny</li><li>Dealer klika ‘Złóż zlecenie’</li></ul><p>Scenariusz alternatywny:</p><ul><li>Dealer wybiera ‘Sprzedaż’ radio button</li></ul><p>Dodatkowe scenariusze testowe:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="3" class="confluenceTh">Większa wartość nie zmienia kursu w notowaniach</th></tr><tr><th class="confluenceTh">Podmiot</th><th class="confluenceTh">Akcja</th><th class="confluenceTh">Dodatkowy komentarz</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">1000:Gold:1000:15</td><td class="confluenceTd">czas:aktywa:kurs:zmiana:kursu<span class="Apple-tab-span">&nbsp;</span>// O godzinie 10:00 kurs Golda wynosi 1000, zmiana kursu 15%</td></tr><tr><td class="confluenceTd">A</td><td class="confluenceTd">1215:S:Gold:10:1100</td><td class="confluenceTd">czas:akcja:aktywa:wolumen:cena<span class="Apple-tab-span">&nbsp;</span>// User A o 12:15 zleca sprzedaż Gold o wolumenie 10 po cenie 1000</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1215:Gold:1000:0</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">2020:Gold:1000:0</td><td colspan="1" class="confluenceTd">&nbsp;(jak widać notowanie jest utrzymane w nieskończoność)</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="3" class="confluenceTh">Mniejsza wartość zmienia kurs w notowaniach</th></tr><tr><th class="confluenceTh">Podmiot</th><th class="confluenceTh">Akcja</th><th class="confluenceTh">Dodatkowy komentarz</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">1000:Gold:1100:15</td><td class="confluenceTd">&nbsp;</td></tr><tr><td class="confluenceTd">A</td><td class="confluenceTd">1215:S:Gold:10:1000</td><td class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1215:Gold:1000:-10</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1219:Gold:1000:<span>-10</span></td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd"><span>Expected</span></td><td colspan="1" class="confluenceTd"><span>1315<span>:Gold:1000:0</span></span></td><td colspan="1" class="confluenceTd">&nbsp;</td></tr></tbody></table></div><p>&nbsp;</p><p>Weryfikacja (Acceptance criteria):</p><ul><li>Dealer loguje się pomyślnie po wpisaniu prawidłowego loginu i hasła</li><li>Cena prawidłowo obliczona po uwzględnieniu liczby wolumenu</li><li>Zlecenie
+ zostało zaakceptowane jeśli było wystarczająco wolnych środków i 
+zarejestrowane w systemie z następującymi argumentami:Nazwa produktu, 
+Wolumen zlecenia, Typ zlecenia (kupno/sprzedaż), Cena, Zlecający, Data 
+zlecenia.</li><li>Zlecenie zostało odrzucone w przypadku 
+niewystarczającej liczby wolnych środków oraz komunikat ‘Brak 
+wystarczająco dostępnych środków’ zostaje wyświetlony</li><li>Zalogowanie
+ dwóch użytkowników pozwala obserwować na panelu głównym w/w wymienione 
+działania (Dodawanie zleceń sprzedaży wpływa na notowania)</li></ul><p>Q/A:&nbsp;</p><ul><li>Kiedy
+ środki użytkownika zostają zdjęte z jego konta? Środki na zlecenie 
+kupna zostają zdjęte z konta użytkownika z chwilą realizacji zlecenia 
+kupna.</li><li>Czy Ekran Startowy, zawierający operacje biznesowe, jest 
+dostępny dla Admina? Nie, ponieważ Admin nie wykonuje zleca operacji 
+finansowych a jedynie posiada role związane z przeglądaniem operacji i 
+zarządzaniem użytkownikami</li><li>Jak jest wyliczana wartość w polu 
+"Zmiana Kursu" w Ekranie Startowym? Jest wyliczana na podstawie zmiany 
+kursu w ciągu ostatniej godziny.</li><li>Gdy w aktywach istnieją dwa 
+wpisy tego samego produktu (np. Gold - jak na rysunku dotyczącym Panelu 
+głównego), a Dealer wykonuje zlecenie sprzedaży tego właśnie produktu, 
+to który wpis powinien zostać pomniejszony o ustalony wolumen? W 
+przypadku wielokrotnej liczby aktywów w tabeli 'Posiadane aktywa' 
+wartość wolumenu powinna zostać 'zdjęta' ze starszego aktywa, w 
+przypadku, gdy w starszym wolumenie wartość jest niewystarczająca, wtedy
+ powinien zostać on wyczerpany, a brakująca część wolumenu powinna 
+zostać zabrana z młodszego wpisu tego samego produktu. <strong>Obydwie możliwe interpretacje (zmniejszenie wolumenu aktywa przy zleceniu lub przy realizacji zlecenia) są obecnie akceptowane.</strong></li><li>Co
+ się stanie, gdy w przeciągu godziny nie pojawi się żadne zlecenie, 
+które może zmienić kurs? Wtedy kurs powinien być taki sam jak przed 
+godziną i wartość 'Zmiana kursu' powinna wynosić 0%.</li><li>Jaka jest 
+minimalna ilość danego aktywa którą można zakupić/sprzedać? Minimalna 
+ilość wynosi jeden. W ogólności zawsze ilość powinna być wyrażona liczbą
+ całkowitą.</li><li>Jaka jest minimalna cena za którą można 
+zakupić/sprzedać jedną jednostkę danego aktywa? Minimalna cena wynosi 1 
+cent czyli 0,01 dolara ($).</li></ul><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Story2.JakoSYSTEMchciałbymzrealizowaćtransakcjenapodstawienadesłanychzleceńwedługustalonegoalgorytmu">Story 2. Jako SYSTEM chciałbym zrealizować transakcje na podstawie nadesłanych zleceń według ustalonego algorytmu</h3><p>Wymagania wstępne:</p><ul><li>Dealer pierwszy posiada zakupiony produkt z odpowiednim woluminem</li><li>Dealer drugi posiada zakupiony produkt z odpowiednim woluminem</li></ul><p>Scenariusz:</p><ul><li>Dealer pierwszy składa oferte sprzedaży produktu po odpowiedniej cenie</li><li>Dealer drugi składa oferte sprzedaży produktu po odpowiedniej cenie</li><li>Dealer trzeci składa oferte kupna produktu po odpowiedniej cenie</li><li>Dealer kolejny składa oferte kupna produktu po odpowiedniej cenie</li></ul><p>Weryfikacja (Acceptance criteria):</p><ul><li>Kojarzenie
+ ofert realizowane są wg następującego algorytmu: Zlecenie sprzedaży z 
+najniższą ceną ze zleceniem kupna z najwyższą ceną.</li></ul><p>Jeśli dwa zlecenia kupna lub sprzedaży mają taką samą cenę to brane jest starsze zlecenie.</p><ul><li>Transakcja
+ jest zrealizowana po cenie sprzedaży i zarejestrowana jeśli cena kupna 
+jest większa lub równa cenie sprzedaży. Wolumen obu zleceń zostaje 
+zmniejszony o wolumen transakcji. Jeśli pozostały wolumen zlecenia 
+wynosi zero to zlecenie jest uznawane za spełnione.</li><li>Cena 
+transakcji zostaje dodana do pola ‘Wolne środki pieniężne’ w przypadku 
+sprzedaży oraz odjęta w przypadku zakupu. Zysk/Strata zostaje 
+odpowiednio wyliczona.</li></ul><p>Q/A:&nbsp;</p><p>Czy zlecenia tego 
+samego użytkownika mogą się 'matchować'? Nie, jeżeli user zlecił kupno 
+produktu Gold i sprzedaż tego samego produktu to te dwa zlecenia nie 
+powinny być elementami jednej transakcji.</p><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Story2.a)">Story 2. a) &nbsp;</h3><p>Dodatkowe scenariusze testowe:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="3" class="confluenceTh">Zmiany notowań, gdy w międzyczasie doszło do transakcji</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">1110:Gold:1000:15</td><td class="confluenceTd">&nbsp;<span>Notowania kursu o 11:10 dla aktywa Gold wynoszą 1110 a zmiana kursu jest 15%</span></td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd">A:1215:S:Gold:10:1000</td><td class="confluenceTd">&nbsp;<span>User A o 12:15 zleca sprzedaż Gold wolumen 10 po cenie 1000</span></td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1215:Gold:1000:0</td><td colspan="1" class="confluenceTd">&nbsp;<span>Notowania kursu o 12:15 dla aktywa Gold wynosi 1000 a zmiana kursu jest 0%</span></td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">B:1230:S:Gold:10:1200</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1230:Gold:1000:0</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">B:1235:B:Gold:10:1250<span class="Apple-tab-span">&nbsp;</span></td><td colspan="1" class="confluenceTd">User C o 12:35 zleca kupno Gold wolumen 10 po cenie 1250</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1235:Gold:1200:20</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1335:Gold:1200:0</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="2" class="confluenceTh">Zmiany notowań, gdy w międzyczasie doszło do kilku transakcji</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">1110:Gold:1000:15</td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd">A:1215:S:Gold:10:1000</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1215:Gold:1000:0</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">B:1230:S:Gold:10:1200</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1230:Gold:1000:0</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">C:1235:B:Gold:10:1250<span class="Apple-tab-span">&nbsp;</span></td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1235:Gold:1200:20</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">D:1240:B:Gold:10:1200</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1240:Gold:1000:0</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">E:1255:S:Gold:10:1100</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1255:Gold:1100:10</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">1455:Gold:1100:0</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="3" class="confluenceTh">Dealer wyprzedaje caly wolumen aktywa jednemu kontrahentowi</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">A:Gold:1000:40</td><td class="confluenceTd">User A posiada 40 sztuk Golda, ktore kupil po 1000</td></tr><tr><td colspan="1" class="confluenceTd">Assume</td><td colspan="1" class="confluenceTd">B:Gold:N/A:0</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">A:1220:S:Gold:40<span>:1100</span></td><td colspan="1" class="confluenceTd">czas:aktywa:cena:volumen:akcja // User A o 12:20 zleca sprzedaz Gold o wolumenie 40 po cenie 1100</td></tr><tr><td colspan="1" class="confluenceTd">Action</td><td colspan="1" class="confluenceTd">B:1225:B:Gold:40<span>:1100</span></td><td colspan="1" class="confluenceTd">User B o 12:25 zleca kupno Gold o wolumenie 40 po 1100</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">A:Gold:N/A:0</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">B:Gold:1100:20</td><td colspan="1" class="confluenceTd">&nbsp;</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="2" class="confluenceTh">Dealer wyprzedaje caly wolumen aktywa kilku kontrahentom ver. 1</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">A:Gold:1000:40</td></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">B:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">C:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd">A:1200:S:Gold:40:<span>1100</span></td></tr><tr><td class="confluenceTd">Expected</td><td class="confluenceTd">A:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd">B:1210:B:Gold:20<span>:1100</span></td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd">C:1215:B:Gold:20<span>:1200</span></td></tr><tr><td class="confluenceTd">Expected</td><td class="confluenceTd">A:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Expected</td><td class="confluenceTd">B:Gold:1100:20</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">C:Gold:1100:20</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th colspan="2" class="confluenceTh">Dealer wyprzedaje caly wolumen aktywa kilku kontrahentom ver. 2</th></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">A:Gold:1000:40</td></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">B:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Assume</td><td class="confluenceTd">C:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd">A:1200:S:Gold:40:1100</td></tr><tr><td class="confluenceTd">Expected</td><td class="confluenceTd">A:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd"><span>B:1215:B:Gold:20:1200</span></td></tr><tr><td class="confluenceTd">Action</td><td class="confluenceTd"><span>C:1210:B:Gold:20:1100</span></td></tr><tr><td class="confluenceTd">Expected</td><td class="confluenceTd">A:Gold:N/A:0</td></tr><tr><td class="confluenceTd">Expected</td><td class="confluenceTd">B:Gold:1100:20</td></tr><tr><td colspan="1" class="confluenceTd">Expected</td><td colspan="1" class="confluenceTd">C:Gold:1100:20</td></tr></tbody></table></div><h3 id="Functionalandnon-functionalrequirements-Story3.JakoDEALERlubAdminchciałbymwyświetlićlistęzleceńitransakcjiwdanymokresieczasu">Story 3. Jako DEALER lub Admin chciałbym wyświetlić listę zleceń i transakcji w danym okresie czasu</h3><p>Wymagania wstępne:</p><ul><li>Zarejestrowane konto Admin</li><li>Dealer posiada kilka złożonych ofert kupna/sprzedaży i transakcji dla różnych produktów</li></ul><p>Scenariusz:</p><ul><li>Dealer z „Ekranu Startowego’ klika na przycisk ‘Historia transakcji’</li><li>Przeglądarka przenosi na okno ‘Historia transakcji’</li><li>Dealer określa przedział czasu i wybiera przycisk ‘Szukaj’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/history_mock.png" data-image-src="/confluence/download/attachments/35816831/history_mock.png?version=2&amp;modificationDate=1467385505000&amp;api=v2" width="300"></li></ul><p>Weryfikacja (Acceptance criteria):</p><ul><li>Dla
+ Dealera pojawia się lista ze wszystkimi transakcjami z wybranego okresu
+ dla danego Dealera. Lista zawiera pola: Data, Produkt,Wolumen, Cena.</li><li>Dla
+ Admina pojawia się lista ze wszystkimi transakcjami z wybranego okresu 
+dla wszystkich&nbsp; Dealerów. Lista zawiera pola: Data, 
+Produkt,Wolumen, Cena i Dealer.</li></ul><p>Q/A:&nbsp;</p><ul><li>Jako 
+DEALER lub Admin chciałbym wyświetlić listę zleceń i transakcji w danym 
+okresie czasu, czy to oznacza, że historia powinna zawierać aktywne 
+zlecenia? Nie, historia powinna zawierać tylko zawarte transakcje.</li></ul><h3 id="Functionalandnon-functionalrequirements-Story4.JakoDEALERchciałbymzmienićniezrealizowanewłasnezleceniakupna/sprzedaży">Story 4. Jako DEALER chciałbym zmienić niezrealizowane własne zlecenia kupna/sprzedaży</h3><p>Wymagania wstępne:</p><ul><li>Dealer posiada aktywne oferty kupna/sprzedaży</li></ul><p>Scenariusz:</p><ul><li>Dealer z „Ekranu Startowego’</li><li>Dealer w sekcji ‘Zlecenia aktywne’ wybiera produkt do edycji</li><li>Dealer zmienia cene kupna/sprzedaży produktu<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/dealer_edit_trade_mock%2520Alternate%2520779o.png" data-image-src="/confluence/download/attachments/35816831/dealer_edit_trade_mock%20%28Alternate%20779o%29.png?version=1&amp;modificationDate=1467385055000&amp;api=v2" width="300"></li><li>Dealer zmienia kwote wolumenu<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/dealer_edit_trade_edited_mock%2520Alternate%2520779o.png" data-image-src="/confluence/download/attachments/35816831/dealer_edit_trade_edited_mock%20%28Alternate%20779o%29.png?version=1&amp;modificationDate=1467385055000&amp;api=v2" width="300"></li><li>Dealer klika na ‘Zapisz zmiany’</li></ul><p>Weryfikacja (Acceptance criteria):</p><ul><li>Zmiany wprowadzone przez Dealera zostają zapisane</li></ul><h3 id="Functionalandnon-functionalrequirements-Story5.JakoDEALERchciałbymanulowaćniezrealizowanewłasnezleceniakupna/sprzedaży">Story 5. Jako DEALER chciałbym anulować niezrealizowane własne zlecenia kupna/sprzedaży</h3><p>Wymagania wstępne:</p><ul><li>Dealer posiada aktywne oferty kupna/sprzedaży</li></ul><p>Scenariusz:</p><ul><li>Dealer z „Ekranu Startowego’</li><li>Dealer w sekcji ‘Zlecenia aktywne’ wybiera produkt do anulowania</li><li>Dealer potwierdza, że chce anulować transakcje<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/cancel_product_trade_mock.png" data-image-src="/confluence/download/attachments/35816831/cancel_product_trade_mock.png?version=1&amp;modificationDate=1467386727000&amp;api=v2" width="300"></li></ul><p>Weryfikacja (Acceptance criteria):</p><ul><li>Zmiany wprowadzone przez Dealera zostają zapisane</li><li>Anulowana oferta zostaje zarejestrowana</li></ul><h3 id="Functionalandnon-functionalrequirements-Story6.JakoSYSTEMchciałbymzabezpieczyćdostępdoaplikacjiniezalogowanymużytkownikom(Autentykacja)">Story 6. Jako SYSTEM chciałbym zabezpieczyć dostęp do aplikacji niezalogowanym użytkownikom (Autentykacja)</h3><p>Wymagania wstępne:</p><ul><li>Bieżącym widokiem jest Logowanie i rejestracja</li></ul><p>Scenariusz:</p><ul><li>Dealer wypełnia pole Email w sekcji ‘zarejestruj się’ adresem email<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/authenticate_mock.png" data-image-src="/confluence/download/attachments/35816831/authenticate_mock.png?version=1&amp;modificationDate=1467385054000&amp;api=v2" width="300"></li><li>Adres email jest prawdziwy (istniejący)</li><li>Adres email nie jest jeszcze wprowadzony do systemu<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/authenticate_with_email_mock.png" data-image-src="/confluence/download/attachments/35816831/authenticate_with_email_mock.png?version=1&amp;modificationDate=1467385054000&amp;api=v2" width="300"></li><li>Jeżeli email nie jest poprawny wyświetla się komunikat<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/authenticate_with_bad_email_mock.png" data-image-src="/confluence/download/attachments/35816831/authenticate_with_bad_email_mock.png?version=1&amp;modificationDate=1467385054000&amp;api=v2" width="300"></li><li>Dealer zaznacza Akceptuję regulamin<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/authenticate_filled_mock.png" data-image-src="/confluence/download/attachments/35816831/authenticate_filled_mock.png?version=1&amp;modificationDate=1467385054000&amp;api=v2" width="300"></li><li>Dealer klika Rejestruj</li><li>Pole
+ wyświetla informację: Na podany w rejestracji adres email zostały 
+wysłane dalsze informacje o aktywacji konta. Proszę przeczytać otrzymane
+ informacje w celu kontynuowania procesu rejestracji.</li><li>Dealer dostaje email z linkiem, oraz prośbę o kliknięcie linka w celu aktywacji konta.</li><li>Przeglądarka otwiera okno ‘Zmiana hasła’<br><br></li><li>Pole Aktualne hasło nie jest widoczne<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/password_change_mock.png" data-image-src="/confluence/download/attachments/35816831/password_change_mock.png?version=2&amp;modificationDate=1467386296000&amp;api=v2" width="300"></li><li>Jeżeli Dealer podał niepoprawne hasło wyświetla się komunikat błędu</li><li><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/password_change_filled_bad_mock.png" data-image-src="/confluence/download/attachments/35816831/password_change_filled_bad_mock.png?version=2&amp;modificationDate=1467386295000&amp;api=v2" width="300"></li><li>Dealer wypełnia pola Nowe hasło oraz Powtórz nowe hasło niepustym hasłem</li><li><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/password_change_filled_mock.png" data-image-src="/confluence/download/attachments/35816831/password_change_filled_mock.png?version=2&amp;modificationDate=1467386296000&amp;api=v2" width="300"></li><li>Dealer klika przycisk Zmień hasło</li><li>System zakłada Konto użytkownika z podanym hasłem</li><li>Przeglądarka zmienia widok na ‘Panel Użytkownika’<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/user_screen_mock.png" data-image-src="/confluence/download/attachments/35816831/user_screen_mock.png?version=1&amp;modificationDate=1467385058000&amp;api=v2" width="300"></li><li>Pole wyświetla informację: Dziękujemy za aktywowanie konta.</li><li>Administrator otrzymuje mail z informacją o nowo założonym koncie</li></ul><p>Weryfikacja:</p><ul><li>Dealer otrzymuje email z linkiem aktywacyjnym w czasie do 10 sekund</li><li>Kliknięcie linka aktywacyjnego przenosi do okna ustawienia hasła</li><li>Administrator otrzymał email informacyjny o nowo założonym koncie</li><li>System utworzył konto użytkownika z podanym hasłem</li><li>Pola ‘Hasło’ i ‘Powtórz hasło’ są jednakowe</li><li>Dealer Użytkownik musi zaznaczyć ‘Akceptuję regulamin’</li></ul><p>Uwagi</p><ul><li>Można wielokrotnie rejestrować email póki nie zostanie on aktywowany</li><li>Link aktywacyjny jest ważny 15 minut</li></ul><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Dodatkowafunkcjonalność">Dodatkowa funkcjonalność</h3><ul><li>Dealer ma możliwość filtrowania elementów na 'Ekranie startowym'<br><img class="confluence-embedded-image confluence-thumbnail" src="Functional%20and%20non-functional%20requirements%20-%20Siudek,%20S%C5%82awomir%20-%20Confluence_pliki/start_screen_mock%2520copy.png" data-image-src="/confluence/download/attachments/35816831/start_screen_mock%20copy.png?version=1&amp;modificationDate=1467385058000&amp;api=v2" width="300"></li></ul><p>&nbsp;</p><hr><h1 id="Functionalandnon-functionalrequirements-Nonfunctionalrequirements">Non functional requirements</h1><h3 id="Functionalandnon-functionalrequirements-Performance">Performance</h3><ol><li>It should be possible to use web application by 100 concurrent users, assuming that each user<ol><li>has open web application all the time to monitor transactions</li><li>creates order on average every 5 minutes with 2 minutes deviation</li></ol></li><li>Under load described in point 1. page load time should be less than 3 seconds in 95% of cases</li></ol><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Auditandcontrol">Audit and control</h3><ol><li>History of transactions should be kept in the system for 7 days&nbsp;</li></ol><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Faulttolerant">Fault tolerant</h3><ol><li>Failure
+ of any Backend instance should not result in complete system failure 
+and Web User should be notified about failure of particular instance</li><li>In
+ cases of failure of Backend instance Web user should be able to place 
+orders on all products and his orders should be persisted and wait for 
+until failure will be corrected</li><li>In cases of failure of Backend instance Web user should be able to use working backend instances with disturbances</li></ol><p>&nbsp;</p><h3 id="Functionalandnon-functionalrequirements-Browsercompatibility">Browser compatibility</h3><ol><li>It should be possible to use web application on following browsers:<ol><li>Mozilla from version …</li><li>Chrome from version …</li><li>IE 10,11</li></ol></li></ol><h1 class="confluence-link" id="Functionalandnon-functionalrequirements-Screenmockssources:mocks_updated_08_03_2016_newer.bmpr">Screen mocks sources:&nbsp;<a href="https://agema.gft.com/confluence/download/attachments/35816831/mocks_updated_08_22_2016_newer.bmpr?version=1&amp;modificationDate=1471862614000&amp;api=v2">mocks_updated_08_03_2016_newer.bmpr</a></h1><p>Expected<span class="Apple-tab-span" style="white-space: pre;">&nbsp;</span>B:Gold:1100:20</p><p>&nbsp;</p><div class="table-wrap"><table style="margin-top: 10.0px;" class="confluenceTable"><tbody><tr><th class="confluenceTh">Dodatkowy komentarz</th></tr></tbody></table></div><p>&nbsp;</p><p><span style="white-space: pre-wrap;">1240:</span><span style="white-space: pre-wrap;">B</span><span style="white-space: pre-wrap;">:Gold:10:1200</span></p>
+
+                
+        
+    
+		</div>
+	</article>
+</div>
+
+<div style="clear:both;"></div>
+
+
+<div style="clear:both;"></div>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+         <rdf:Description
+    rdf:about="https://agema.gft.com/confluence/display/~srsk/Functional+and+non-functional+requirements"
+    dc:identifier="https://agema.gft.com/confluence/display/~srsk/Functional+and+non-functional+requirements"
+    dc:title="Functional and non-functional requirements"
+    trackback:ping="https://agema.gft.com/confluence/rpc/trackback/35816831"/>
+</rdf:RDF>
+-->
+
+						<script type="text/x-template" title="labels-dialog-div">
+        <div id="labels-dialog">
+        <div class="labels-editor">
+            <form method="GET" action="" id="add-labels-form" class="aui">
+                <div id="labelOperationErrorContainer">
+                    <span class="error"><span class="errorMessage" id="labelOperationErrorMessage"></span></span>
+                </div>
+    
+                <div id="label-input-fields">
+                    <input autocomplete="off" id="labelsString" name="labelsString" value="" class="text">
+                    <input id="add-labels-editor-button" type="submit" class="add-labels aui-button" value="Add">
+                </div>
+                <div id="labelsAutocompleteList" class="aui-dd-parent resize-to-input" style="width: 417px"></div>
+                <div id="dialog-label-list">
+                    <!-- DIV placeholder for labels list, is copied into in labels-dialog.js -->
+                </div>
+                <div id="waitImageAndStatus">
+                    <img class="waiting" alt="Please wait" src="/confluence/s/en_GB/5638/166de1c97785b23076ca9b543dbfab25c6f13e92.5/_/images/icons/wait.gif">&nbsp;
+                    <span id="labelOperationStatus" class="smalltext"></span>
+                </div>
+                <div class="labels-tip"></div>
+            </form>
+        </div>
+        <div style="display: none;">
+            <div class="labels-section-content content-column" entityid="35816831" entitytype="page">
+	<div class="labels-content">
+		
+    <ul class="label-list  has-pen">
+            <li class="no-labels-message">
+            No labels
+        </li>
+                <li class="labels-edit-container">
+            <a href="#" class="show-labels-editor editor-icon" title="Edit Labels">
+                <span class="icon icon-edit">Edit Labels</span>
+            </a>
+        </li>
+        </ul>
+
+    </div>
+</div>        </div>
+    </div>
+</script>
+			    
+    
+
+
+
+<div id="likes-and-labels-container"><div id="likes-section"><a href="" class="like-button">Like</a><span class="like-summary">Be the first to like this</span></div><div id="labels-section" class="pageSection group">
+    <div class="labels-section-content content-column" entityid="35816831" entitytype="page">
+	<div class="labels-content">
+		
+    <ul class="label-list label-list-right  has-pen">
+            <li class="no-labels-message">
+            No labels
+        </li>
+                <li class="labels-edit-container">
+            <a href="#" class="show-labels-editor editor-icon" title="Edit Labels (l)">
+                <span class="icon icon-edit">Edit Labels</span>
+            </a>
+        </li>
+        </ul>
+
+    </div>
+</div></div></div>
+			
+<div style="clear:both;"></div>
+
+	    
+<div style="clear:both;"></div>
+
+	    
+
+
+
+
+            
+    
+
+
+
+
+
+
+
+
+                    
+    
+<div id="comments-section" class="pageSection group">
+        
+    
+    
+    
+            <div class="bottom-comment-panels comment-panels">
+                                    
+    
+
+
+    
+            </div>
+    
+    </div>
+
+
+
+
+
+
+
+
+
+    
+	
+
+    
+    
+    
+
+
+
+    
+
+
+
+
+    
+    
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+        </div><!-- .rw_content -->
+    </div><!-- #rw_main_column -->
+    <div class="rw_clear"></div>
+</div><!-- #content -->
+										<script>
+						// Now we can show the sidebar..
+						$('#rw_left_column').removeClass('rw_visibility_hidden');
+						$('#rw_right_column').removeClass('rw_visibility_hidden');
+					</script>
+								
+		        <div style="clear:both;"></div>
+		    </div><!-- \#main -->
+	
+	
+		
+				</div>
+
+
+
+
+
+	<div style="height: 130px;" id="rw_footer_wrapper" class="rw_theme_light">
+    	<div id="rw_footer_container">
+			
+									
+							<div id="rw_footer_content">
+				  	<p>Powered by <a href="http://www.atlassian.com/software/confluence" class="external-link" rel="nofollow">Atlassian Confluence</a> 5.6.5, themed by <a href="http://www.refinedwiki.com/" class="external-link" rel="nofollow">RefinedTheme</a> 5.0.8</p>
+				</div>
+			    	</div>
+	</div>
+
+						
+
+
+                                
+            	
+	    
+
+						<div class="rw_bg_shadow">
+    <div class="rw_shadow_container">
+        <div class="rw_shadow_left"></div>
+        <div class="rw_shadow_top"></div>
+        <div class="rw_shadow_right"></div>
+    </div>
+</div>
+
+			</div> <!-- rw_main -->
+
+						
+
+                <div class="rw_background_section_general
+                                                    "></div>
+    
+                <div class="rw_background_section_background1
+                                                    "></div>
+    
+
+<div id="rw_popup_bg" style="display:none;"></div>
+
+			
+		</div><!-- rw_wrapper -->
+		
+	
+		
+		
+	
+			
+	
+	
+
+
+
+</div><!-- \#full-height-container -->
+</div><!-- \#page -->
+
+
+<div style="display: none;" id="content-hover-0" class="ajs-content-hover"><div style="width: 300px;" class="contents"></div></div><div style="display: none;" id="content-hover-1" class="ajs-content-hover"><div style="width: 300px;" class="contents"></div></div><div style="display: none;" id="content-hover-2" class="ajs-content-hover"><div style="width: 300px;" class="contents"></div></div><div style="padding: 40px;" id="fancybox-tmp"></div><div style="display: none;" id="fancybox-loading"><div style="top: -440px;"></div></div><div style="background-color: rgb(119, 119, 119); opacity: 0.5; cursor: pointer; height: 12448px; display: none;" id="fancybox-overlay"></div><div style="width: 1226px; height: auto; top: 2756px; left: 158px; display: none; opacity: 1;" id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div style="border-width: 0px; width: 1226px; height: 685px;" id="fancybox-content"></div><a style="display: none;" id="fancybox-close"></a><div style="display: none;" id="fancybox-title"></div><a style="display: none;" href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a style="display: none;" href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div style="display: none;" id="content-hover-shadow"><div class="tl"></div><div class="tr"></div><div class="l"></div><div class="r"></div><div class="bl"></div><div class="br"></div><div class="b"></div></div><div style="position: relative; z-index: 0;" id="fileuploadShim"></div><div class="plupload html5" style="position: absolute; background: transparent none repeat scroll 0% 0%; width: 1583px; height: 0px; overflow: hidden; z-index: -1; opacity: 0; top: 765px; left: 0px;" id="p1as7iirc71bfl1rdd1r0r1stf8lc0_html5_container"><input id="p1as7iirc71bfl1rdd1r0r1stf8lc0_html5" style="font-size: 999px; position: absolute; width: 100%; height: 100%;" accept="" multiple="multiple" type="file"></div><div id="cw-notification-container"></div><div class="qr-notice aui-message warning"></div></body></html>

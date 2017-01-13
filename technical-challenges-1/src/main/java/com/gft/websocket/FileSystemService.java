@@ -25,7 +25,6 @@ public class FileSystemService {
     private Set<PathDTO> knownPaths = new LinkedHashSet<>();
     private Gson gson;
     private DirectoryWatcher watcher;
-    private Observable<Path> observable ;
     private Subscriber<Path> subscriber;
 
     @Value("${env.path.root.uri}")
@@ -39,7 +38,7 @@ public class FileSystemService {
     public void init() {
         gson = new Gson();
         watcher = new DirectoryWatcher();
-        observable = watcher.register(Paths.get(rootPath));
+        watcher.register(Paths.get(rootPath)).subscribe(subscriber);
         subscriber = new Subscriber<Path>() {
             @Override
             public void onCompleted() { }
@@ -57,7 +56,6 @@ public class FileSystemService {
                 });
             }
         };
-        observable.subscribe(subscriber);
     }
 
     /**
